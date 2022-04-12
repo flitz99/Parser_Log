@@ -9,7 +9,7 @@ Simone Baroni matr 122586, developer tester
 Filippo Reggiani matr 148084, developer backend
 Janath Uthayakumar matr 145610, developer frontend
 
-Strumenti Usati:
+Strumenti utilizzati:
 Gitlab: dw.gnet.it/2022T4 per CI/CD
 Mattermost: per comunicazione interna
 Taiga: per pianificazione user stories
