@@ -1,0 +1,22 @@
+Come utente voglio definire una parola chiave per creare un filtro di ricerca
+Come utente voglio definire un filtro complesso di ricerca usando piú filtri singoli
+Come utente voglio isolare il traffico usando un filtro per vederlo.
+Come utente voglio definire un arco di tempo di cui voglio vedere il traffico.
+Come utente voglio definire una pagina web di cui voglio vedere il traffico.
+Come utente voglio definire una sorgente per vederne il traffico.
+Come utente voglio definire un’area sulla mappa per vederne il traffico.
+Come utente voglio bloccare il traffico da un indirizzo malevole per sicurezza
+Come utente volgio analizzare dati per prendere decisioni commerciali
+Come utente voglio analizzare dati per prendere decisioni amministrative 
+
+Come Ssitema voglio analizzare analizzare il traffico per prendere decisioni
+Come Sistema voglio intervenire con un firewall per bloccare l’accesso in caso di necessità
+Come Sistema voglio allertare un utente per avvisarlo in caso di intervento
+Come Sistema voglio fornire dati all’utente per poterli visualizzare 
+Come Sistema voglio salvare i dati in un database per poterci accedere in seguito
+
+Come Amministratore voglio creare utenti che possano usare la webapp
+Come Amministratore voglio creare un manuale d’uso per installare il backend
+Come Amministratore voglio eliminare utenti per evitare che possano accedere in caso non   potessero 
+Come Amministratore volglio creare una guida per i’uso del frontend.
+Come Amministratore voglio mantenere il sistema per renderlo utilizzabile 
