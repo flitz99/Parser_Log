@@ -1,0 +1,12 @@
+Non fate un file di domande a Torricelli. Fatele e basta!
+
+CASI D'USO. 
+
+Se fate tante scatole, intendete dire che avete tanti sistemi indipendenti? 
+
+In generale, "Sistema" non può essere un attore, per definizione. Tutti quei casi d'uso sembrano una "spaccatura" del sistema in task tecnici, e quindi ok come vostro brainstorming, ma non vanno messi. 
+
+Anche per Amministratore, "creare manuale d'uso" non mi sembra sensato. Sembra un task vostro, l'amministratore credo abbia altro da fare. 
+
+Per Utente (che forse potete differenziare), forse potete organizzare i casi d'uso in modo diverso (gerarchico? espandibile?)
+
