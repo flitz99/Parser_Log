@@ -1,0 +1,21 @@
+Spiegazione file mockup progetto.
+
+L'idea alla base della pagina iniziare, dopo che l'utente si è loggato, è quella di far vedere tre campi:
+    1) Il primo campo è quello degli attacchi dove all'utente viene mostrato quanti attacchi ha ricevetuo nell'ultimo periodo che non 
+        è stato connesso, oppure se un ipotetico sito ha già accumulato troppi attacchi.
+        Nella casellina vi è riporatato questo esempio: hai ricevuto n attacchi da www.nome_sito.it.
+        In questo caso il primo campo comunica all'utente quanti attacchi ha totalizzato www.nome_sito.it e sotto sono presenti due 
+        tasti:
+        RISOLVI: bloccherà le chiamate del dominio.
+        SPECIFICHE: guarderà più specificatamente tutti gli attacchi di quel dominio.
+    2) Il secondo campo riguarda semplicemete le chiamate.
+    3) Il terzo campo riguarda le chiamate avvenute oggi in una tabella fatta da tre colonne:
+        DOMINIO: riguarda il dominio dei siti.
+        DATA: giorno, mese, anno e orario di quando è avvenuta la chiamata.
+        LUOGO: dove è avvenuta la chiamata.
+        Suggerisco che asseconda se la chiamata sia positiva o negativa venga specificato un colore per destinguerle (POSITIVA = VERDE
+        | NEGATIVA = ROSSO).
+        Infine due tasti:
+        SPECIFICHE: essendo che la tabella è molto minimale e da solo il dominio, la data, il luogo, il tasto specifiche da uno
+        sguardo più dettagliato alle chiamate.
+        CRONOLOGIA CHIAMATE: cronologia delle chiamate passate.
