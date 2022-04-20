@@ -4,9 +4,9 @@ Heimdall: Analizzatore via web-app di log Apache web-server, con funzionalità d
 Progetto anno 2021/2022 del team n°4, composto da: 
 Massimiliano Villa matr 136435, ruolo: full-stack developer
 Japoco Vecchi matr 119362, scrum master developer backend
-Lorenzo Lucchina matr 135609, project owner, sys admin
+Lorenzo Lucchina matr 135609, project owner, sysadmin
 Simone Baroni matr 122586, developer tester
-Filippo Reggiani matr 148084, developer backend
+Filippo Reggiani matr 148084, developer database architect
 Janath Uthayakumar matr 145610, developer frontend
 
 Strumenti utilizzati:
