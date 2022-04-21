@@ -10,8 +10,10 @@ public class Main {
     private static final String KEY2 = "56789";
 
     public static void main(String[] args) {
-
-        LogConfiguration conf1 = LogConfiguration.instance( KEY1 );
+/**
+ * in pratica il ain legge il file log originale linea per linea ogni linea viene mandata al logger
+ */
+       /* LogConfiguration conf1 = LogConfiguration.instance( KEY1 );
         Logger logger1 = LoggerFactory.getLogger( conf1 );
 
         logger1.info( "INFO message for key " + KEY1 );
@@ -22,6 +24,19 @@ public class Main {
 
         logger2.info( "INFO message for key " + KEY2 );
         logger2.severe( "ERROR message for key " + KEY2 );
+
+    */
+        try{
+            Reader lettore = new Reader();
+            System.out.println( " inizio stampa ");
+            LogConfiguration conf2 = LogConfiguration.instance( lettore.ReaderLine("/home/parallels/PDS/2022t4/code/LoggerPDS/LoggerPDS/01234.log.0") ).level( Level.SEVERE ).limit(300);
+            Logger logger2 = LoggerFactory.getLogger( conf2 );
+        }catch (Exception e){
+
+        }
+
+
     }
+
 
 }
