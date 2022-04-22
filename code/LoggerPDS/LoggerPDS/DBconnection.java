@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.io.File;
 
 public class DBconnection {
 
@@ -19,6 +20,7 @@ public class DBconnection {
 
     }
 
+    // Metodo per il singolo dato
     public void DBinsertion (String dati){
         try{
             Connection connection = null ;
@@ -32,6 +34,20 @@ public class DBconnection {
              */
 
         } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void DBinsertionFile (File log_originale){
+        try{
+                
+
+
+
+
+
+
+        } catch (SQLException e){
             e.printStackTrace();
         }
     }
