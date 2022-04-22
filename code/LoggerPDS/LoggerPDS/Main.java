@@ -27,10 +27,10 @@ public class Main {
 
     */
         try{
-            Reader lettore = new Reader();
+            Reader lettore = new Reader("/Users/jacopovecchi/PDS/2022t4/code/LoggerPDS/LoggerPDS/01234.log.0");
             System.out.println( " inizio stampa ");
-            LogConfiguration conf2 = LogConfiguration.instance( lettore.ReaderLine("/home/parallels/PDS/2022t4/code/LoggerPDS/LoggerPDS/01234.log.0") ).level( Level.SEVERE ).limit(300);
-            Logger logger2 = LoggerFactory.getLogger( conf2 );
+           lettore.ReaderLine();
+
         }catch (Exception e){
 
         }
