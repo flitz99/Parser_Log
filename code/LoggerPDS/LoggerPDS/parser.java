@@ -5,7 +5,7 @@ import java.util.regex.Pattern;
 public class parser {
 
     private String[] st =  new String[3]  ;
-    // array di stringhe in cui immagazzianre i dati cercati in ogni nuova stringa: 1 ip 2 date 3 url
+    // array di stringhe in cui immagazzinare i dati cercati in ogni nuova stringa: 1 ip 2 date 3 url
 
     //costruttore
     public parser(String Line ){
@@ -21,12 +21,12 @@ public class parser {
         // Bisogna creare i giusti pattern da cercare
 
        for(int i = 0 ; i<3 ; i++){
-           Pattern patternIp = Pattern.compile("//d+") ;
+           Pattern patternIp = Pattern.compile("//([01]?\\\\d\\\\d?|2[0-4]\\\\d|25[0-5])\\\\.([01]?\\\\d\\\\d?|2[0-4]\\\\d|25[0-5])$") ;
            st[0] = String.valueOf(patternIp.split(lineDaCercare));
-           Pattern patternDate = Pattern.compile("date") ;
+           Pattern patternDate = Pattern.compile("(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[-/.](19|20)\\d\\d") ;
            st[1] = String.valueOf(patternDate.split(lineDaCercare));
-           Pattern patternurl = Pattern.compile("date") ;
-           st[1] = String.valueOf(patternDate.split(lineDaCercare));
+           Pattern patternUrl = Pattern.compile("http\\://[a-zA-Z0-9\\-\\.]+\\.[a-zA-Z]{2,3}(/\\S*)?") ;
+           st[1] = String.valueOf(patternUrl.split(lineDaCercare));
 
         }
        // se si volesse potremmo implementare già qua la scrittura su file con append creando un altro metodo.
