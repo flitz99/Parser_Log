@@ -34,12 +34,14 @@ public class Reader {
             // risultato nullo
             String[] logcotto2 = lograw.split("\\s");
             
-            String[] logcotto3 = lograw.split("\\s");
+           
 
-            System.out.println("provo a sparare i dati");
-            System.out.println("inzio con logcotto1");
-            System.out.println("inzio con logcotto2");
+            System.out.println("provo a sparare i dati");// Testing
+            System.out.println("inzio con logcotto1");// Testing
+            
             System.out.println(Arrays.toString(logcotto));
+
+            System.out.println("inzio con logcotto2"); // Testing
             System.out.println(Arrays.toString(logcotto2));
 
 

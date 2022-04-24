@@ -31,7 +31,7 @@ public class Main {
         System.out.println(gnetserver1);
 
         Reader leggi = new Reader();
-        leggi.leggidafile();
+        leggi.leggidafile(gnetserver1);
 
     }
 }

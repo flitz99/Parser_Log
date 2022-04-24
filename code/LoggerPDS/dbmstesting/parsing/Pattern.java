@@ -26,7 +26,7 @@ public class Pattern {
     public String spattern(String s , Pattern pat){
         String formattata = "sad";
 
-        String[] decomposer = pat.pattern.split(":");
+        
 
         /* logica di estrazione del log dalla linea obbiettivo eliinare gli spazi e separare tutti gli argomenti in 9 blocchi
             soluzione facile separare per spazi
@@ -35,42 +35,33 @@ public class Pattern {
         */
         
         List<String> list = new ArrayList<String>();
+        String[] patternlist = pat.pattern.split(":"); // separo il pattern nelle sue parti
         
-
+        for(String a : patternlist ){System.out.println(a);} 
        
-        // convert string to `char[]` array
+        // converto stringa in un array di char
         char[] chars = s.toCharArray();
         
- 
-        // IN-SVILUPPO NON ANCORA TESTATO
-        // praticamente itero la stringa e separo tutte le cose 
-        // esculdendo spazi e tenendo conto che tra 2 apici " ci possono essere tanti spazi"
-        int rosso = 0;
-        boolean trovato = true ; 
-        for (int blu = 0 ; blu < chars.length; ++blu) {
-            if (chars[blu]==' '){ 
-                list.add(s.substring(rosso,blu-1));
-                rosso = blu + 1; // sposto il cursore rosso in avanti 
-            }
-
-            if( chars[blu]=='"' && trovato == true ){
-                trovato = false;
-             }
-
-             if( chars[blu]=='"' && trovato == false){ 
-                trovato = true;
-                list.add(s.substring(rosso,blu-1));
-             }
+        // devo riconoscere le virgolette per capire dove sono
+        // cosi posso ricordarmi in qualche modo la posizione delle stringa e tagliare da li
+        boolean virgolette = false;
+        for(char a : chars ){ 
+            if(a == '"' && virgolette == false){virgolette = true ; System.out.println(virgolette);}
+            if(a == '"' && virgolette == true){virgolette = false ;}
 
         }
         
+       // commando per spezzare le linee
+        System.out.println( s.substring(0,15));
 
-        for (String i : decomposer){
 
-            switch(i) {
-                case "1":
+        
 
-            }
+        for (String i : list){
+            
+            System.out.println(i);
+            
+    
 
 
         }
