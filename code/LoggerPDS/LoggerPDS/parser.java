@@ -1,5 +1,10 @@
 package LoggerPDS;
 
+import LoggerPDS.api.Grok;
+import LoggerPDS.api.GrokCompiler;
+import LoggerPDS.api.Match;
+
+import java.util.Map;
 import java.util.regex.Pattern;
 
 public class parser {
@@ -30,9 +35,36 @@ public class parser {
            st[1] = String.valueOf(patternUrl.split(lineDaCercare));
 
         }
+
+       //------------------------------------------------------------
+
+
        // se si volesse potremmo implementare già qua la scrittura su file con append creando un altro metodo.
         return st ;
     }
+
+    public Match cercatoreGrok (String lineDaCercare){
+
+        //Create a new grokCompiler instance
+        GrokCompiler grokCompiler = GrokCompiler.newInstance();
+        grokCompiler.registerDefaultPatterns();
+
+        // Grok pattern to compile, here httpd logs
+        final Grok grok = grokCompiler.compile("%{COMBINEDAPACHELOG}");
+
+        //       Line of log to match
+
+        Match gm = grok.match(lineDaCercare);
+
+        //da capire come funzione la map e il dizionario in : final Map<String, Object> capture = gm.capture();
+        //Get the map with matches
+       //final Map<String, Object> capture = gm.capture();
+
+        //------------------------------------------------------------
+
+        return  gm;
+    }
+
 
     public void Scrittura (){
         for (int i = 0 ; i <3 ; i++){
