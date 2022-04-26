@@ -60,6 +60,10 @@ public class parser {
         //Get the map with matches
        final Map<String, Object> capture = gm.capture();
 
+        /**
+         * BISOGNA USARE capture.get("key del oggetto") ; e a quel punto si salva la roba da qualche parte 
+         */
+
         //------------------------------------------------------------
 
         return  capture;
