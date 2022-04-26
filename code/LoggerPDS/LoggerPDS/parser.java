@@ -43,7 +43,7 @@ public class parser {
         return st ;
     }
 
-    public Match cercatoreGrok (String lineDaCercare){
+    public Map<String, Object> cercatoreGrok (String lineDaCercare){
 
         //Create a new grokCompiler instance
         GrokCompiler grokCompiler = GrokCompiler.newInstance();
@@ -58,11 +58,11 @@ public class parser {
 
         //da capire come funzione la map e il dizionario in : final Map<String, Object> capture = gm.capture();
         //Get the map with matches
-       //final Map<String, Object> capture = gm.capture();
+       final Map<String, Object> capture = gm.capture();
 
         //------------------------------------------------------------
 
-        return  gm;
+        return  capture;
     }
 
 
