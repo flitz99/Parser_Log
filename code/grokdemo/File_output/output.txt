@@ -1,0 +1,23 @@
+request:/search/suggest.json?q=re&resources[type]=product&resources[options][unavailable_products]=last&resources[options][fields]=title,vendor,product_type,variants.title&
+MONTH:Sep
+agent:Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1.2 Safari/605.1.15
+COMMONAPACHELOG:93.147.139.239 pippo - [08/Sep/2021:06:47:32 +0000] "GET /search/suggest.json?q=re&resources[type]=product&resources[options][unavailable_products]=last&resources[options][fields]=title,vendor,product_type,variants.title& HTTP/1.1" 200 10578
+auth:-
+HOUR:06
+ident:pippo
+verb:GET
+TIME:06:47:32
+INT:+0000
+referrer:https://shop.gnet.it/products/a-b-test-email?_pos=1&_psq=a&_ss=e&_v=1.0
+YEAR:2021
+response:200
+bytes:10578
+clientip:93.147.139.239
+COMBINEDAPACHELOG:93.147.139.239 pippo - [08/Sep/2021:06:47:32 +0000] "GET /search/suggest.json?q=re&resources[type]=product&resources[options][unavailable_products]=last&resources[options][fields]=title,vendor,product_type,variants.title& HTTP/1.1" 200 10578 "https://shop.gnet.it/products/a-b-test-email?_pos=1&_psq=a&_ss=e&_v=1.0" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1.2 Safari/605.1.15"
+MINUTE:47
+SECOND:32
+httpversion:1.1
+rawrequest:null
+MONTHDAY:08
+timestamp:08/Sep/2021:06:47:32 +0000
+--------------------------------------------
