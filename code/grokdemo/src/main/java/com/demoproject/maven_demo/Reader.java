@@ -1,6 +1,7 @@
 package com.demoproject.maven_demo;
 
 import java.io.*;
+import java.util.Map;
 
 /**
  * classe per leggere il file di log riga per riga che a sua volta vengono mandate
@@ -26,6 +27,15 @@ public class Reader<line> {
             String line;
             while ((line = br.readLine()) != null) {
                 System.out.println(line);
+                //ora inseriamo il parser per analizzare la riga
+                parser parser = new parser();
+                Map<String, Object> mappa =  parser.cercatoreGrok(line);
+                // a questo punto il parser con grok ha analizzato la riga e prodotto una hashmap
+                // non rimane che mettere il writer che prende in ingresso la mappa e la scrive riformattandola
+                Writer writer = new Writer(mappa) ;
+                // Dobbiamo decidere come scrivere gli elementi nella mappa in che sequenza e ordine
+
+
                 /**
                  * chiamo a questo punto le classi e i metodo per eseguire analisis della stringa
                  *  LA STRINGA DA ANALIZZARE è : line --> sulla quale si dovrà fare il parsing.

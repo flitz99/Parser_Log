@@ -5,9 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ac203940-1f10-4144-9007-d7310d4bb6f8" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/demoproject/maven_demo/Reader.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/demoproject/maven_demo/parser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/demoproject/maven_demo/App.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demoproject/maven_demo/App.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/demoproject/maven_demo/Writer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/demoproject/maven_demo/Reader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/demoproject/maven_demo/Reader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/demoproject/maven_demo/parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/demoproject/maven_demo/parser.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,7 +82,7 @@
       <workItem from="1651051454320" duration="260000" />
       <workItem from="1651051726534" duration="23000" />
       <workItem from="1651051764553" duration="56000" />
-      <workItem from="1651051844383" duration="358000" />
+      <workItem from="1651051844383" duration="2934000" />
     </task>
     <servers />
   </component>

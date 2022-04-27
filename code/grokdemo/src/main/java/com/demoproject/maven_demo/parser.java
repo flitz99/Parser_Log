@@ -13,7 +13,7 @@ public class parser {
     // array di stringhe in cui immagazzinare i dati cercati in ogni nuova stringa: 1 ip 2 date 3 url
 
     //costruttore
-    public parser(String Line ){
+    public parser( ){
 
     }
 
@@ -67,13 +67,6 @@ public class parser {
         //------------------------------------------------------------
 
         return  capture;
-    }
-
-
-    public void Scrittura (){
-        for (int i = 0 ; i <3 ; i++){
-            System.out.println(this.st[i]) ; // modificare eventualmente in scrittura su file con output stream
-        }
     }
 
 
