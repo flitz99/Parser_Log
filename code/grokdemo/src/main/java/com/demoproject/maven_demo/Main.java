@@ -1,9 +1,10 @@
 package com.demoproject.maven_demo;
 
-import java.io.BufferedWriter;
+
+import java.io.BufferedReader;
 import java.io.File;
 
-import java.io.FileWriter;
+import java.io.FileReader;
 import java.io.IOException;
 import java.util.Map;
 
@@ -28,46 +29,30 @@ public class Main
     	Match gm = grok.match(mylog);
 
     	/* Get the map with matches */
+
     	final Map<String, Object> capture = gm.capture();
-		System.out.println(capture);
+		Writer write= new Writer(capture);   //scrittura su file della mappa
 
-    	System.out.println("Client ip: "+capture.get("clientip"));
-    	System.out.println("Anno: "+capture.get("YEAR"));
-		File percorso= new File("");
+		//lettura da file
 
-		System.out.println(percorso.getAbsolutePath());
-		File output = new File(percorso.getAbsolutePath()+File.separator+"File_output"+File.separator+"output.txt");
-		BufferedWriter bf=null;
+		File read= new File("");
+		System.out.println("Percorso path lettura:"+ read.getAbsolutePath());
 
-		try{
-			bf= new BufferedWriter( new FileWriter(output));
-			// iterate map entries
+		File input = new File(read.getAbsolutePath()+File.separator+"File_log"+File.separator+"gnetshop.log.1");
+		System.out.println(input.getAbsolutePath());
+		BufferedReader br=null;
+		try {
+			br = new BufferedReader(new FileReader(input));
+			System.out.println(br.readLine());
 
-			for (Map.Entry<String, Object> entry :
-					capture.entrySet()) {
-
-				// put key and value separated by a colon
-				bf.write(entry.getKey() + ":"
-						+ entry.getValue());
-				// new line
-				bf.newLine();
-			}
-			bf.write("--------------------------------------------");
-			bf.flush();
+			
 		}
 		catch (IOException e) {
+			System.out.println("Errore in lettura");
 			e.printStackTrace();
 		}
-		finally {
 
-			try {
 
-				// always close the writer
-				bf.close();
-			}
-			catch (Exception e) {
-			}
-		}
 
 	}
 
