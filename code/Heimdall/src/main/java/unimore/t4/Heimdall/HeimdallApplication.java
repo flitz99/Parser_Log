@@ -1,6 +1,7 @@
-package unimore.t4.Heimdall.controller;
+package unimore.t4.Heimdall;
 
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import unimore.t4.Heimdall.controller.LogController;
 
 @SpringBootApplication
 public class HeimdallApplication {

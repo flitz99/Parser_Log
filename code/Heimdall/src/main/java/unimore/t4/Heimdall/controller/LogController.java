@@ -1,9 +1,14 @@
 package unimore.t4.Heimdall.controller;
 
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
 /**
- * Classe controller che prende i dati dei log, gli applica la logica e li
- * restituisce alla view
+ * Classe controller che prende i dati dei log, e li mostra alla view del
+ * framework. Si prende carico delle chiamate rest
  */
+@RestController
+@RequestMapping("/log")
 public class LogController {
     LogReader logReader;
     LogParser logParser;
@@ -13,7 +18,6 @@ public class LogController {
         logWriter = new LogWriter(dirDstLogName);
         logParser = new LogParser(logWriter);
         logReader = new LogReader(dirSrcLogName, logParser);
-
     }
 
     public void logProcessing(){
