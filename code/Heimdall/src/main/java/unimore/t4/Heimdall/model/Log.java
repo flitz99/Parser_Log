@@ -1,4 +1,4 @@
-package unimore.t4.Heimdall;
+package unimore.t4.Heimdall.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -8,7 +8,7 @@ public class Log implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(nullable = false,updatable = false)
-    private Long idLog;
+    private Integer idLog;
 
     private String Data;
     private String Time;
@@ -24,7 +24,7 @@ public class Log implements Serializable{
 
 
 
-    public void setId(Long idLog) {
+    public void setId(Integer idLog) {
         this.idLog = idLog;
     }
 
