@@ -37,6 +37,6 @@ public class LogController {
      *  processo che fa avviare il processo di lettura, parsing, scrittura
      */
     public void logProcessing(){
-        logReader.readLogFile();
+        logReader.readAllLogFile();
     }
 }

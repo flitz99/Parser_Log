@@ -24,7 +24,7 @@ public class LogReader {
     }
 
     /**
-     * Legge i file e li salva  col metodo {@link unimore.t4.Heimdall.service.LogParser#matchLogMakeMap(String)}
+     * Legge i file e li salva  col metodo {@link LogParser#matchLogMakeMap(String, String)}
      */
     public void readAllLogFile(){
         BufferedReader br;
@@ -33,7 +33,7 @@ public class LogReader {
                 br = new BufferedReader(new FileReader(fileattuale));//provo sul file gnetshop.log.2
                 String sourceLogLine;
                 while ((sourceLogLine = br.readLine()) != null) {
-                    logParser.matchLogMakeMap(sourceLogLine); // viene salvato in una mappa json
+                    logParser.matchLogMakeMap(sourceLogLine, fileattuale.getName()); // viene salvato in una mappa json
                 }
             } catch (IOException e) {
                 e.printStackTrace();

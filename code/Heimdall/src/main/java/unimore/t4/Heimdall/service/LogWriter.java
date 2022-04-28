@@ -10,8 +10,7 @@ import java.util.Map;
  */
 public class LogWriter {
     private String dirDstLogName;
-    private String fileLogDstName = "output.txt";//nome del file di destinazione che contiene i log parsati
-    private File dirDstLog, fileDstLog;
+    private File dirDstLog;
     private Map<String, Object> mappa;
 
     /**
@@ -21,27 +20,19 @@ public class LogWriter {
     public LogWriter(String dirDstLogName){
         dirDstLog = new File(new File("").getAbsolutePath()+File.separator
                 +dirDstLogName);
-        fileDstLog = new File(dirDstLog.getAbsolutePath()+File.separator+fileLogDstName);
     }
 
     /**
-     * metodo che inizializza il file su cui scrivere i log, l'idea è che ogni file di log originale
-     * corrisponde ad un file di log di destinazione (parsato)
-     * @param idxSrcLogFile indice per sapere a quale file di log è arrivato il processo di lettura e scrittura
-     * @return il file su cui scrivere tutte le linee di log parsate di un singolo file di log
-     */
-   // private File generateLogDstFile(int idxSrcLogFile){
-     //   File currentDstLogFile = (allLogDstFiles[idxSrcLogFile] = new File()
-    //}
-    /**
      * Funzione writelog di demo
      * @param map
+     * @param name
      */
-    public  void writeLog(Map<String, Object> map) {
+    public  void writeLog(Map<String, Object> map, String name) {
+        File currentOutputLog = new File(dirDstLog.getAbsolutePath()+File.separator+name);
         this.mappa=map;
         BufferedWriter bufferedWriter = null;
         try{
-            bufferedWriter= new BufferedWriter( new FileWriter(fileDstLog,true));
+            bufferedWriter= new BufferedWriter( new FileWriter(currentOutputLog,true));
             for (Map.Entry<String, Object> entry : mappa.entrySet()) {
                 // put key and value separated by a colon
                 bufferedWriter.write(entry.getKey() + ":" + entry.getValue());
