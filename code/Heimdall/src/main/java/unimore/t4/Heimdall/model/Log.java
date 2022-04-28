@@ -9,18 +9,24 @@ public class Log implements Serializable{
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(nullable = false,updatable = false)
     private Integer idLog;
-
+    @Column(nullable = false,updatable = false)
     private String Data;
+    @Column(nullable = false,updatable = false)
     private String Time;
+    @Column(nullable = false,updatable = false)
+    private String Ipclient;
+    @Column(nullable = false,updatable = false)
+    private Integer Response;
+    @Column(nullable = false,updatable = false)
+    private String LogOriginal;
+
     private String Ident;
     private String Auth;
-    private String Ipclient;
+
     private String Request;
-    private Integer Response;
+
     private Integer Bytes;
     private String Agent;
-
-    private String LogOriginal;
 
 
 
