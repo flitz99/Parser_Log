@@ -15,7 +15,6 @@ public class LogReader {
                 +dirSrcLogName);
         allLogFiles = dirSrcLog.listFiles();
         this.logParser = logParser;
-        readLogFile();
     }
 
     public void readLogFile(){

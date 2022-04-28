@@ -17,10 +17,11 @@ public class LogParser {
     private Map<String, Object> captureMap;
     private LogWriter logWriter;
 
-    public LogParser(LogWriter logWriter){
+    public LogParser(LogWriter logWriter ){
         GrokCompiler grokCompiler = GrokCompiler.newInstance();
         grokCompiler.registerDefaultPatterns();
         grok = grokCompiler.compile("%{COMBINEDAPACHELOG}");
+        //grok = grokCompiler.compile("%{COMBINEDAPACHELOG}");
         this.logWriter = logWriter;
     }
 
