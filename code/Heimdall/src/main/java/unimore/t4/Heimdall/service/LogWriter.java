@@ -16,7 +16,7 @@ public class LogWriter {
 
     /**
      * Metodo costruttore della classe LogWriter che prende come inpuy
-     * @param dirDstLogName stringa contenente il path delle cartelle dei log
+     * @param dirDstLogName nome cartella contenente i file dei log parsati
      */
     public LogWriter(String dirDstLogName){
         dirDstLog = new File(new File("").getAbsolutePath()+File.separator
