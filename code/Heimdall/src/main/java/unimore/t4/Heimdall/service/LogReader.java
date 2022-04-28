@@ -29,7 +29,7 @@ public class LogReader {
     public void readLogFile(){
         BufferedReader br;
         try{
-            br = new BufferedReader(new FileReader(allLogFiles[2]));//provo sul file gnetshop.log.2
+            br = new BufferedReader(new FileReader(allLogFiles[3]));//provo sul file gnetshop.log.2
             String sourceLogLine;
             while((sourceLogLine = br.readLine()) != null) {
                 logParser.matchLogMakeMap(sourceLogLine); // viene salvato in una mappa json
@@ -38,4 +38,21 @@ public class LogReader {
             e.printStackTrace();
         }
     }
+
+    public void readAllLogFile(){
+
+        for ( File fileattuale : dirSrcLog.listFiles()) {
+            BufferedReader br;
+            try {
+                br = new BufferedReader(new FileReader(fileattuale));//provo sul file gnetshop.log.2
+                String sourceLogLine;
+                while ((sourceLogLine = br.readLine()) != null) {
+                    logParser.matchLogMakeMap(sourceLogLine); // viene salvato in una mappa json
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
 }
