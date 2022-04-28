@@ -1,109 +1,54 @@
-    package com.demoproject.maven_demo;
+package unimore.t4.Heimdall;
 
-    import java.util.Map;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Map;
+/*
+    Classe che scrive su file l'hashmap
+ */
+public class Writer {
 
-    public class Writer {
+    final Map<String, Object> mappa;
 
-        final Map<String, Object> mappajson ;
+    //costruttore
+    public Writer(Map<String, Object> mappa, String path_write) {
+        this.mappa=mappa;
 
-        //costruttore
-        public Writer (Map<String, Object> mappajson){
+        BufferedWriter bf=null;
 
-            this.mappajson = mappajson;
+        try{
+            bf= new BufferedWriter( new FileWriter(path_write,true));
+            // iterate map entries
 
+            for (Map.Entry<String, Object> entry :
+                    mappa.entrySet()) {
+
+                // put key and value separated by a colon
+                bf.write(entry.getKey() + ":"
+                        + entry.getValue());
+                // new line
+                bf.newLine();
+            }
+            bf.write("----------------------------------------------------");
+            bf.newLine();
+            bf.flush();
         }
-
-        // scriviamo un metodo di ritorno per ogni campo del json che si trova nella hashmap
-
-        public String request (){
-            return (String) this.mappajson.get("request");
+        catch (IOException e) {
+            e.printStackTrace();
         }
+        finally {
 
-        public String MONTH (){
-            return (String) this.mappajson.get("MONTH");
-        }
+            try {
 
-        public String agent (){
-            return (String) this.mappajson.get("agent");
-        }
-
-        public String COMMONAPACHELOG (){
-            return (String) this.mappajson.get("COMONAPACHELOG");
-        }
-
-        public String auth (){
-            return (String) this.mappajson.get("auth");
-        }
-
-        public String HOUR (){
-            return (String) this.mappajson.get("HOUR");
-        }
-
-        public String ident (){
-            return (String) this.mappajson.get("ident");
-        }
-
-
-        public String verb (){
-            return (String) this.mappajson.get("verb");
-        }
-
-
-        public String TIME (){
-            return (String) this.mappajson.get("TIME");
-        }
-
-        public String INT (){
-            return (String) this.mappajson.get("INT");
-        }
-
-        public String referrer (){
-            return (String) this.mappajson.get("referrer");
-        }
-
-        public String YEAR (){
-            return (String) this.mappajson.get("YEAR");
-        }
-
-
-        public String response (){
-            return (String) this.mappajson.get("response");
-        }
-
-        public String bytes (){
-            return (String) this.mappajson.get("bytes");
-        }
-
-        public String clientip (){
-            return (String) this.mappajson.get("clientip");
-        }
-
-        public String COMBINEDAPACHELOG (){
-            return (String) this.mappajson.get("COMBINEDAPACHELOG");
-        }
-
-        public String MINUTE (){
-            return (String) this.mappajson.get("MINUTE");
-        }
-
-        public String SECOND (){
-            return (String) this.mappajson.get("SECOND");
-        }
-
-        public String httpversion (){
-            return (String) this.mappajson.get("httpversion");
-        }
-
-        public String rawrequest (){
-            return (String) this.mappajson.get("rawrequest");
-        }
-
-        public String MONTHDAY (){
-            return (String) this.mappajson.get("MONTHDAY");
-        }
-
-        public String timestamp (){
-            return (String) this.mappajson.get("timestamp");
+                // always close the writer
+                bf.close();
+            }
+            catch (Exception e) {
+            }
         }
 
     }
+}
+

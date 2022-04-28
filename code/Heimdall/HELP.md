@@ -1,3 +1,8 @@
+# Read Me First
+The following was discovered as part of building this project:
+
+* The original package name 'unimore.2022t4.Heimdall' is invalid and this project uses 'unimore.t4.Heimdall' instead.
+
 # Getting Started
 
 ### Reference Documentation
