@@ -25,6 +25,10 @@ public class LogParser {
         this.logWriter = logWriter;
     }
 
+    /**
+     * Metodo che prende una stringa e la
+     * @param logLine
+     */
     public void matchLogMakeMap(String logLine){
         gm = grok.match(logLine);
         captureMap = gm.capture();

@@ -14,11 +14,20 @@ public class LogWriter {
     private File[] allLogDstFiles;
     private Map<String, Object> mappa;
 
+    /**
+     * Metodo costruttore della classe LogWriter che prende come inpuy
+     * @param dirDstLogName stringa contenente il path delle cartelle dei log
+     */
     public LogWriter(String dirDstLogName){
         dirDstLog = new File(new File("").getAbsolutePath()+File.separator
                 +dirDstLogName);
         allLogDstFiles = dirDstLog.listFiles();
     }
+
+    /**
+     * Funzione writelog di demo
+     * @param map
+     */
     public  void writeLog(Map<String, Object> map) {
         this.mappa=map;
         BufferedWriter bufferedWriter = null;

@@ -10,6 +10,12 @@ public class LogReader {
     private File[] allLogFiles;
     private LogParser logParser;
 
+    /**
+     * Metodo costruttore per la classe LogReader , fa da contenitore alla funzioni che si occuppano di leggere
+     * dai file e assegnare le directory
+     * @param dirSrcLogName  directory di input dei log
+     * @param logParser   directory di output formattato
+     */
     public LogReader(String dirSrcLogName, LogParser logParser){
         dirSrcLog = new File(new File("").getAbsolutePath()+File.separator
                 +dirSrcLogName);
@@ -17,13 +23,16 @@ public class LogReader {
         this.logParser = logParser;
     }
 
+    /**
+     * Legge i file e li salva  col metodo {@link unimore.t4.Heimdall.service.LogParser#matchLogMakeMap(String)}
+     */
     public void readLogFile(){
         BufferedReader br;
         try{
             br = new BufferedReader(new FileReader(allLogFiles[2]));//provo sul file gnetshop.log.2
             String sourceLogLine;
             while((sourceLogLine = br.readLine()) != null) {
-                logParser.matchLogMakeMap(sourceLogLine);
+                logParser.matchLogMakeMap(sourceLogLine); // viene salvato in una mappa json
             }
         }catch(IOException e){
             e.printStackTrace();

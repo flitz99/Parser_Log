@@ -8,6 +8,9 @@ import unimore.t4.Heimdall.repo.LogRepo;
 
 import java.util.List;
 
+/**
+ *    funzione futra per il database
+ */
 @Service
 public class LogService {
     private final LogRepo logRepo;
