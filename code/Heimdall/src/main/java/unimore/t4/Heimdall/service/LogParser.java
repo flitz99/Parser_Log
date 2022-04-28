@@ -1,10 +1,9 @@
-package unimore.t4.Heimdall.controller;
+package unimore.t4.Heimdall.service;
 
 import io.krakens.grok.api.Grok;
 import io.krakens.grok.api.GrokCompiler;
 import io.krakens.grok.api.Match;
 
-import java.io.File;
 import java.util.Map;
 
 /**

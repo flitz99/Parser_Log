@@ -2,6 +2,9 @@ package unimore.t4.Heimdall.controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import unimore.t4.Heimdall.service.LogParser;
+import unimore.t4.Heimdall.service.LogReader;
+import unimore.t4.Heimdall.service.LogWriter;
 
 /**
  * Classe controller che prende i dati dei log, e li mostra alla view del
