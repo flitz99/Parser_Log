@@ -12004,3 +12004,72 @@ rawrequest:null
 MONTHDAY:08
 timestamp:08/Sep/2021:16:41:17 +0000
 ----------------------------------------------------
+request:/products/smart-content
+MONTH:Sep
+agent:Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)
+COMMONAPACHELOG:66.249.74.94 - - [05/Sep/2021:06:42:35 +0000] "GET /products/smart-content HTTP/1.1" 200 40534
+auth:-
+HOUR:06
+ident:-
+verb:GET
+TIME:06:42:35
+INT:+0000
+referrer:-
+YEAR:2021
+response:200
+bytes:40534
+clientip:66.249.74.94
+COMBINEDAPACHELOG:66.249.74.94 - - [05/Sep/2021:06:42:35 +0000] "GET /products/smart-content HTTP/1.1" 200 40534 "-" "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)"
+MINUTE:42
+SECOND:35
+httpversion:1.1
+rawrequest:null
+MONTHDAY:05
+timestamp:05/Sep/2021:06:42:35 +0000
+----------------------------------------------------
+request:/v1/produce
+MONTH:Sep
+agent:Mozilla/5.0 (Linux; Android 6.0.1; Nexus 5X Build/MMB29P) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.119 Mobile Safari/537.36 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)
+COMMONAPACHELOG:66.249.74.92 - - [05/Sep/2021:07:04:16 +0000] "GET /v1/produce HTTP/1.1" 404 33908
+auth:-
+HOUR:07
+ident:-
+verb:GET
+TIME:07:04:16
+INT:+0000
+referrer:-
+YEAR:2021
+response:404
+bytes:33908
+clientip:66.249.74.92
+COMBINEDAPACHELOG:66.249.74.92 - - [05/Sep/2021:07:04:16 +0000] "GET /v1/produce HTTP/1.1" 404 33908 "-" "Mozilla/5.0 (Linux; Android 6.0.1; Nexus 5X Build/MMB29P) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.119 Mobile Safari/537.36 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)"
+MINUTE:04
+SECOND:16
+httpversion:1.1
+rawrequest:null
+MONTHDAY:05
+timestamp:05/Sep/2021:07:04:16 +0000
+----------------------------------------------------
+request:/collections/f-w-2021/corso-completo
+MONTH:Sep
+agent:Mozilla/5.0 (Linux; Android 6.0.1; Nexus 5X Build/MMB29P) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.119 Mobile Safari/537.36 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)
+COMMONAPACHELOG:66.249.74.94 - - [05/Sep/2021:07:25:57 +0000] "GET /collections/f-w-2021/corso-completo HTTP/1.1" 200 35810
+auth:-
+HOUR:07
+ident:-
+verb:GET
+TIME:07:25:57
+INT:+0000
+referrer:-
+YEAR:2021
+response:200
+bytes:35810
+clientip:66.249.74.94
+COMBINEDAPACHELOG:66.249.74.94 - - [05/Sep/2021:07:25:57 +0000] "GET /collections/f-w-2021/corso-completo HTTP/1.1" 200 35810 "-" "Mozilla/5.0 (Linux; Android 6.0.1; Nexus 5X Build/MMB29P) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.119 Mobile Safari/537.36 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)"
+MINUTE:25
+SECOND:57
+httpversion:1.1
+rawrequest:null
+MONTHDAY:05
+timestamp:05/Sep/2021:07:25:57 +0000
+----------------------------------------------------

@@ -26,23 +26,9 @@ public class LogReader {
     /**
      * Legge i file e li salva  col metodo {@link unimore.t4.Heimdall.service.LogParser#matchLogMakeMap(String)}
      */
-    public void readLogFile(){
-        BufferedReader br;
-        try{
-            br = new BufferedReader(new FileReader(allLogFiles[3]));//provo sul file gnetshop.log.2
-            String sourceLogLine;
-            while((sourceLogLine = br.readLine()) != null) {
-                logParser.matchLogMakeMap(sourceLogLine); // viene salvato in una mappa json
-            }
-        }catch(IOException e){
-            e.printStackTrace();
-        }
-    }
-
     public void readAllLogFile(){
-
-        for ( File fileattuale : dirSrcLog.listFiles()) {
-            BufferedReader br;
+        BufferedReader br;
+        for ( File fileattuale : allLogFiles) {
             try {
                 br = new BufferedReader(new FileReader(fileattuale));//provo sul file gnetshop.log.2
                 String sourceLogLine;
