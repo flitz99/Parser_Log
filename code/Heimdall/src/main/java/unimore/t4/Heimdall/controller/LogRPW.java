@@ -25,7 +25,7 @@ public class LogRPW {
         GrokCompiler grokCompiler = GrokCompiler.newInstance();
         grokCompiler.registerDefaultPatterns();
         grok = grokCompiler.compile("%{COMBINEDAPACHELOG}");
-        testLog = "93.147.139.239 - - [08/Sep/2021:06:47:32 +0000] \"GET /search/suggest.json?q=re&resources[type]=product&resources[options][unavailable_products]=last&resources[options][fields]=title,vendor,product_type,variants.title& HTTP/1.1\" 200 10578 \"https://shop.gnet.it/products/a-b-test-email?_pos=1&_psq=a&_ss=e&_v=1.0\" \"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1.2 Safari/605.1.15\"";
+        String testLog = "93.147.139.239 - - [08/Sep/2021:06:47:32 +0000] \"GET /search/suggest.json?q=re&resources[type]=product&resources[options][unavailable_products]=last&resources[options][fields]=title,vendor,product_type,variants.title& HTTP/1.1\" 200 10578 \"https://shop.gnet.it/products/a-b-test-email?_pos=1&_psq=a&_ss=e&_v=1.0\" \"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1.2 Safari/605.1.15\"";
         matchLog();
         makeMap();
         setLogDirSource();
