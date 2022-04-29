@@ -1,0 +1,24 @@
+Ritaggare v0.1 in sprint0
+
+README: formattatelo un po' meglio (così vi imparate anche il linguaggio markdown)
+
+Backlog: bene la divisione in epiche, che potevano forese anche essere rese più grosse e non necessariamente devono seguire il modello come..voglio..perché (il perché poi non c'è quasi mai). Nelle us, magari differenziare per utente, visto che lo avete identificato nei casi d'uso. 
+Alcune US sono poco chiare e quindi non testatibili (ES; "cosa sta succedendo"?). L'elenco US testuale (ovviamente) non corrisponde alle US su taiga, evitiamo ripetizioni. 
+
+LE US descritte come Casi d'uso non è che la trovi una grande idea. Possono essere riscritti in modo più conciso (usando include, vari attori), es: "ricerca". Alcuni casi d'uso non sono primari, es: Definire un'area sulla mappa non è ovviamente un obiettivo primario di nessun utente sano di mente. 
+Il secondo caso s'uso (fatto a mano) è molto molto meglio (anche se "carica dati su database è un aspetto algoritmico/tecnico) che non ci sta. 
+
+Amminisratore è un caso d'uso un po' particolare
+
+Documento rischi è basaso sulle US, non è particolarmente utile. Qui occorre essere più tecnici. 
+
+UML? Lo schema a blocchi mi pare un po' parziale. 
+
+Bene descrizione progetto e ipotesi soluzione
+
+Domande da fare. FATELE!
+
+Mi è piaciuto lo sprint backlog dello sprint 0. 
+Per lo Sprint 1 invece manca molta roba (sprint goal, DOR; DOD). 
+
+Avete messo il documento dei rischi nella cartella scrumble, mentre la documentazione della partita manca. Vi prego di usare l'excel fornito.
