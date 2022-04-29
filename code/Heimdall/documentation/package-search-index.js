@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"unimore.t4.Heimdall"},{"l":"unimore.t4.Heimdall.controller"},{"l":"unimore.t4.Heimdall.exception"},{"l":"unimore.t4.Heimdall.model"},{"l":"unimore.t4.Heimdall.repo"},{"l":"unimore.t4.Heimdall.service"}];updateSearchResults();
