@@ -46,17 +46,10 @@ public class LogWriter {
         catch (IOException e) {
             e.printStackTrace();
         }
-        finally {
-
-            try {
-
-                // always close the writer
-                bufferedWriter.close();
-            }
-            catch (Exception e) {
-            }
+        try {
+            bufferedWriter.close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-
     }
 }
-

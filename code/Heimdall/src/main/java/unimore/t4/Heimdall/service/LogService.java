@@ -11,7 +11,7 @@ import java.util.List;
 @Service
 public class LogService {
     @Autowired
-    private LogRepo logRepo;
+    private static LogRepo logRepo;
     private LogReader logReader;
     private LogParser logParser;
     private LogWriter logWriter;
@@ -61,7 +61,7 @@ public class LogService {
     /*
      * metodo che può portare a degli errori perciò ho aggiunto la classe eccezione
      */
-    public Log findLogByIdLog(Integer idLog){
+    public static Log findLogByIdLog(Integer idLog){
         return logRepo.findLogByIdLog(idLog).orElseThrow(
                 ()->new LogNotFoundException("Log con idLog " + idLog +" non trovato"));
     }
