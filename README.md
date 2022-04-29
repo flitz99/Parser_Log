@@ -13,3 +13,6 @@ Strumenti utilizzati:
 Gitlab: dw.gnet.it/2022T4 per CI/CD
 Mattermost: per comunicazione interna
 Taiga: per pianificazione user stories
+
+Aggiornamenti Sprint 1:
+Lo sviluppo dell'applicativo si è spostato sul branch development

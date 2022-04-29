@@ -74,7 +74,6 @@ public class Log implements Serializable{
     public void setData(String data) {
         Data = data;
     }
-
     /**
      * setter dell'istante del log nel database
      * @param time istante del log
@@ -82,7 +81,6 @@ public class Log implements Serializable{
     public void setTime(String time) {
         Time = time;
     }
-
     /**
      * setter dell'identification del log nel database
      * @param ident identification del log
@@ -90,7 +88,6 @@ public class Log implements Serializable{
     public void setIdent(String ident) {
         Ident = ident;
     }
-
     /**
      * setter dell' author del log nel database
      * @param auth author del log
@@ -98,30 +95,39 @@ public class Log implements Serializable{
     public void setAuth(String auth) {
         Auth = auth;
     }
+    /**
+     * setter dell'indirizzo ip del client
+     * @param ipclient indirizzo ip del client
+     */
     public void setIpclient(String ipclient) {
         Ipclient = ipclient;
     }
-
+    /**
+     * setter della richiesta http del client
+     * @param request richiesta http del client
+     * /
     public void setRequest(String request) {
         Request = request;
     }
-
+    /**
+     * setter della risposta http del server 
+     * @param response risposta http del server
+     * /
     public void setResponse(Integer response) {
         Response = response;
     }
-
+    /**
+     * setter della dimensione della risorsa fornita dal server 
+     * @param bytes dimensione della risorsa fornita dal server 
+     * /
     public void setBytes(Integer bytes) {
         Bytes = bytes;
     }
-
+    /**
+     * setter dello user agent del client
+     * @param agent  user agent del client
+     * /
     public void setAgent(String agent) {
         Agent = agent;
     }
-
-
-
-
-
-
-
 }
