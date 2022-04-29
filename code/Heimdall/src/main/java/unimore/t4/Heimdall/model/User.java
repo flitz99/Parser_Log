@@ -6,7 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 /**
  * Classe che identifica l'utente che sta usando l'applicativo web
- * /
+ */
 public class User {
     /**
      *chiave principale dell'utente

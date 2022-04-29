@@ -16,3 +16,4 @@ Taiga: per pianificazione user stories
 
 Aggiornamenti Sprint 1:
 Lo sviluppo dell'applicativo si è spostato sul branch development
+Per avviare l'applicazione: aprire l'app tramite un progetto su un ide e fare il run attraverso l'ide. Nella cartella Heimdall/out/artifacts/Heimdall_jar c'è un jar che per ora però non sembra funzionare. Il progetto non è ancora pronto per la distribuzione.

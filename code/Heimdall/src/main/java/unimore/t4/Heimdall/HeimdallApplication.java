@@ -1,5 +1,6 @@
 package unimore.t4.Heimdall;
 
+import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import unimore.t4.Heimdall.service.LogService;
 
