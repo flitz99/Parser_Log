@@ -6,15 +6,22 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Map;
 /*
-    Classe che scrive su file l'hashmap
+ * Classe che scrive su file l'hashmap
  */
 public class LogWriter {
+    /**
+     * Nome della cartella contenente i file di destinazione */
     private String dirDstLogName;
+    /**
+     * File che rappresenta la cartella di destinazione dei file di log */
     private File dirDstLog;
+    /**
+     * Oggetto map che contiene i campi del log, parametrizzati in stringa
+     * (chiave) ed object (valore) */
     private Map<String, Object> mappa;
 
     /**
-     * Metodo costruttore della classe LogWriter che prende come inpuy
+     * Metodo costruttore della classe LogWriter
      * @param dirDstLogName nome cartella contenente i file dei log parsati
      */
     public LogWriter(String dirDstLogName){
@@ -23,9 +30,9 @@ public class LogWriter {
     }
 
     /**
-     * Funzione writelog di demo
-     * @param map
-     * @param name
+     * Metodo per scrivere sul file i valori contenuti nella mappa
+     * @param map mappa con i valori del log parsato
+     * @param name nome del file di log sorgente, che è uguale a quello finale
      */
     public  void writeLog(Map<String, Object> map, String name) {
         File currentOutputLog = new File(dirDstLog.getAbsolutePath()+File.separator+name);

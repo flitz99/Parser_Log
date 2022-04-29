@@ -105,28 +105,28 @@ public class Log implements Serializable{
     /**
      * setter della richiesta http del client
      * @param request richiesta http del client
-     * /
+     */
     public void setRequest(String request) {
         Request = request;
     }
     /**
-     * setter della risposta http del server 
+     * setter della risposta http del server
      * @param response risposta http del server
-     * /
+     */
     public void setResponse(Integer response) {
         Response = response;
     }
     /**
-     * setter della dimensione della risorsa fornita dal server 
-     * @param bytes dimensione della risorsa fornita dal server 
-     * /
+     * setter della dimensione della risorsa fornita dal server
+     * @param bytes dimensione della risorsa fornita dal server
+     */
     public void setBytes(Integer bytes) {
         Bytes = bytes;
     }
     /**
      * setter dello user agent del client
      * @param agent  user agent del client
-     * /
+     */
     public void setAgent(String agent) {
         Agent = agent;
     }

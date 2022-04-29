@@ -14,12 +14,19 @@ import java.util.List;
  */
 @Service
 public class LogService {
+    /**
+     * riferimento all'interfaccia per chiamare metodi di servizio */
     @Autowired
     private static LogRepo logRepo;
+    /**
+     * riferimento alla classe logReader */
     private LogReader logReader;
+    /**
+     * riferimento alla classe logParser */
     private LogParser logParser;
+     /**
+     * riferimento alla classe logWriter */
     private LogWriter logWriter;
-
 
     /**
      * il writer su file il contenuto parsato
@@ -46,7 +53,7 @@ public class LogService {
     con il database tramite l'interfaccia LogRepo. Devono rimanere in questa classe
     Gli altri metodi (log processing...) e le altre tre classi possono essere separate
     e messe in un altro package che rappresenta la core logic.
-    Le operazioni di log processing vanno comunque eseguite per prima cosa.
+    Le operazioni di log processing vanno comunque eseguite per prime.
     Si può mettere qui un oggeto di tipo LogProcessing, su quale viene chiamato il
     metodo di avvio del preprocessing dei file di log
      */
@@ -54,19 +61,25 @@ public class LogService {
         log.setId(001);
         return logRepo.save(log);
     }
-
+    /**
+     * metodo statico che ritorna tutti i log
+     * @return oggetto lista di log */
     public static List<Log> findAllLogs(){
         return logRepo.findAll();
     }
 
-    /*
-     * metodo che può portare a degli errori perciò ho aggiunto la classe eccezione
+    /**
+     * Metodo per trovare un log data la chiave primaria
+     * ritorna un'eccezione in caso di log non trovato
+     * @return il log recuperato
      */
     public static Log findLogByIdLog(Integer idLog){
         return logRepo.findLogByIdLog(idLog).orElseThrow(
                 ()->new LogNotFoundException("Log con idLog " + idLog +" non trovato"));
     }
+    /*
     public void deleteLog(Integer idLog){
         logRepo.deleteLogByIdLog(idLog);
     }
+    */
 }

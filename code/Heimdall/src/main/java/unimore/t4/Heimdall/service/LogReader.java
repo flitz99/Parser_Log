@@ -11,10 +11,10 @@ public class LogReader {
     private LogParser logParser;
 
     /**
-     * Metodo costruttore per la classe LogReader , fa da contenitore alla funzioni che si occuppano di leggere
-     * dai file e assegnare le directory
-     * @param dirSrcLogName  directory di input dei log
-     * @param logParser   directory di output formattato
+     * Costruttore, inizializza i riferimenti alla cartella contenente i file
+     * di log e all'oggetto parser
+     * @param dirSrcLogName directory di input dei log
+     * @param logParser oggetto parser già inizializzato
      */
     public LogReader(String dirSrcLogName, LogParser logParser){
         dirSrcLog = new File(new File("").getAbsolutePath()+File.separator
@@ -24,21 +24,21 @@ public class LogReader {
     }
 
     /**
-     * Legge i file e li salva  col metodo {@link LogParser#matchLogMakeMap(String, String)}
+     * Legge i file e li salva  col metodo matchLogMakeMap(String, String)
      */
     public void readAllLogFile(){
         BufferedReader br;
-        for ( File fileattuale : allLogFiles) {
+        for ( File fileCur : allLogFiles) {
             try {
-                br = new BufferedReader(new FileReader(fileattuale));//provo sul file gnetshop.log.2
+                br = new BufferedReader(new FileReader(fileCur));
                 String sourceLogLine;
                 while ((sourceLogLine = br.readLine()) != null) {
-                    logParser.matchLogMakeMap(sourceLogLine, fileattuale.getName()); // viene salvato in una mappa json
+		 // viene salvato in una mappa json
+                    logParser.matchLogMakeMap(sourceLogLine, fileCur.getName());
                 }
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
     }
-
 }
