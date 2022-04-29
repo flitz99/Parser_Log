@@ -1,19 +1,19 @@
 package unimore.t4.Heimdall;
 
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import unimore.t4.Heimdall.service.LogServicer;
+import unimore.t4.Heimdall.service.LogService;
 
 @SpringBootApplication
 public class HeimdallApplication {
-	private LogServicer controller;
+	private LogService controller;
 
 	/**
 	 * costruttore di HeimdallApplication , attualmente fa 2 cose
-	 * la prima e inizializzare il  {@link LogServicer}
+	 * la prima e inizializzare il  {@link LogService}
 	 * la seconda e fare un test di parsing con logProcessing
 	 */
 	public HeimdallApplication(){
-		controller = new LogServicer("File_log", "File_output");
+		controller = new LogService("File_log", "File_output");
 		controller.logProcessing();
 	}
 

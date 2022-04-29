@@ -5,6 +5,10 @@ import unimore.t4.Heimdall.model.Log;
 
 import java.util.Optional;
 
+/**
+ * Interfaccia che estende la JpaRepository per poter lavorare con il database
+ *
+ */
 public interface LogRepo extends JpaRepository<Log, Integer> {
     void deleteLogByIdLog(Integer idLog);
 
