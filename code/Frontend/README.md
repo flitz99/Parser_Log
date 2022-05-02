@@ -2,7 +2,7 @@
 
 
 
-## Idea a requisiti di progetto
+## Idea e requisiti di progetto
 
 Si vuole progettare un'applicazione web con interfacce utente chiara e intuitiva, comprensibile anche ai non addetti ai lavori.
 Il frontend sarà erogato tramite web; nella home del sito sarà presentato un form di login per accedere ai contenuti dell'applicazione.
