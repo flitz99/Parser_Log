@@ -1,8 +1,8 @@
-#Frontend Heimdall
+# Frontend Heimdall
 
 
 
-##Idea a requisiti di progetto
+## Idea a requisiti di progetto
 
 Si vuole progettare un'applicazione web con interfacce utente chiara e intuitiva, comprensibile anche ai non addetti ai lavori.
 Il frontend sarà erogato tramite web; nella home del sito sarà presentato un form di login per accedere ai contenuti dell'applicazione.
@@ -11,7 +11,7 @@ Sarà possibile effettuare una ricerca testuale in entrambe le direzioni all'int
 Sarà possibile visualizzare le sorgenti di traffico su una mappa tramite geolocalizzazione.
 
 
-##Requisiti tecnici e tecnologie web
+## Requisiti tecnici e tecnologie web
 
 Per la creazione sarà utilizzato il framework JS Vue.js
 Per motivi di rendering (SSR) verrà utilizzato NUXTJs, un framework che utilizza nodejs per far girare javascript sul server.
