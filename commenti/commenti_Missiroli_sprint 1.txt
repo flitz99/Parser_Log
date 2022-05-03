@@ -6,7 +6,9 @@ Commit abbastanza equilibrati si nota anche il lavoro in pair programming. Spicc
 /Database vuoto
 /scrumble OK
 
-Retrospective: (Da consegnare)
+Retrospective (spostare in cartella s1): La parte di autoanalisi è buona, fin troppo dura a tratti
+Dovreste però fare action point più precisi e verificabili, "ci impegneremo" non vuol dire nulla. Ipotesi: "nello  daily scrum ogni giorno i due sottteam si comunicano gli avanzamenti". "Tenere sotto controllo il numero di LOC prodotto al giorno,producento un grafico". 
+Solo solo esempi ma spero di aver resto l'idea
 
 Backlog:
 Aggiornato
