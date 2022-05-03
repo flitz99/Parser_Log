@@ -3,7 +3,7 @@ package unimore.t4.Heimdall.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import unimore.t4.Heimdall.exception.LogNotFoundException;
-import unimore.t4.Heimdall.model.Log;
+import unimore.t4.Heimdall.model.LogEntity;
 import unimore.t4.Heimdall.repo.LogRepo;
 
 import java.io.File;
@@ -61,14 +61,14 @@ public class LogService {
     Si può mettere qui un oggeto di tipo LogProcessing, su quale viene chiamato il
     metodo di avvio del preprocessing dei file di log
      */
-    public Log addLog(Log log){
+    public LogEntity addLog(LogEntity log){
         log.setId(001);
         return logRepo.save(log);
     }
     /**
      * metodo statico che ritorna tutti i log
      * @return oggetto lista di log */
-    public static List<Log> findAllLogs(){
+    public static List<LogEntity> findAllLogs(){
         return logRepo.findAll();
     }
 
@@ -77,7 +77,7 @@ public class LogService {
      * ritorna un'eccezione in caso di log non trovato
      * @return il log recuperato
      */
-    public static Log findLogByIdLog(Integer idLog){
+    public static LogEntity findLogByIdLog(Integer idLog){
         return logRepo.findLogByIdLog(idLog).orElseThrow(
                 ()->new LogNotFoundException("Log con idLog " + idLog +" non trovato"));
     }

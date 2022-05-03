@@ -7,7 +7,7 @@ import java.io.Serializable;
  * Classe di database per mappare gli attributi di un log
  */
 @Entity
-public class Log implements Serializable{
+public class LogEntity implements Serializable{
     /**
      * chiave primaria dello schema, è un id che si aggiorna incrementalmente
      * in automatico
