@@ -5,20 +5,14 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Map;
-/*
+
+/**
  * Classe che scrive su file l'hashmap
  */
 public class LogWriter {
     /**
-     * Nome della cartella contenente i file di destinazione */
-    private String dirDstLogName;
-    /**
      * File che rappresenta la cartella di destinazione dei file di log */
-    private File dirDstLog;
-    /**
-     * Oggetto map che contiene i campi del log, parametrizzati in stringa
-     * (chiave) ed object (valore) */
-    private Map<String, Object> mappa;
+    private final File dirDstLog;
 
     /**
      * Metodo costruttore della classe LogWriter
@@ -27,6 +21,7 @@ public class LogWriter {
     public LogWriter(String dirDstLogName){
         dirDstLog = new File(new File("").getAbsolutePath()+File.separator
                 +dirDstLogName);
+        dirDstLog.mkdir();
     }
 
     /**
@@ -36,11 +31,10 @@ public class LogWriter {
      */
     public  void writeLog(Map<String, Object> map, String name) {
         File currentOutputLog = new File(dirDstLog.getAbsolutePath()+File.separator+name);
-        this.mappa=map;
         BufferedWriter bufferedWriter = null;
         try{
             bufferedWriter= new BufferedWriter( new FileWriter(currentOutputLog,true));
-            for (Map.Entry<String, Object> entry : mappa.entrySet()) {
+            for (Map.Entry<String, Object> entry : map.entrySet()) {
                 // put key and value separated by a colon
                 bufferedWriter.write(entry.getKey() + ":" + entry.getValue());
                 // new line
@@ -59,4 +53,5 @@ public class LogWriter {
             e.printStackTrace();
         }
     }
+
 }
