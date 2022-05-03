@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import unimore.t4.Heimdall.model.Log;
+import unimore.t4.Heimdall.model.LogEntity;
 import unimore.t4.Heimdall.service.LogService;
 
 import java.util.List;
@@ -32,15 +32,15 @@ import java.util.List;
          * dell'operazione con il codice HTTP 200
          */
         @GetMapping("/all")
-        public ResponseEntity<List<Log>> getAllLogs(){
-            List<Log> logs = LogService.findAllLogs();
+        public ResponseEntity<List<LogEntity>> getAllLogs(){
+            List<LogEntity> logs = LogService.findAllLogs();
             return new ResponseEntity<>(logs, HttpStatus.OK);
         }
 
         //Metodo per cercare da richiesta http un log dato il logId
         @GetMapping("/find/{idLog}")
-        public ResponseEntity<Log> getLogByIdLog(@PathVariable("idLog") Integer idLog){
-            Log logLine = LogService.findLogByIdLog(idLog);
+        public ResponseEntity<LogEntity> getLogByIdLog(@PathVariable("idLog") Integer idLog){
+            LogEntity logLine = LogService.findLogByIdLog(idLog);
             return new ResponseEntity<>(logLine, HttpStatus.OK);
         }
 }
