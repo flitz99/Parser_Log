@@ -6,9 +6,8 @@ import java.io.FileReader;
 import java.io.IOException;
 
 public class LogReader {
-    private File dirSrcLog;
-    private File[] allLogFiles;
-    private LogParser logParser;
+    private final File[] allLogFiles;
+    private final LogParser logParser;
 
     /**
      * Costruttore, inizializza i riferimenti alla cartella contenente i file
@@ -17,8 +16,8 @@ public class LogReader {
      * @param logParser oggetto parser già inizializzato
      */
     public LogReader(String dirSrcLogName, LogParser logParser){
-        dirSrcLog = new File(new File("").getAbsolutePath()+File.separator
-                +dirSrcLogName);
+        File dirSrcLog = new File(new File("").getAbsolutePath() + File.separator
+                + dirSrcLogName);
         allLogFiles = dirSrcLog.listFiles();
         this.logParser = logParser;
     }
@@ -33,7 +32,7 @@ public class LogReader {
                 br = new BufferedReader(new FileReader(fileCur));
                 String sourceLogLine;
                 while ((sourceLogLine = br.readLine()) != null) {
-		 // viene salvato in una mappa json
+		        // viene salvato in una mappa json
                     logParser.matchLogMakeMap(sourceLogLine, fileCur.getName());
                 }
             } catch (IOException e) {
