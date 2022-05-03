@@ -28,6 +28,7 @@ public class LogService {
      * riferimento alla classe logWriter */
     private LogWriter logWriter;
 
+    private JsonWriter jsonWriter;
     /**
      * il writer su file il contenuto parsato
      * il parser prende una linea di log non formattato e applica il processo di parsing
@@ -35,9 +36,10 @@ public class LogService {
      * @param dirSrcLogName stringa contenente la directory dei log files.
      * @param dirDstLogName  Stringa contenente le directory finale dei log files
      */
-    public LogService(String dirSrcLogName, String dirDstLogName){
+    public LogService(String dirSrcLogName, String dirDstLogName, String dirDstJsonName){
+        jsonWriter = new JsonWriter(dirDstJsonName);
         logWriter = new LogWriter(dirDstLogName);
-        logParser = new LogParser(logWriter);
+        logParser = new LogParser(logWriter, jsonWriter);
         logReader = new LogReader(dirSrcLogName, logParser);
     }
 

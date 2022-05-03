@@ -33,7 +33,7 @@ public class LogReader {
                 br = new BufferedReader(new FileReader(fileCur));
                 String sourceLogLine;
                 while ((sourceLogLine = br.readLine()) != null) {
-		 // viene salvato in una mappa json
+		        // viene salvato in una mappa json
                     logParser.matchLogMakeMap(sourceLogLine, fileCur.getName());
                 }
             } catch (IOException e) {

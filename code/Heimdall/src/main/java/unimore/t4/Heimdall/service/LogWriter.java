@@ -4,8 +4,15 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Map;
-/*
+
+import com.fasterxml.jackson.core.*;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
+/**
  * Classe che scrive su file l'hashmap
  */
 public class LogWriter {
@@ -19,7 +26,6 @@ public class LogWriter {
      * Oggetto map che contiene i campi del log, parametrizzati in stringa
      * (chiave) ed object (valore) */
     private Map<String, Object> mappa;
-
     /**
      * Metodo costruttore della classe LogWriter
      * @param dirDstLogName nome cartella contenente i file dei log parsati
@@ -27,6 +33,7 @@ public class LogWriter {
     public LogWriter(String dirDstLogName){
         dirDstLog = new File(new File("").getAbsolutePath()+File.separator
                 +dirDstLogName);
+        dirDstLog.mkdir();
     }
 
     /**
@@ -34,7 +41,7 @@ public class LogWriter {
      * @param map mappa con i valori del log parsato
      * @param name nome del file di log sorgente, che è uguale a quello finale
      */
-    public  void writeLog(Map<String, Object> map, String name) {
+    public  void writeLog(Map<String, Object> map, String name) throws JsonProcessingException {
         File currentOutputLog = new File(dirDstLog.getAbsolutePath()+File.separator+name);
         this.mappa=map;
         BufferedWriter bufferedWriter = null;

@@ -23,7 +23,7 @@ public class HeimdallApplication {
 	 */
 
 	public HeimdallApplication(){
-		service = new LogService("File_log", "File_output");
+		service = new LogService("File_log", "File_output", "File_Json");
 		startLogProcessing();
 	}
 
@@ -34,7 +34,7 @@ public class HeimdallApplication {
 	public static void main(String[] args) {
 		HeimdallApplication hA = new HeimdallApplication();
 		//Inizializzazione Applicazione Spring
-		SpringApplication.run(HeimdallApplication.class, args);
+		//SpringApplication.run(HeimdallApplication.class, args);
 	}
 	@Bean
 	public void startLogProcessing(){
