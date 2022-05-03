@@ -6,6 +6,7 @@ import unimore.t4.Heimdall.exception.LogNotFoundException;
 import unimore.t4.Heimdall.model.Log;
 import unimore.t4.Heimdall.repo.LogRepo;
 
+import java.io.File;
 import java.util.List;
 /**
  *Classe di servizio che serve per inizializzare i tre componenti principali
@@ -37,6 +38,7 @@ public class LogService {
      * @param dirDstLogName  Stringa contenente le directory finale dei log files
      */
     public LogService(String dirSrcLogName, String dirDstLogName, String dirDstJsonName){
+        preprocessingDirs(dirDstLogName, dirDstJsonName);
         jsonWriter = new JsonWriter(dirDstJsonName);
         logWriter = new LogWriter(dirDstLogName);
         logParser = new LogParser(logWriter, jsonWriter);
@@ -84,4 +86,26 @@ public class LogService {
         logRepo.deleteLogByIdLog(idLog);
     }
     */
+
+    private void preprocessingDirs(String dirDstLogName, String dirDstJsonName) {
+        File dirDstJson = new File(new File("").getAbsolutePath() + File.separator
+                + dirDstJsonName);
+        if (!dirDstJson.mkdir()) {
+            boolean err = deleteDirectory(dirDstJson);
+        }
+        File dirDstLog = new File(new File("").getAbsolutePath() + File.separator
+                + dirDstLogName);
+        if (!dirDstLog.mkdir()) {
+            boolean err = deleteDirectory(dirDstLog);
+        }
+    }
+    private boolean deleteDirectory(File directoryToBeDeleted) {
+        File[] allContents = directoryToBeDeleted.listFiles();
+        if (allContents != null) {
+            for (File file : allContents) {
+                deleteDirectory(file);
+            }
+        }
+        return directoryToBeDeleted.delete();
+    }
 }

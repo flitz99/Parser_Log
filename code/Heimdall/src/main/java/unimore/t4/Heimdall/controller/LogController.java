@@ -15,7 +15,7 @@ import java.util.List;
     @RestController
     @RequestMapping("/log")
     /**
-     *
+     *Classe che rappresenta il controller dell'applicazione
      */
     public class LogController {
         @Autowired

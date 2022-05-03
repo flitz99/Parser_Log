@@ -6,9 +6,8 @@ import java.io.FileReader;
 import java.io.IOException;
 
 public class LogReader {
-    private File dirSrcLog;
-    private File[] allLogFiles;
-    private LogParser logParser;
+    private final File[] allLogFiles;
+    private final LogParser logParser;
 
     /**
      * Costruttore, inizializza i riferimenti alla cartella contenente i file
@@ -17,8 +16,8 @@ public class LogReader {
      * @param logParser oggetto parser già inizializzato
      */
     public LogReader(String dirSrcLogName, LogParser logParser){
-        dirSrcLog = new File(new File("").getAbsolutePath()+File.separator
-                +dirSrcLogName);
+        File dirSrcLog = new File(new File("").getAbsolutePath() + File.separator
+                + dirSrcLogName);
         allLogFiles = dirSrcLog.listFiles();
         this.logParser = logParser;
     }
