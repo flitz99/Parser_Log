@@ -1,8 +1,11 @@
 package unimore.t4.Heimdall;
 
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import unimore.t4.Heimdall.model.LogEntity;
+import unimore.t4.Heimdall.repo.LogRepo;
 import unimore.t4.Heimdall.service.LogService;
 
 /**
@@ -25,8 +28,32 @@ public class HeimdallApplication {
 	public HeimdallApplication(){
 		service = new LogService("File_log", "File_output", "File_Json");
 		startLogProcessing();
-	}
 
+
+	}
+	CommandLineRunner commandLineRunner(LogRepo logrepo){
+		return args -> {
+			LogEntity prova =
+					new LogEntity(
+							"prova richiesta" ,
+							"maggio" ,
+							"anno",
+							"04",
+							"agente prova",
+							"ident prova",
+							"auth prova",
+							"time prova",
+							"+0001",
+							"referrer prova",
+							123 ,
+							12 ,
+							"123.123.123.123",
+							"questa e una prova di log completo"
+							);
+
+			logrepo.save(prova);
+		};
+	}
 	/**
 	 * Main del programma il suo lavoro e semplicemente creare una istanza di HeimdallApplication e avviarala
 	 * @param args argomenti di default

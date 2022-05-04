@@ -54,4 +54,29 @@ public class LogWriter {
         }
     }
 
+    public  void savelog(Map<String, Object> map, String name) {
+        File currentOutputLog = new File(dirDstLog.getAbsolutePath()+File.separator+name);
+        BufferedWriter bufferedWriter = null;
+        try{
+            bufferedWriter= new BufferedWriter( new FileWriter(currentOutputLog,true));
+            for (Map.Entry<String, Object> entry : map.entrySet()) {
+                // put key and value separated by a colon
+                bufferedWriter.write(entry.getKey() + ":" + entry.getValue());
+                // new line
+                bufferedWriter.newLine();
+            }
+            bufferedWriter.write("----------------------------------------------------");
+            bufferedWriter.newLine();
+            bufferedWriter.flush();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            bufferedWriter.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

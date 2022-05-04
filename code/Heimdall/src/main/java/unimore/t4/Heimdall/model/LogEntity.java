@@ -17,8 +17,23 @@ public class LogEntity {
 
     )
     private Long id;
+    @Column(
+            name = "Richiesta" ,
+            columnDefinition = "Text",
+            nullable = false
+    )
     private String request;
-    private String MONTH;      // solitamente SEP
+    @Column(
+            name = "Mese" ,
+            columnDefinition = "VARCHAR(5)",
+            nullable = false
+    )
+    private String MONTH;
+    @Column(
+            name = "anno" ,
+            columnDefinition = "VARCHAR(5)",
+            nullable = false
+    )
     private String YEAR;
     private String DAY;
     private String agent;
@@ -27,8 +42,13 @@ public class LogEntity {
     private String TIME;
     private String Timezone;   //INT
     private String referrer;
+    private int response;
+    private int bytes;
+    private String clientip;
+    private String logcompleto;
 
-    public LogEntity(Long id,
+
+    public LogEntity(
                      String request,
                      String MONTH,
                      String YEAR,
@@ -43,7 +63,7 @@ public class LogEntity {
                      int bytes,
                      String clientip,
                      String logcompleto) {
-        this.id = id;
+
         this.request = request;
         this.MONTH = MONTH;
         this.YEAR = YEAR;
@@ -52,12 +72,13 @@ public class LogEntity {
         this.ident = ident;
         this.auth = auth;
         this.TIME = TIME;
-        Timezone = timezone;
+        this.Timezone = timezone;
         this.referrer = referrer;
         this.response = response;
         this.bytes = bytes;
         this.clientip = clientip;
         this.logcompleto = logcompleto;
+
     }
 
     public Long getId() {
@@ -180,10 +201,6 @@ public class LogEntity {
         this.logcompleto = logcompleto;
     }
 
-    private int response;
-    private int bytes;
-    private String clientip;
-    private String logcompleto;
 
 
 
