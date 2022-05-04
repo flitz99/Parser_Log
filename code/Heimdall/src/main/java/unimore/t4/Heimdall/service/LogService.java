@@ -61,10 +61,12 @@ public class LogService {
     Si può mettere qui un oggeto di tipo LogProcessing, su quale viene chiamato il
     metodo di avvio del preprocessing dei file di log
      */
-    public LogEntity addLog(LogEntity log){
+    /*public LogEntity addLog(LogEntity log){
         log.setId(001);
         return logRepo.save(log);
     }
+    */
+
     /**
      * metodo statico che ritorna tutti i log
      * @return oggetto lista di log */

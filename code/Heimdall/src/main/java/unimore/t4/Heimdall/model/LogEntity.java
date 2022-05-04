@@ -1,133 +1,208 @@
 package unimore.t4.Heimdall.model;
 
 import javax.persistence.*;
-import java.io.Serializable;
 
-/**
- * Classe di database per mappare gli attributi di un log
- */
 @Entity
-public class LogEntity implements Serializable{
-    /**
-     * chiave primaria dello schema, è un id che si aggiorna incrementalmente
-     * in automatico
-     */
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(nullable = false,updatable = false)
-    private Integer idLog;
-    /**
-     * attributo che descrive il giorno il mese e l'anno
-     */
-    @Column(nullable = false,updatable = false)
-    private String Data;
-    @Column(nullable = false,updatable = false)
-    private String Time;
-    /**
-     * attributo che descrive l'indirizzo ip del client
-     */
-    @Column(nullable = false,updatable = false)
-    private String Ipclient;
-    /**
-     * attributo che descrive il tipo di risposta ottenuta dal client
-     */
-    @Column(nullable = false,updatable = false)
-    private Integer Response;
-    /**
-     * attributo che descrive il log originale senza formattazione
-     */
-    @Column(nullable = false,updatable = false)
-    private String LogOriginal;
-    /**
-     * identication
-     */
-    private String Ident;
-    /**
-     * author
-     */
-    private String Auth;
-    /**
-     * attributo che descrive il tipo di richiesta del client
-     */
-    private String Request;
-    /**
-     * attributo che descrive la grandezza della risorsa ritornata
-     */
-    private Integer Bytes;
-    /**
-     * attributo che descrive lo UserAgent
-     */
-    private String Agent;
+public class LogEntity {
 
-    //per ricreare l'oggetto log servono questi metodi
-    /**
-     * setter del idLog per accedere al log nel database
-     * @param idLog chiave id del log
-     */
-    public void setId(Integer idLog) {
-        this.idLog = idLog;
+    @Id
+    @SequenceGenerator(
+            name = "log_sequence",
+            sequenceName = "log_sequence",
+            allocationSize = 1
+    )
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "log_sequence"
+
+    )
+    private Long id;
+    @Column(
+            name = "Richiesta" ,
+            columnDefinition = "Text",
+            nullable = false
+    )
+    private String request;
+    @Column(
+            name = "Mese" ,
+            columnDefinition = "VARCHAR(5)",
+            nullable = false
+    )
+    private String MONTH;
+    @Column(
+            name = "anno" ,
+            columnDefinition = "VARCHAR(5)",
+            nullable = false
+    )
+    private String YEAR;
+    private String DAY;
+    private String agent;
+    private String ident;
+    private String auth;
+    private String TIME;
+    private String Timezone;   //INT
+    private String referrer;
+    private int response;
+    private int bytes;
+    private String clientip;
+    private String logcompleto;
+
+
+    public LogEntity(
+                     String request,
+                     String MONTH,
+                     String YEAR,
+                     String DAY,
+                     String agent,
+                     String ident,
+                     String auth,
+                     String TIME,
+                     String timezone,
+                     String referrer,
+                     int response,
+                     int bytes,
+                     String clientip,
+                     String logcompleto) {
+
+        this.request = request;
+        this.MONTH = MONTH;
+        this.YEAR = YEAR;
+        this.DAY = DAY;
+        this.agent = agent;
+        this.ident = ident;
+        this.auth = auth;
+        this.TIME = TIME;
+        this.Timezone = timezone;
+        this.referrer = referrer;
+        this.response = response;
+        this.bytes = bytes;
+        this.clientip = clientip;
+        this.logcompleto = logcompleto;
+
     }
-    /**
-     * setter della data del log nel database
-     * @param data data del log
-     */
-    public void setData(String data) {
-        Data = data;
+
+    public Long getId() {
+        return id;
     }
-    /**
-     * setter dell'istante del log nel database
-     * @param time istante del log
-     */
-    public void setTime(String time) {
-        Time = time;
+
+    public void setId(Long id) {
+        this.id = id;
     }
-    /**
-     * setter dell'identification del log nel database
-     * @param ident identification del log
-     */
-    public void setIdent(String ident) {
-        Ident = ident;
+
+    public String getRequest() {
+        return request;
     }
-    /**
-     * setter dell' author del log nel database
-     * @param auth author del log
-     */
-    public void setAuth(String auth) {
-        Auth = auth;
-    }
-    /**
-     * setter dell'indirizzo ip del client
-     * @param ipclient indirizzo ip del client
-     */
-    public void setIpclient(String ipclient) {
-        Ipclient = ipclient;
-    }
-    /**
-     * setter della richiesta http del client
-     * @param request richiesta http del client
-     */
+
     public void setRequest(String request) {
-        Request = request;
+        this.request = request;
     }
-    /**
-     * setter della risposta http del server
-     * @param response risposta http del server
-     */
-    public void setResponse(Integer response) {
-        Response = response;
+
+    public String getMONTH() {
+        return MONTH;
     }
-    /**
-     * setter della dimensione della risorsa fornita dal server
-     * @param bytes dimensione della risorsa fornita dal server
-     */
-    public void setBytes(Integer bytes) {
-        Bytes = bytes;
+
+    public void setMONTH(String MONTH) {
+        this.MONTH = MONTH;
     }
-    /**
-     * setter dello user agent del client
-     * @param agent  user agent del client
-     */
+
+    public String getYEAR() {
+        return YEAR;
+    }
+
+    public void setYEAR(String YEAR) {
+        this.YEAR = YEAR;
+    }
+
+    public String getDAY() {
+        return DAY;
+    }
+
+    public void setDAY(String DAY) {
+        this.DAY = DAY;
+    }
+
+    public String getAgent() {
+        return agent;
+    }
+
     public void setAgent(String agent) {
-        Agent = agent;
+        this.agent = agent;
     }
+
+    public String getIdent() {
+        return ident;
+    }
+
+    public void setIdent(String ident) {
+        this.ident = ident;
+    }
+
+    public String getAuth() {
+        return auth;
+    }
+
+    public void setAuth(String auth) {
+        this.auth = auth;
+    }
+
+    public String getTIME() {
+        return TIME;
+    }
+
+    public void setTIME(String TIME) {
+        this.TIME = TIME;
+    }
+
+    public String getTimezone() {
+        return Timezone;
+    }
+
+    public void setTimezone(String timezone) {
+        Timezone = timezone;
+    }
+
+    public String getReferrer() {
+        return referrer;
+    }
+
+    public void setReferrer(String referrer) {
+        this.referrer = referrer;
+    }
+
+    public int getResponse() {
+        return response;
+    }
+
+    public void setResponse(int response) {
+        this.response = response;
+    }
+
+    public int getBytes() {
+        return bytes;
+    }
+
+    public void setBytes(int bytes) {
+        this.bytes = bytes;
+    }
+
+    public String getClientip() {
+        return clientip;
+    }
+
+    public void setClientip(String clientip) {
+        this.clientip = clientip;
+    }
+
+    public String getLogcompleto() {
+        return logcompleto;
+    }
+
+    public void setLogcompleto(String logcompleto) {
+        this.logcompleto = logcompleto;
+    }
+
+
+
+
+
 }
