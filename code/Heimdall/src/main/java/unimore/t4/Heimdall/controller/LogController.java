@@ -12,11 +12,11 @@ import unimore.t4.Heimdall.service.LogService;
 
 import java.util.List;
 
-    @RestController
-    @RequestMapping("/log")
     /**
      *Classe che rappresenta il controller dell'applicazione
      */
+    @RestController
+    @RequestMapping("/log")
     public class LogController {
         @Autowired
         private final LogService logService;
@@ -33,7 +33,7 @@ import java.util.List;
          */
         @GetMapping("/all")
         public ResponseEntity<List<LogEntity>> getAllLogs(){
-            List<LogEntity> logs = LogService.findAllLogs();
+            List<LogEntity> logs = logService.findAllLogs();
             return new ResponseEntity<>(logs, HttpStatus.OK);
         }
 
