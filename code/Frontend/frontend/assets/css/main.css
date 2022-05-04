@@ -1,6 +1,6 @@
 :root {
-    --body-fonts: 'Source Sans Pro', sans-serif;
-  
+
+    --body-fonts: 'Source Sans Pro', sans-serif;  
     --main-px-dim: 13px;
     --p-px-dim: 14px;
     --c-black: #000000;
@@ -15,8 +15,9 @@
 p,
 h1, h2, h3, h4, h5, h6, a{
 
-    font-family: var(--body-fonts);
+    font-family: var(--body-fonts)!important;
 }
+
 
 .f-li{
     font-weight: var(--f-l);
