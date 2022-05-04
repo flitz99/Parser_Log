@@ -48,6 +48,9 @@ public class LogEntity {
     private String logcompleto;
 
 
+    public LogEntity() {
+    }
+
     public LogEntity(
                      String request,
                      String MONTH,
