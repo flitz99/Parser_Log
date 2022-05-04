@@ -2,6 +2,7 @@ package com.heimy.loggy;
 
 import com.heimy.loggy.Entity.LogEntity;
 import com.heimy.loggy.Entity.LogRepo;
+import org.springframework.beans.factory.BeanCreationException;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -17,10 +18,20 @@ public class LoggyApplication {
 
 	public static void main(String[] args) {
 
-		SpringApplication.run(LoggyApplication.class, args);
+		try {
+			SpringApplication.run(LoggyApplication.class, args);
+		}catch (BeanCreationException ex){
+			Throwable realCause = unwrap(ex);
+		}
 	}
-
-	@Bean
+	public static Throwable unwrap(Throwable ex) {
+		if (ex != null && BeanCreationException.class.isAssignableFrom(ex.getClass())) {
+			return unwrap(ex.getCause());
+		} else {
+			return ex;
+		}
+	}
+	/*@Bean
 	CommandLineRunner commandLineRunner(LogRepo logRepo){
 		return args -> {
 
@@ -45,7 +56,8 @@ public class LoggyApplication {
 			logRepo.save(logEntity);
 		};
 
-		}
+		}*/
+
 
 
 	}
