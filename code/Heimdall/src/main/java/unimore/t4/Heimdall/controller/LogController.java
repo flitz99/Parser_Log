@@ -18,9 +18,9 @@ import java.util.List;
     @RestController
     @RequestMapping("/log")
     public class LogController {
-        @Autowired
-        private final LogService logService;
 
+        private final LogService logService;
+        @Autowired
         public LogController(LogService logService) {
             this.logService = logService;
         }
@@ -31,9 +31,9 @@ import java.util.List;
          * response entity con OK dovrebbe segnalare la buona riuscita
          * dell'operazione con il codice HTTP 200
          */
-        @GetMapping("/all")
+        /*@GetMapping("/all")
         public ResponseEntity<List<LogEntity>> getAllLogs(){
-            List<LogEntity> logs = logService.findAllLogs();
+            List<LogEntity> logs = LogService.findAllLogs();
             return new ResponseEntity<>(logs, HttpStatus.OK);
         }
 
@@ -42,6 +42,30 @@ import java.util.List;
         public ResponseEntity<LogEntity> getLogByIdLog(@PathVariable("idLog") Integer idLog){
             LogEntity logLine = LogService.findLogByIdLog(idLog);
             return new ResponseEntity<>(logLine, HttpStatus.OK);
+        }*/
+        @GetMapping
+        public List<LogEntity> getLogEntity(){
+            return List.of(
+                    new LogEntity(
+
+                            "prova richiesta" ,
+                            "maggio" ,
+                            "anno",
+                            "04",
+                            "agente prova",
+                            "ident prova",
+                            "auth prova",
+                            "time prova",
+                            "+0001",
+                            "referrer prova",
+                            123 ,
+                            12 ,
+                            "123.123.123.123",
+                            "questa e una prova di log completo"
+                    )
+            );
+
+
         }
 }
 

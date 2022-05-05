@@ -10,7 +10,6 @@ import java.util.Optional;
  *
  */
 public interface LogRepo extends JpaRepository<LogEntity, Long> {
-    void deleteLogByIdLog(Integer idLog);
 
-    Optional<LogEntity> findLogByIdLog(Integer idLog);
+    //Optional<LogEntity> findLogByIdLog(Integer idLog);
 }
