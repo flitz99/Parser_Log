@@ -25,19 +25,19 @@ public class LogEntity {
     private String request;
     @Column(
             name = "Mese" ,
-            columnDefinition = "VARCHAR(5)",
+            columnDefinition = "VARCHAR(20)",
             nullable = false
     )
     private String MONTH;
     @Column(
             name = "anno" ,
-            columnDefinition = "VARCHAR(5)",
+            columnDefinition = "VARCHAR(20)",
             nullable = false
     )
     private String YEAR;
     @Column(
             name = "giorno" ,
-            columnDefinition = "VARCHAR(4)",
+            columnDefinition = "VARCHAR(20)",
             nullable = false
     )
     private String DAY;
@@ -62,13 +62,13 @@ public class LogEntity {
     private String auth;
     @Column(
             name = "orario" ,
-            columnDefinition = "VARCHAR(12)"
+            columnDefinition = "VARCHAR(20)"
 
     )
     private String TIME;
     @Column(
             name = "Timezone" ,
-            columnDefinition = "VARCHAR(12)"
+            columnDefinition = "VARCHAR(20)"
 
     )
     private String INT;
@@ -79,37 +79,71 @@ public class LogEntity {
     private String referrer;
     @Column(
             name = "Codice_risposta",
-            columnDefinition = "VARCHAR(6)"
+            columnDefinition = "VARCHAR(20)"
     )
     private String response;
     @Column(
             name = "Qunatita_trasmissione",
-            columnDefinition = "VARCHAR(15)"
+            columnDefinition = "VARCHAR(20)"
     )
     private String bytes;
     @Column(
             name = "IP_cliente",
-            columnDefinition = "VARCHAR(15)"
+            columnDefinition = "VARCHAR(20)"
     )
     private String clientip;
     @Column(
             name = "Log_Completo",
-            columnDefinition = "VARCHAR(15)"
+            columnDefinition = "Text"
     )
     private String logcompleto;
     @Column(
             name = "valutazione",
-            columnDefinition = "VARCHAR(15)"
+            columnDefinition = "VARCHAR(20)"
     )
     private String valutazione;
     @Column(
             name = "posizione",
-            columnDefinition = "VARCHAR(15)"
+            columnDefinition = "Text"
     )
     private String location;
 
     public LogEntity() {
 
+    }
+
+    public LogEntity(String request,
+                     String MONTH,
+                     String YEAR,
+                     String DAY,
+                     String agent,
+                     String ident,
+                     String auth,
+                     String TIME,
+                     String INT,
+                     String referrer,
+                     String response,
+                     String bytes,
+                     String clientip,
+                     String logcompleto,
+                     String valutazione,
+                     String location) {
+        this.request = request;
+        this.MONTH = MONTH;
+        this.YEAR = YEAR;
+        this.DAY = DAY;
+        this.agent = agent;
+        this.ident = ident;
+        this.auth = auth;
+        this.TIME = TIME;
+        this.INT = INT;
+        this.referrer = referrer;
+        this.response = response;
+        this.bytes = bytes;
+        this.clientip = clientip;
+        this.logcompleto = logcompleto;
+        this.valutazione = valutazione;
+        this.location = location;
     }
 
     public LogEntity(Long id,

@@ -29,22 +29,23 @@ public class LogService {
         return List.of(
                 new LogEntity(
                         10L ,
-                        "maggio" ,
-                        "anno",
-                        "04",
-                        "agente prova",
+                        "super mega richiesta" ,
+                        "nov",
+                        "2022",
+                        "12",
                         "ident prova",
                         "auth prova",
                         "time prova",
-                        "+0001",
-                        "referrer prova",
+                        "12:11:13",
+                        "0000",
                         "123" ,
-                        "12" ,
+                        "404" ,
+                        "123",
                         "123.123.123.123",
-                        "questa e una prova di log completo",
                         "log super duper completo",
                         "banana",
                         "località"
+
 
 
                 )
