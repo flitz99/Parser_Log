@@ -9,19 +9,17 @@ import unimore.t4.Heimdall.PreProcessing.JsonReader;
 import unimore.t4.Heimdall.PreProcessing.LogProcessing;
 import unimore.t4.Heimdall.model.LogEntity;
 import unimore.t4.Heimdall.repo.LogRepo;
+
 import unimore.t4.Heimdall.service.LogService;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Classe di partenza dell'applicazione
  */
 @SpringBootApplication
 public class HeimdallApplication {
-
-	/**
-	 * variabile per far partire la logica di supporto al programma
-	 */
-	private LogService service;
-
 	/**
 	 * costruttore di HeimdallApplication, attualmente fa 2 cose:
 	 * 1)inizializzare il  {@link LogService}
@@ -30,29 +28,12 @@ public class HeimdallApplication {
 	@Bean
 	CommandLineRunner commandLineRunner(LogRepo logrepo){
 		return args -> {
-			LogEntity prova =
-					new LogEntity(
-							10L ,
-							"super mega richiesta" ,
-							"nov",
-							"2022",
-							"12",
-							"ident prova",
-							"auth prova",
-							"time prova",
-							"12:11:13",
-							"0000",
-							"123" ,
-							"404" ,
-							"123",
-							"123.123.123.123",
-							"log super duper completo",
-							"banana",
-							"località"
-
-					);
-
-			logrepo.save(prova);
+			JsonReader jsonReader = new JsonReader("File_Json");
+			jsonReader.readAllLogFiles();
+			List<LogEntity> logEntityList= jsonReader.generateLogEntities();
+			for (LogEntity logEntity: logEntityList){
+				logrepo.save(logEntity);
+			}
 		};
 	}
 	/**
@@ -62,8 +43,6 @@ public class HeimdallApplication {
 	public static void main(String[] args) {
 		LogProcessing logProcessing = new LogProcessing("File_log", "File_output", "File_Json");
 		logProcessing.logProcessing();
-		JsonReader jsonReader = new JsonReader("File_Json");
-		jsonReader.readFromJsonFile();
 		//Inizializzazione Applicazione Spring
 		try {
 			SpringApplication.run(HeimdallApplication.class, args);

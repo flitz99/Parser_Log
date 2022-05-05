@@ -31,13 +31,13 @@ import java.util.List;
          * response entity con OK dovrebbe segnalare la buona riuscita
          * dell'operazione con il codice HTTP 200
          */
-        /*@GetMapping("/all")
+        @GetMapping("/all")
         public ResponseEntity<List<LogEntity>> getAllLogs(){
             List<LogEntity> logs = LogService.findAllLogs();
             return new ResponseEntity<>(logs, HttpStatus.OK);
         }
 
-        //Metodo per cercare da richiesta http un log dato il logId
+        /*Metodo per cercare da richiesta http un log dato il logId
         @GetMapping("/find/{idLog}")
         public ResponseEntity<LogEntity> getLogByIdLog(@PathVariable("idLog") Integer idLog){
             LogEntity logLine = LogService.findLogByIdLog(idLog);
@@ -45,30 +45,6 @@ import java.util.List;
         }*/
         @GetMapping
         public List<LogEntity> getLogEntity(){
-            return List.of(
-                    new LogEntity(
-                            10L ,
-                            "maggio" ,
-                            "anno",
-                            "04",
-                            "agente prova",
-                            "ident prova",
-                            "auth prova",
-                            "time prova",
-                            "+0001",
-                            "referrer prova",
-                            "123" ,
-                            "12" ,
-                            "123.123.123.123",
-                            "questa e una prova di log completo",
-                            "log super duper completo",
-                            "banana",
-                            "località"
-
-                    )
-            );
-
-
-        }
+            return List.of(new LogEntity());}
 }
 

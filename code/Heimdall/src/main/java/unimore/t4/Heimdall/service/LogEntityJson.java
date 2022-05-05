@@ -1,4 +1,4 @@
-package unimore.t4.Heimdall.PreProcessing;
+package unimore.t4.Heimdall.service;
 
 public class LogEntityJson {
     public String request;

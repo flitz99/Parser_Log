@@ -26,30 +26,7 @@ public class LogService {
 
     @GetMapping
     public List<LogEntity> getLogEntity(){
-        return List.of(
-                new LogEntity(
-                        10L ,
-                        "super mega richiesta" ,
-                        "nov",
-                        "2022",
-                        "12",
-                        "ident prova",
-                        "auth prova",
-                        "time prova",
-                        "12:11:13",
-                        "0000",
-                        "123" ,
-                        "404" ,
-                        "123",
-                        "123.123.123.123",
-                        "log super duper completo",
-                        "banana",
-                        "località"
-
-
-
-                )
-        );
+        return List.of(new LogEntity());
     }
     /*
     I seguenti quattro metodi sono operazioni che fanno comunicare il backend
@@ -71,9 +48,9 @@ public class LogService {
      *
      * @return oggetto lista di log
      */
-    /*public static List<LogEntity> findAllLogs(){
+    public static List<LogEntity> findAllLogs(){
         return logRepo.findAll();
-    }*/
+    }
 
     /**
      * Metodo per trovare un log data la chiave primaria

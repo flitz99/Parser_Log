@@ -108,9 +108,7 @@ public class LogEntity {
     )
     private String location;
 
-    public LogEntity() {
-
-    }
+    public LogEntity() {}
 
     public LogEntity(String request,
                      String MONTH,

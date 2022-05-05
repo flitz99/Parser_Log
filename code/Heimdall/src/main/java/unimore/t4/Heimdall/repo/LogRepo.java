@@ -7,10 +7,8 @@ import java.util.Optional;
 
 /**
  * Interfaccia che estende la JpaRepository per poter lavorare con il database
- *
  */
-public interface LogRepo
-        extends JpaRepository<LogEntity, Long> {
+public interface LogRepo extends JpaRepository<LogEntity, Long> {
 
 
 }
