@@ -1,6 +1,7 @@
 package unimore.t4.Heimdall.PreProcessing;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import unimore.t4.Heimdall.model.LogEntity;
 
 import java.io.File;
 import java.util.Map;
@@ -28,12 +29,9 @@ public class JsonReader {
             ObjectMapper mapper = new ObjectMapper();
             File demoFile = new File(dirSrcJson.getAbsolutePath()+File.separator+"gnetshop.log.1.json");
             // convert JSON file to map
-            Map<?, ?> map = mapper.readValue(demoFile, Map.class);
+            LogEntityJson logEntityJson = mapper.readValue(demoFile, LogEntityJson.class);
+            System.out.println(logEntityJson.toString());
 
-            // print map entries
-            for (Map.Entry<?, ?> entry : map.entrySet()) {
-                System.out.println(entry.getKey() + "=" + entry.getValue());
-            }
 
         } catch (Exception ex) {
             ex.printStackTrace();
