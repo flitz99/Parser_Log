@@ -35,23 +35,84 @@ public class LogEntity {
             nullable = false
     )
     private String YEAR;
+    @Column(
+            name = "giorno" ,
+            columnDefinition = "VARCHAR(4)",
+            nullable = false
+    )
     private String DAY;
-    private String agent;
-    private String ident;
-    private String auth;
-    private String TIME;
-    private String Timezone;   //INT
-    private String referrer;
-    private int response;
-    private int bytes;
-    private String clientip;
-    private String logcompleto;
+    @Column(
+            name = "dispositivo" ,
+            columnDefinition = "TEXT",
+            nullable = false
 
+    )
+    private String agent;
+    @Column(
+            name = "identificativo" ,
+            columnDefinition = "TEXT"
+
+    )
+    private String ident;
+    @Column(
+            name = "autentificato" ,
+            columnDefinition = "TEXT"
+
+    )
+    private String auth;
+    @Column(
+            name = "orario" ,
+            columnDefinition = "VARCHAR(12)"
+
+    )
+    private String TIME;
+    @Column(
+            name = "Timezone" ,
+            columnDefinition = "VARCHAR(12)"
+
+    )
+    private String INT;
+    @Column(
+            name = "sito_referente",
+            columnDefinition = "TEXT"
+    )
+    private String referrer;
+    @Column(
+            name = "Codice_risposta",
+            columnDefinition = "VARCHAR(6)"
+    )
+    private String response;
+    @Column(
+            name = "Qunatita_trasmissione",
+            columnDefinition = "VARCHAR(15)"
+    )
+    private String bytes;
+    @Column(
+            name = "IP_cliente",
+            columnDefinition = "VARCHAR(15)"
+    )
+    private String clientip;
+    @Column(
+            name = "Log_Completo",
+            columnDefinition = "VARCHAR(15)"
+    )
+    private String logcompleto;
+    @Column(
+            name = "valutazione",
+            columnDefinition = "VARCHAR(15)"
+    )
+    private String valutazione;
+    @Column(
+            name = "posizione",
+            columnDefinition = "VARCHAR(15)"
+    )
+    private String location;
 
     public LogEntity() {
+
     }
 
-    public LogEntity(
+    public LogEntity(Long id,
                      String request,
                      String MONTH,
                      String YEAR,
@@ -60,13 +121,15 @@ public class LogEntity {
                      String ident,
                      String auth,
                      String TIME,
-                     String timezone,
+                     String INT,
                      String referrer,
-                     int response,
-                     int bytes,
+                     String response,
+                     String bytes,
                      String clientip,
-                     String logcompleto) {
-
+                     String logcompleto,
+                     String valutazione,
+                     String location) {
+        this.id = id;
         this.request = request;
         this.MONTH = MONTH;
         this.YEAR = YEAR;
@@ -75,13 +138,14 @@ public class LogEntity {
         this.ident = ident;
         this.auth = auth;
         this.TIME = TIME;
-        this.Timezone = timezone;
+        this.INT = INT;
         this.referrer = referrer;
         this.response = response;
         this.bytes = bytes;
         this.clientip = clientip;
         this.logcompleto = logcompleto;
-
+        this.valutazione = valutazione;
+        this.location = location;
     }
 
     public Long getId() {
@@ -156,12 +220,12 @@ public class LogEntity {
         this.TIME = TIME;
     }
 
-    public String getTimezone() {
-        return Timezone;
+    public String getINT() {
+        return INT;
     }
 
-    public void setTimezone(String timezone) {
-        Timezone = timezone;
+    public void setINT(String INT) {
+        this.INT = INT;
     }
 
     public String getReferrer() {
@@ -172,19 +236,19 @@ public class LogEntity {
         this.referrer = referrer;
     }
 
-    public int getResponse() {
+    public String getResponse() {
         return response;
     }
 
-    public void setResponse(int response) {
+    public void setResponse(String response) {
         this.response = response;
     }
 
-    public int getBytes() {
+    public String getBytes() {
         return bytes;
     }
 
-    public void setBytes(int bytes) {
+    public void setBytes(String bytes) {
         this.bytes = bytes;
     }
 
@@ -204,8 +268,19 @@ public class LogEntity {
         this.logcompleto = logcompleto;
     }
 
+    public String getValutazione() {
+        return valutazione;
+    }
 
+    public void setValutazione(String valutazione) {
+        this.valutazione = valutazione;
+    }
 
+    public String getLocation() {
+        return location;
+    }
 
-
+    public void setLocation(String location) {
+        this.location = location;
+    }
 }

@@ -8,6 +8,7 @@ import unimore.t4.Heimdall.repo.LogRepo;
 import unimore.t4.Heimdall.model.LogEntity;
 
 import java.util.List;
+import java.util.Locale;
 
 /**
  *Classe di servizio che serve per inizializzare i tre componenti principali
@@ -27,7 +28,7 @@ public class LogService {
     public List<LogEntity> getLogEntity(){
         return List.of(
                 new LogEntity(
-                        "prova richiesta" ,
+                        10L ,
                         "maggio" ,
                         "anno",
                         "04",
@@ -37,10 +38,15 @@ public class LogService {
                         "time prova",
                         "+0001",
                         "referrer prova",
-                        123 ,
-                        12 ,
+                        "123" ,
+                        "12" ,
                         "123.123.123.123",
-                        "questa e una prova di log completo"
+                        "questa e una prova di log completo",
+                        "log super duper completo",
+                        "banana",
+                        "località"
+
+
                 )
         );
     }

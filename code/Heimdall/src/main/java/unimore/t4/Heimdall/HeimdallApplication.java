@@ -4,6 +4,7 @@ import org.springframework.beans.factory.BeanCreationException;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 import unimore.t4.Heimdall.PreProcessing.JsonReader;
 import unimore.t4.Heimdall.PreProcessing.LogProcessing;
 import unimore.t4.Heimdall.model.LogEntity;
@@ -26,11 +27,12 @@ public class HeimdallApplication {
 	 * 1)inizializzare il  {@link LogService}
 	 * 2)fare un test di parsing con logProcessing
 	 */
+	@Bean
 	CommandLineRunner commandLineRunner(LogRepo logrepo){
 		return args -> {
 			LogEntity prova =
 					new LogEntity(
-							"prova richiesta" ,
+							10L ,
 							"maggio" ,
 							"anno",
 							"04",
@@ -40,11 +42,15 @@ public class HeimdallApplication {
 							"time prova",
 							"+0001",
 							"referrer prova",
-							123 ,
-							12 ,
+							"123" ,
+							"12" ,
 							"123.123.123.123",
-							"questa e una prova di log completo"
-							);
+							"questa e una prova di log completo",
+							"log super duper completo",
+							"banana",
+							"località"
+
+					);
 
 			logrepo.save(prova);
 		};

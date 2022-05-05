@@ -47,8 +47,7 @@ import java.util.List;
         public List<LogEntity> getLogEntity(){
             return List.of(
                     new LogEntity(
-
-                            "prova richiesta" ,
+                            10L ,
                             "maggio" ,
                             "anno",
                             "04",
@@ -58,10 +57,14 @@ import java.util.List;
                             "time prova",
                             "+0001",
                             "referrer prova",
-                            123 ,
-                            12 ,
+                            "123" ,
+                            "12" ,
                             "123.123.123.123",
-                            "questa e una prova di log completo"
+                            "questa e una prova di log completo",
+                            "log super duper completo",
+                            "banana",
+                            "località"
+
                     )
             );
 
