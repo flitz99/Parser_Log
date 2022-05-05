@@ -31,32 +31,6 @@ public class LoggyApplication {
 			return ex;
 		}
 	}
-	/*@Bean
-	CommandLineRunner commandLineRunner(LogRepo logRepo){
-		return args -> {
-
-			LogEntity logEntity = new LogEntity(
-
-					"prova richiesta",
-					"maggio",
-					"anno",
-					"04",
-					"agente prova",
-					"ident prova",
-					"auth prova",
-					"time prova",
-					"+0001",
-					"referrer prova",
-					123,
-					12,
-					"123.123.123.123",
-					"questa e una prova di log completo"
-			);
-
-			logRepo.save(logEntity);
-		};
-
-		}*/
 
 
 
