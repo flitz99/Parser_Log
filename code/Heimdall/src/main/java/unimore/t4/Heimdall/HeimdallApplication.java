@@ -63,7 +63,7 @@ public class HeimdallApplication {
 		LogProcessing logProcessing = new LogProcessing("File_log", "File_output", "File_Json");
 		logProcessing.logProcessing();
 		JsonReader jsonReader = new JsonReader("File_Json");
-		jsonReader.readFromJson();
+		jsonReader.readFromJsonFile();
 		//Inizializzazione Applicazione Spring
 		try {
 			//SpringApplication.run(HeimdallApplication.class, args);

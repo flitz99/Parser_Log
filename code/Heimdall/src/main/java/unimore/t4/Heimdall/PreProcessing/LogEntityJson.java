@@ -23,6 +23,7 @@ public class LogEntityJson {
     public String rawrequest;
     public String MONTHDAY;
     public String timestamp;
+    public String geo;
 
     public LogEntityJson(){}
 

@@ -31,20 +31,27 @@ public class JsonReader {
     /**
      * metodo che legge tutto un file json e ogni riga, viene letta e convertita
      * in un oggetto logEntityJson, poi inserita nell' arraylist
+     * ci vuole il parametro File jsonLogSrcFile
      */
-    public void readFromJsonFile(File jsonLogFile) {
+    public void readFromJsonFile() {
         try {
             ObjectMapper mapper = new ObjectMapper();
-            jsonLogFile = new File(dirSrcJson.getAbsolutePath() + File.separator + "gnetshop.log.1.json");
+            File jsonLogFile = new File(dirSrcJson.getAbsolutePath() + File.separator + "gnetshop.log.1.json");
             BufferedReader br = new BufferedReader(new FileReader(jsonLogFile));
             LogEntityJson logEntityJson = mapper.readValue(br, LogEntityJson.class);
             logEntityJsonArrayList.add(logEntityJson);
         } catch (Exception ex) {
             ex.printStackTrace();
         }
+        //stampa la logEntity
+        for (LogEntityJson lej: logEntityJsonArrayList) {
+            System.out.println(lej.toString());
+        }
     }
 
     public ArrayList<LogEntityJson> getLogEntityJsonArrayList() {
         return logEntityJsonArrayList;
     }
+
+
 }
