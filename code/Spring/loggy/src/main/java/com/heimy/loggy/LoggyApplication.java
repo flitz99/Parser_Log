@@ -16,6 +16,8 @@ import java.util.List;
 @RestController
 public class LoggyApplication {
 
+
+
 	public static void main(String[] args) {
 
 		try {
@@ -31,7 +33,33 @@ public class LoggyApplication {
 			return ex;
 		}
 	}
+	@Bean
+	CommandLineRunner commandLineRunner (LogRepo logRepo){
+		return args -> {
+			LogEntity logEntity = new LogEntity(
+							10L,
+					"prova richiesta" ,
+					"mag" ,
+					"anno",
+					"04",
+					"agente prova",
+					"ident prova",
+					"auth prova",
+					"time prova",
+					"+0001",
+					"referrer prova",
+					123 ,
+					12 ,
+					"123.123.123.123",
+					"questa e una prova di log completo"
 
+			);
+
+			logRepo.save(logEntity);
+
+
+		};
+	}
 
 
 	}

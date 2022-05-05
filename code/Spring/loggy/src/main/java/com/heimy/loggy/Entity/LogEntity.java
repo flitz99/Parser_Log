@@ -48,6 +48,38 @@ public class LogEntity {
     private String logcompleto;
 
 
+    public LogEntity(Long id,
+                     String request,
+                     String MONTH,
+                     String YEAR,
+                     String DAY,
+                     String agent,
+                     String ident,
+                     String auth,
+                     String TIME,
+                     String timezone,
+                     String referrer,
+                     int response,
+                     int bytes,
+                     String clientip,
+                     String logcompleto) {
+        this.id = id;
+        this.request = request;
+        this.MONTH = MONTH;
+        this.YEAR = YEAR;
+        this.DAY = DAY;
+        this.agent = agent;
+        this.ident = ident;
+        this.auth = auth;
+        this.TIME = TIME;
+        Timezone = timezone;
+        this.referrer = referrer;
+        this.response = response;
+        this.bytes = bytes;
+        this.clientip = clientip;
+        this.logcompleto = logcompleto;
+    }
+
     public LogEntity(
                      String request,
                      String MONTH,
