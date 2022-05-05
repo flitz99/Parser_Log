@@ -1,15 +1,11 @@
 package unimore.t4.Heimdall.service;
 
 import unimore.t4.Heimdall.model.LogEntity;
-
 import java.util.ArrayList;
-import java.util.List;
+
 
 public class AllLogsList {
     private ArrayList<LogEntityJson> logEntityJsonArrayList = null;
-
-
-
     private ArrayList<LogEntity> logEntities = null;
 
     public AllLogsList() {
@@ -26,7 +22,6 @@ public class AllLogsList {
     public void add(LogEntityJson logEntityJson) {
         logEntityJsonArrayList.add(logEntityJson);
     }
-
     public void printAllElements(){
         for (LogEntityJson lej: logEntityJsonArrayList) {
             System.out.println(lej.toString());
@@ -34,7 +29,6 @@ public class AllLogsList {
     }
     public LogEntity fromLogEntityJsontoLogEntity(LogEntityJson logEntityJson){
         LogEntity logEntity = new LogEntity();
-        //logEntity.setId();
         logEntity.setRequest(logEntityJson.getRequest());
         logEntity.setMONTH(logEntityJson.getMONTH());
         logEntity.setYEAR(logEntityJson.getYEAR());
@@ -54,8 +48,8 @@ public class AllLogsList {
         return logEntity;
     }
     public ArrayList<LogEntity> fromLogEntityJsonArrayListToLogEntities(){
-        logEntities = new ArrayList<>(logEntityJsonArrayList.size());
-        for(int i=0; i < logEntities.size(); i++){
+        logEntities = new ArrayList<>();
+        for(int i=0; i < logEntityJsonArrayList.size(); i++){
             logEntities.add(fromLogEntityJsontoLogEntity(logEntityJsonArrayList.get(i)));
         }
         return logEntities;
