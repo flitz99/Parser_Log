@@ -66,7 +66,7 @@ public class HeimdallApplication {
 		jsonReader.readFromJsonFile();
 		//Inizializzazione Applicazione Spring
 		try {
-			//SpringApplication.run(HeimdallApplication.class, args);
+			SpringApplication.run(HeimdallApplication.class, args);
 		}catch(BeanCreationException ex){
 			Throwable realCause = unwrap(ex);
 		}
