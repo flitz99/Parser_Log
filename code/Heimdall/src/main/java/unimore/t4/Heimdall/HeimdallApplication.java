@@ -1,5 +1,6 @@
 package unimore.t4.Heimdall;
 
+import org.springframework.beans.factory.BeanCreationException;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -55,7 +56,18 @@ public class HeimdallApplication {
 		LogProcessing logProcessing = new LogProcessing("File_log", "File_output", "File_Json");
 		logProcessing.logProcessing();
 		//Inizializzazione Applicazione Spring
-		SpringApplication.run(HeimdallApplication.class, args);
+		try {
+			SpringApplication.run(HeimdallApplication.class, args);
+		}catch(BeanCreationException ex){
+			Throwable realCause = unwrap(ex);
+		}
+	}
+	public static Throwable unwrap(Throwable ex) {
+		if (ex != null && BeanCreationException.class.isAssignableFrom(ex.getClass())) {
+			return unwrap(ex.getCause());
+		} else {
+			return ex;
+		}
 	}
 }
 
