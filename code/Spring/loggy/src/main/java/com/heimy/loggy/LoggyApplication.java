@@ -54,10 +54,7 @@ public class LoggyApplication {
 					"questa e una prova di log completo"
 
 			);
-
 			logRepo.save(logEntity);
-
-
 		};
 	}
 
