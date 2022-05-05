@@ -3,6 +3,7 @@ package unimore.t4.Heimdall.PreProcessing;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.File;
+import java.util.Map;
 
 /**
  * classe che serve per deserializzare un file di log,
@@ -22,6 +23,20 @@ public class JsonReader {
     }
 
     public void readFromJson(){
+        try {
+            // create object mapper instance
+            ObjectMapper mapper = new ObjectMapper();
+            File demoFile = new File(dirSrcJson.getAbsolutePath()+File.separator+"gnetshop.log.1.json");
+            // convert JSON file to map
+            Map<?, ?> map = mapper.readValue(demoFile, Map.class);
 
+            // print map entries
+            for (Map.Entry<?, ?> entry : map.entrySet()) {
+                System.out.println(entry.getKey() + "=" + entry.getValue());
+            }
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }
 }

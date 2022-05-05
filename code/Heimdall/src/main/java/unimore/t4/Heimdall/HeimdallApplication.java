@@ -4,6 +4,7 @@ import org.springframework.beans.factory.BeanCreationException;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import unimore.t4.Heimdall.PreProcessing.JsonReader;
 import unimore.t4.Heimdall.PreProcessing.LogProcessing;
 import unimore.t4.Heimdall.model.LogEntity;
 import unimore.t4.Heimdall.repo.LogRepo;
@@ -55,9 +56,11 @@ public class HeimdallApplication {
 	public static void main(String[] args) {
 		LogProcessing logProcessing = new LogProcessing("File_log", "File_output", "File_Json");
 		logProcessing.logProcessing();
+		JsonReader jsonReader = new JsonReader("File_Json");
+		jsonReader.readFromJson();
 		//Inizializzazione Applicazione Spring
 		try {
-			SpringApplication.run(HeimdallApplication.class, args);
+			//SpringApplication.run(HeimdallApplication.class, args);
 		}catch(BeanCreationException ex){
 			Throwable realCause = unwrap(ex);
 		}
