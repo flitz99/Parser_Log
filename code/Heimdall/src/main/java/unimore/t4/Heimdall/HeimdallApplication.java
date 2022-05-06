@@ -31,9 +31,9 @@ public class HeimdallApplication {
 			JsonReader jsonReader = new JsonReader("File_Json");
 			jsonReader.readAllLogFiles();
 			List<LogEntity> logEntityList= jsonReader.generateLogEntities();
-			for (LogEntity logEntity: logEntityList){
+			/*for (LogEntity logEntity: logEntityList){
 				logrepo.save(logEntity);
-			}
+			}*/
 		};
 	}
 	/**
