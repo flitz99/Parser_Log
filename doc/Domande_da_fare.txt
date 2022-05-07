@@ -1,5 +1,0 @@
-Domande da fare a Torricelli e Luisa:
-
-1. Cosa si intende per investigare manualmente dall'utente
-3. Se il sito è offline Luisa vuole saperlo?
-4.Il Tecnico ci Può Fare Avere Un File Di Log? 
