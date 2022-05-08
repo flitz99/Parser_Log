@@ -8,5 +8,9 @@ class LogReaderTest {
 
     @Test
     void readAllLogFile() {
+
+
+
+
     }
 }

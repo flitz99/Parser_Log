@@ -47,7 +47,7 @@ public class LogProcessing {
             boolean err = deleteDirectory(dirDstLog);
         }
     }
-    private boolean deleteDirectory(File directoryToBeDeleted) {
+    boolean deleteDirectory(File directoryToBeDeleted) {
         File[] allContents = directoryToBeDeleted.listFiles();
         if (allContents != null) {
             for (File file : allContents) {
