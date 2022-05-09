@@ -9,10 +9,8 @@ import unimore.t4.Heimdall.PreProcessing.JsonReader;
 import unimore.t4.Heimdall.PreProcessing.LogProcessing;
 import unimore.t4.Heimdall.model.LogEntity;
 import unimore.t4.Heimdall.repo.LogRepo;
-
 import unimore.t4.Heimdall.service.LogService;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**

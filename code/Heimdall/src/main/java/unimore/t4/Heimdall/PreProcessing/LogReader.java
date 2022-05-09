@@ -6,8 +6,8 @@ import java.io.FileReader;
 import java.io.IOException;
 
 public class LogReader {
-    private final File[] allLogFiles;
-    private final LogParser logParser;
+    private File[] allLogFiles;
+    private LogParser logParser;
 
     /**
      * Costruttore, inizializza i riferimenti alla cartella contenente i file
@@ -16,10 +16,14 @@ public class LogReader {
      * @param logParser oggetto parser già inizializzato
      */
     public LogReader(String dirSrcLogName, LogParser logParser){
+        if(dirSrcLogName.equals("File_log") && logParser != null){
         File dirSrcLog = new File(new File("").getAbsolutePath() + File.separator
                 + dirSrcLogName);
         allLogFiles = dirSrcLog.listFiles();
-        this.logParser = logParser;
+        this.logParser = logParser;}
+        else
+            System.err.println("Invalid directories names, " +
+                    "must be: File_log, File_output, File_Json");
     }
 
     /**
