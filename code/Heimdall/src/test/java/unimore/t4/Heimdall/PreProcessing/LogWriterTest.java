@@ -18,7 +18,7 @@ class LogWriterTest {
     void writeLogtest() {
         LogWriter lw = new LogWriter(dirDstLog) ;
         lw.writeLog(map,"fileTesting");
-        File directory = new File("directory") ;
+        File directory = new File("src/test/java/unimore/t4/Heimdall/PreProcessing/writetest") ;
          File[] files = directory.listFiles();
 
 // Definiamo il path della cartella
