@@ -12,16 +12,24 @@ import java.util.Map;
 public class LogWriter {
     /**
      * File che rappresenta la cartella di destinazione dei file di log */
-    private final File dirDstLog;
+    private File dirDstLog = null;
 
     /**
      * Metodo costruttore della classe LogWriter
      * @param dirDstLogName nome cartella contenente i file dei log parsati
      */
     public LogWriter(String dirDstLogName){
-        dirDstLog = new File(new File("").getAbsolutePath()+File.separator
-                +dirDstLogName);
-        dirDstLog.mkdir();
+        if(dirDstLogName.equals("File_output")) {
+            dirDstLog = new File(new File("").getAbsolutePath() + File.separator
+                    + dirDstLogName);
+            dirDstLog.mkdir();
+        }
+        if (dirDstLogName.equals("File_output_err")){
+            dirDstLog = new File(new File("").getAbsolutePath() + File.separator
+                    + dirDstLogName);
+            dirDstLog.mkdir();
+        }
+
     }
 
     /**
@@ -48,35 +56,10 @@ public class LogWriter {
             e.printStackTrace();
         }
         try {
+            assert bufferedWriter != null;
             bufferedWriter.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-
-    public  void savelog(Map<String, Object> map, String name) {
-        File currentOutputLog = new File(dirDstLog.getAbsolutePath()+File.separator+name);
-        BufferedWriter bufferedWriter = null;
-        try{
-            bufferedWriter= new BufferedWriter( new FileWriter(currentOutputLog,true));
-            for (Map.Entry<String, Object> entry : map.entrySet()) {
-                // put key and value separated by a colon
-                bufferedWriter.write(entry.getKey() + ":" + entry.getValue());
-                // new line
-                bufferedWriter.newLine();
-            }
-            bufferedWriter.write("----------------------------------------------------");
-            bufferedWriter.newLine();
-            bufferedWriter.flush();
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
-        try {
-            bufferedWriter.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
 }

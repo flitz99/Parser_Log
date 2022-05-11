@@ -15,34 +15,36 @@ public class LogParser {
 
     /**
      * oggetto che si occupa della funzione di parsing*/
-    private final Grok grok;
-    /**
-     * oggetto di libreria per mappare il log parsato*/
-    private Match gm;
-    /**
-     * mappa che contiene i valori del log, come Object, i tipi dei campi come
-     * Sring.*/
-    private Map<String, Object> captureMap;
-    /**
-     * riferimento alla classe logWriter per scrivere su un file l'output del 
-     * processo di parsing */
-    private final LogWriter logWriter;
-
-    private final JsonWriter jsonWriter;
+    private Grok grok;
+    private LogWriter logWriter;
+    private JsonWriter jsonWriter;
     /**
      * stringa che indica il patern usato per il parsing dall'oggetto grok */
     private static final String pattern = "%{COMBINEDAPACHELOG}";
-
+    /**
+     * Pattern utilizzato per parsare gli errori
+     */
+    private static final String patter_err= "\\[(?<timestamp>%{DAY:day} %{MONTH:month} %{MONTHDAY} %{TIME} %{YEAR})\\]\\s+\\[:%{LOGLEVEL:loglevel}\\]\\s+\\[pid %{NUMBER:pid}]\\s+\\[client %{IP:clientip}:%{NUMBER:port}\\]\\s+\\[client %{IP:clientip2}.*?\\]\\s+ModSecurity:\\s+%{GREEDYDATA:error}\\s+\\[file\\s%{QS:path_file}\\]?(?:\\s+\\[line %{QS:line}])?(?:\\s+\\[id %{QS:id}\\])?(?:\\s+\\[msg %{QS:message}\\])?(?:\\s+\\[data %{QS:data}\\])?(?:\\s+\\[severity %{QS:severity}\\])?(?:\\s+\\[ver %{QS:ver}\\])?(?:\\s+\\[tag %{QS:tag}\\])?(?:\\s+\\[tag %{QS:tag2}\\])?(?:\\s+\\[tag %{QS:tag3}\\])?(?:\\s+\\[tag %{QS:tag4}\\])?(?:\\s+\\[tag %{QS:tag5}\\])?.*?\\[hostname %{QS:hostname}\\]\\s+\\[uri %{QS:uri}\\]\\s+\\[unique_id %{QS:unique_id}\\](?:%{GREEDYDATA:referer})";
     /**
      * Costruttore della classe che inzializza gli oggetti di libreria
-     * @param logWriter riferimento, gia inizializzato, per scrivere su file
-     * @param jsonWriter riferimento, gia inizializzato, per scrivere su file json*/
-    public LogParser(LogWriter logWriter, JsonWriter jsonWriter){
-        GrokCompiler grokCompiler = GrokCompiler.newInstance();
-        grokCompiler.registerDefaultPatterns();
-        grok = grokCompiler.compile(pattern);
-        this.logWriter = logWriter;
-        this.jsonWriter = jsonWriter;
+     */
+    public LogParser(String dirDstLogName, String dirDstJsonName){
+        if(dirDstLogName.equals("File_output") && dirDstJsonName.equals("File_Json")) {
+            GrokCompiler grokCompiler = GrokCompiler.newInstance();
+            grokCompiler.registerDefaultPatterns();
+            grok = grokCompiler.compile(pattern);
+            jsonWriter = new JsonWriter(dirDstJsonName);
+            logWriter = new LogWriter(dirDstLogName);
+        }
+
+        if(dirDstLogName.equals("File_output_err") && dirDstJsonName.equals("File_Json_err")){
+            GrokCompiler grokCompiler= GrokCompiler.newInstance();
+            grokCompiler.registerDefaultPatterns();
+            grok=grokCompiler.compile(patter_err);
+            jsonWriter= new JsonWriter(dirDstJsonName);
+            logWriter= new LogWriter(dirDstLogName);
+        }
+
     }
 
     /**
@@ -54,16 +56,9 @@ public class LogParser {
      */
     public void matchLogMakeMap(String logLine, String name)
             throws IOException {
-        gm = grok.match(logLine);
-        captureMap = gm.capture();
+        Match gm = grok.match(logLine);
+        Map<String, Object> captureMap = gm.capture();
         logWriter.writeLog(captureMap, name);
         jsonWriter.writeOnJson(captureMap, name);
-    }
-    /**
-     * Getter della mappa riempita con i campi del log
-     * @return captureMap mappa riempita con i campi del log
-     */
-    public Map getCaptureMap(){
-        return captureMap;
     }
 }

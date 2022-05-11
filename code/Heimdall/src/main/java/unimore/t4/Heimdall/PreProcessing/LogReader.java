@@ -6,8 +6,8 @@ import java.io.FileReader;
 import java.io.IOException;
 
 public class LogReader {
-    private final File[] allLogFiles;
-    private final LogParser logParser;
+    private File[] allLogFiles;
+    private LogParser logParser;
 
     /**
      * Costruttore, inizializza i riferimenti alla cartella contenente i file
@@ -15,11 +15,19 @@ public class LogReader {
      * @param dirSrcLogName directory di input dei log
      * @param logParser oggetto parser già inizializzato
      */
-    public LogReader(String dirSrcLogName, LogParser logParser){
+    public LogReader(String dirSrcLogName,LogParser logParser){
+        if(dirSrcLogName.equals("File_log") && logParser != null){
         File dirSrcLog = new File(new File("").getAbsolutePath() + File.separator
                 + dirSrcLogName);
         allLogFiles = dirSrcLog.listFiles();
-        this.logParser = logParser;
+        this.logParser = logParser;}
+
+        if(dirSrcLogName.equals("File_log_err") && logParser !=null){
+            File dirSrcErrLog = new File(new File("").getAbsolutePath() + File.separator
+                    + dirSrcLogName);
+            allLogFiles= dirSrcErrLog.listFiles();
+            this.logParser=logParser;
+        }
     }
 
     /**
@@ -31,10 +39,13 @@ public class LogReader {
             try {
                 br = new BufferedReader(new FileReader(fileCur));
                 String sourceLogLine;
+                //TODO prima che legga la prima linea crea un file con una quadra all'inizio
+                JsonWriter.addOpeningParenthesis(fileCur.getName());
                 while ((sourceLogLine = br.readLine()) != null) {
 		        // viene salvato in una mappa json
                     logParser.matchLogMakeMap(sourceLogLine, fileCur.getName());
                 }
+                JsonWriter.addClosingParenthesis(fileCur.getName());
             } catch (IOException e) {
                 e.printStackTrace();
             }
