@@ -43,7 +43,7 @@ public class HeimdallApplication {
 		logProcessing.logProcessing();
 		//Inizializzazione Applicazione Spring
 		try {
-			SpringApplication.run(HeimdallApplication.class, args);
+			//SpringApplication.run(HeimdallApplication.class, args);
 		}catch(BeanCreationException ex){
 			Throwable realCause = unwrap(ex);
 		}

@@ -35,10 +35,13 @@ public class LogReader {
             try {
                 br = new BufferedReader(new FileReader(fileCur));
                 String sourceLogLine;
+                //TODO prima che legga la prima linea crea un file con una quadra all'inizio
+                JsonWriter.addOpeningParenthesis(fileCur.getName());
                 while ((sourceLogLine = br.readLine()) != null) {
 		        // viene salvato in una mappa json
                     logParser.matchLogMakeMap(sourceLogLine, fileCur.getName());
                 }
+                JsonWriter.addClosingParenthesis(fileCur.getName());
             } catch (IOException e) {
                 e.printStackTrace();
             }
