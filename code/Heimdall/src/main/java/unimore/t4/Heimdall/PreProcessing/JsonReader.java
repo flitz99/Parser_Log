@@ -19,19 +19,15 @@ public class JsonReader {
     //deserializza ogni file di log
     //ogni linea del file è un oggetto json, viene letto e messo in una mappa
     //ogni mappa può essere messa in un arraylist
-    private File dirSrcJson;
-    private AllLogsList list;
+    private final ObjectMapper mapper = new ObjectMapper();
+    private final File dirSrcJson;
+    private final AllLogsList list;
 
 
     public JsonReader(String dirSrcJsonName) {
-        if(dirSrcJsonName.equals("File_Json")) {
-            dirSrcJson = new File(new File("").getAbsolutePath() + File.separator + dirSrcJsonName);
-            dirSrcJson.mkdir();
-            list = new AllLogsList();
-        }else{
-            System.err.println("Invalid directory name, " +
-                    "must be: File_Json)");
-        }
+        dirSrcJson = new File(new File("").getAbsolutePath() + File.separator + dirSrcJsonName);
+        dirSrcJson.mkdir();
+        list = new AllLogsList();
     }
 
     public void readAllLogFiles(){

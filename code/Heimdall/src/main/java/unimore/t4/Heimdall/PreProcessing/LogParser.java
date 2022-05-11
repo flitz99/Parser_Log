@@ -15,27 +15,34 @@ public class LogParser {
 
     /**
      * oggetto che si occupa della funzione di parsing*/
-    private Grok grok;
-    private LogWriter logWriter;
-    private JsonWriter jsonWriter;
+    private final Grok grok;
+    /**
+     * oggetto di libreria per mappare il log parsato*/
+    private Match gm;
+    /**
+     * mappa che contiene i valori del log, come Object, i tipi dei campi come
+     * Sring.*/
+    private Map<String, Object> captureMap;
+    /**
+     * riferimento alla classe logWriter per scrivere su un file l'output del 
+     * processo di parsing */
+    private final LogWriter logWriter;
+
+    private final JsonWriter jsonWriter;
     /**
      * stringa che indica il patern usato per il parsing dall'oggetto grok */
     private static final String pattern = "%{COMBINEDAPACHELOG}";
 
     /**
      * Costruttore della classe che inzializza gli oggetti di libreria
-     */
-    public LogParser(String dirDstLogName, String dirDstJsonName){
-        if(dirDstLogName.equals("File_output") && dirDstJsonName.equals("File_Json")) {
-            GrokCompiler grokCompiler = GrokCompiler.newInstance();
-            grokCompiler.registerDefaultPatterns();
-            grok = grokCompiler.compile(pattern);
-            jsonWriter = new JsonWriter(dirDstJsonName);
-            logWriter = new LogWriter(dirDstLogName);
-        }
-        else
-            System.err.println("Invalid directories names, " +
-                "must be: File_output, File_Json");
+     * @param logWriter riferimento, gia inizializzato, per scrivere su file
+     * @param jsonWriter riferimento, gia inizializzato, per scrivere su file json*/
+    public LogParser(LogWriter logWriter, JsonWriter jsonWriter){
+        GrokCompiler grokCompiler = GrokCompiler.newInstance();
+        grokCompiler.registerDefaultPatterns();
+        grok = grokCompiler.compile(pattern);
+        this.logWriter = logWriter;
+        this.jsonWriter = jsonWriter;
     }
 
     /**
@@ -47,9 +54,16 @@ public class LogParser {
      */
     public void matchLogMakeMap(String logLine, String name)
             throws IOException {
-        Match gm = grok.match(logLine);
-        Map<String, Object> captureMap = gm.capture();
+        gm = grok.match(logLine);
+        captureMap = gm.capture();
         logWriter.writeLog(captureMap, name);
         jsonWriter.writeOnJson(captureMap, name);
+    }
+    /**
+     * Getter della mappa riempita con i campi del log
+     * @return captureMap mappa riempita con i campi del log
+     */
+    public Map getCaptureMap(){
+        return captureMap;
     }
 }

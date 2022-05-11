@@ -1,7 +1,6 @@
 package unimore.t4.Heimdall.PreProcessing;
 
 import java.io.File;
-import java.util.Objects;
 
 public class LogProcessing {
     /**
@@ -23,17 +22,11 @@ public class LogProcessing {
      * @param dirDstLogName  Stringa contenente le directory finale dei log files
      */
     public LogProcessing(String dirSrcLogName, String dirDstLogName, String dirDstJsonName){
-        if(Objects.equals(dirSrcLogName, "File_log")
-            && Objects.equals(dirDstLogName, "File_output")
-            && Objects.equals(dirDstJsonName, "File_Json")) {
-                preprocessingDirs(dirDstLogName, dirDstJsonName);
-                logParser = new LogParser(dirDstLogName, dirDstJsonName);
-                logReader = new LogReader(dirSrcLogName, logParser);
-        }
-        else {
-            System.err.println("Invalid directories names, " +
-                    "must be: File_log, File_output, File_Json");
-        }
+        preprocessingDirs(dirDstLogName, dirDstJsonName);
+        jsonWriter = new JsonWriter(dirDstJsonName);
+        logWriter = new LogWriter(dirDstLogName);
+        logParser = new LogParser(logWriter, jsonWriter);
+        logReader = new LogReader(dirSrcLogName, logParser);
     }
     /**
      *  processo che fa avviare il processo di lettura, parsing, scrittura
@@ -43,34 +36,24 @@ public class LogProcessing {
     }
 
     private void preprocessingDirs(String dirDstLogName, String dirDstJsonName) {
-        if(Objects.equals(dirDstLogName, "File_output") && Objects.equals(dirDstJsonName, "File_Json")){
-            File dirDstJson = new File(new File("").getAbsolutePath() + File.separator
-                    + dirDstJsonName);
-            if (!dirDstJson.mkdir()) {
-                boolean err = deleteDirectory(dirDstJson);
-            }
-            File dirDstLog = new File(new File("").getAbsolutePath() + File.separator
-                    + dirDstLogName);
-            if (!dirDstLog.mkdir()) {
-                boolean err = deleteDirectory(dirDstLog);
-            }
+        File dirDstJson = new File(new File("").getAbsolutePath() + File.separator
+                + dirDstJsonName);
+        if (!dirDstJson.mkdir()) {
+            boolean err = deleteDirectory(dirDstJson);
         }
-        else {
-            System.err.println("Invalid directories names, " +
-                    "must be: File_output, File_Json");
+        File dirDstLog = new File(new File("").getAbsolutePath() + File.separator
+                + dirDstLogName);
+        if (!dirDstLog.mkdir()) {
+            boolean err = deleteDirectory(dirDstLog);
         }
     }
     private boolean deleteDirectory(File directoryToBeDeleted) {
-        boolean isDirDeleted = false;
-        if (directoryToBeDeleted.exists()) {
-            File[] allContents = directoryToBeDeleted.listFiles();
-            if (allContents != null) {
-                for (File file : allContents) {
-                    deleteDirectory(file);
-                }
+        File[] allContents = directoryToBeDeleted.listFiles();
+        if (allContents != null) {
+            for (File file : allContents) {
+                deleteDirectory(file);
             }
-            isDirDeleted = directoryToBeDeleted.delete();
         }
-        return isDirDeleted;
+        return directoryToBeDeleted.delete();
     }
 }

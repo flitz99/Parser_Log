@@ -9,10 +9,17 @@ import unimore.t4.Heimdall.PreProcessing.JsonReader;
 import unimore.t4.Heimdall.PreProcessing.LogProcessing;
 import unimore.t4.Heimdall.model.LogEntity;
 import unimore.t4.Heimdall.repo.LogRepo;
+
 import unimore.t4.Heimdall.service.LogService;
 
+import java.io.*;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
+import io.krakens.grok.api.Grok;
+import io.krakens.grok.api.GrokCompiler;
+import io.krakens.grok.api.Match;
 /**
  * Classe di partenza dell'applicazione
  */
@@ -26,9 +33,10 @@ public class HeimdallApplication {
 	@Bean
 	CommandLineRunner commandLineRunner(LogRepo logrepo){
 		return args -> {
-			JsonReader jsonReader = new JsonReader("File_Json");
-			jsonReader.readAllLogFiles();
-			List<LogEntity> logEntityList= jsonReader.generateLogEntities();
+			logrepo.findAll();
+			//JsonReader jsonReader = new JsonReader("File_Json");
+			//jsonReader.readAllLogFiles();
+			//List<LogEntity> logEntityList= jsonReader.generateLogEntities();
 			/*for (LogEntity logEntity: logEntityList){
 				logrepo.save(logEntity);
 			}*/
@@ -39,8 +47,56 @@ public class HeimdallApplication {
 	 * @param args argomenti di default
 	 */
 	public static void main(String[] args) {
-		LogProcessing logProcessing = new LogProcessing("File_log", "File_output", "File_Json");
-		logProcessing.logProcessing();
+
+		/* Create a new grokCompiler instance */
+		GrokCompiler grokCompiler = GrokCompiler.newInstance();
+		grokCompiler.registerDefaultPatterns();
+
+		/* Grok pattern to compile, here httpd logs */
+		String pattern_grok_err= "\\[(?<timestamp>%{DAY:day} %{MONTH:month} %{MONTHDAY} %{TIME} %{YEAR})\\]\\s+\\[:%{LOGLEVEL:loglevel}\\]\\s+\\[pid %{NUMBER:pid}]\\s+\\[client %{IP:clientip}:%{NUMBER:port}\\]\\s+\\[client %{IP:clientip2}.*?\\]\\s+ModSecurity:\\s+%{GREEDYDATA:error}\\s+\\[file\\s%{QS:path_file}\\]?(?:\\s+\\[line %{QS:line}])?(?:\\s+\\[id %{QS:id}\\])?(?:\\s+\\[msg %{QS:message}\\])?(?:\\s+\\[data %{QS:data}\\])?(?:\\s+\\[severity %{QS:severity}\\])?(?:\\s+\\[ver %{QS:ver}\\])?(?:\\s+\\[tag %{QS:tag}\\])?(?:\\s+\\[tag %{QS:tag2}\\])?(?:\\s+\\[tag %{QS:tag3}\\])?(?:\\s+\\[tag %{QS:tag4}\\])?(?:\\s+\\[tag %{QS:tag5}\\])?.*?\\[hostname %{QS:hostname}\\]\\s+\\[uri %{QS:uri}\\]\\s+\\[unique_id %{:unique_id_referer}\\](?:%{GREEDYDATA:referer})";
+		final Grok grok = grokCompiler.compile(pattern_grok_err);
+
+
+		//                    lettura da file
+
+		File read= new File("");
+		File input = new File(read.getAbsolutePath()+File.separator+"File_log_err"+File.separator+"gnetshop.err"); //percorso di lettura file di log
+		System.out.println("Percorso path lettura:"+ input.getAbsolutePath()); //stampo percorso di lettura
+
+		File write= new File("");
+		File output = new File(read.getAbsolutePath()+File.separator+"File_log_errore_write");
+
+		BufferedWriter bw= null;
+		BufferedReader br=null;
+		String mylog="";
+		try {
+			br = new BufferedReader(new FileReader(input));
+			bw= new BufferedWriter(new FileWriter(output));
+			//System.out.println(br.readLine());
+			String line;
+			while ((line = br.readLine()) != null) {
+				mylog = br.readLine();
+				System.out.println("Log da analizzare: "+mylog);  //stampo il log letto
+				Match gm = grok.match(mylog);  // leggo tramite grok la riga del file
+				final Map<String, Object> capture = gm.capture();
+				System.out.println("Log analizzato: "+capture); //stampo il log scansionato da grok
+				System.out.println("------------");
+				/*
+				Ogni volta che viene runnato il programma viene scritto (in append) quello che legge dal file di log su output.txt
+				Controllare le righe di codice! (non sovrascrive ma aggiunge ogni volta)
+				 */
+				bw.write(capture.toString());
+				bw.newLine();
+
+
+			}
+		}
+		catch (IOException e) {
+			System.out.println("Errore in lettura");
+			e.printStackTrace();
+		}
+		//LogProcessing logProcessing = new LogProcessing("File_log", "File_output", "File_Json");
+		//logProcessing.logProcessing();
 		//Inizializzazione Applicazione Spring
 		try {
 			//SpringApplication.run(HeimdallApplication.class, args);

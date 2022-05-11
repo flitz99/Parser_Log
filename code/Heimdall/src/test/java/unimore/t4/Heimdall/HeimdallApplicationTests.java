@@ -1,5 +1,6 @@
 package unimore.t4.Heimdall;
 
+import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 /**
@@ -11,6 +12,7 @@ class HeimdallApplicationTests {
 	/**
 	 * metodo del framework spring per fare i test
 	 */
+	@Test
 	void contextLoads() {
 	}
 
