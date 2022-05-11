@@ -56,10 +56,6 @@ public class HeimdallApplication {
 		}catch(BeanCreationException ex){
 			Throwable realCause = unwrap(ex);
 		}
-
-
-
-
 	}
 	public static Throwable unwrap(Throwable ex) {
 		if (ex != null && BeanCreationException.class.isAssignableFrom(ex.getClass())) {
