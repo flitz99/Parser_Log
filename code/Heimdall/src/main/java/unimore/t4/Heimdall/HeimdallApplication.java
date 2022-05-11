@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Bean;
 import unimore.t4.Heimdall.PreProcessing.JsonReader;
 import unimore.t4.Heimdall.PreProcessing.LogProcessing;
 import unimore.t4.Heimdall.Statistiche.Conteggio;
+import unimore.t4.Heimdall.Statistiche.Spammer;
 import unimore.t4.Heimdall.model.LogEntity;
 import unimore.t4.Heimdall.repo.LogRepo;
 import unimore.t4.Heimdall.service.LogService;
@@ -29,12 +30,14 @@ public class HeimdallApplication {
 	@Bean
 	CommandLineRunner commandLineRunner(LogRepo logrepo){
 		return args -> {
-			List<Conteggio> banana;
-			banana = logrepo.findCount();
-
-			for ( Conteggio logEntity: banana){
+			/*
+			List<Spammer> mela;
+			mela = logrepo.findspammer();
+			for ( Spammer logEntity: mela){
 				System.err.println(logEntity.toString());
 			}
+			*/
+
 			//JsonReader jsonReader = new JsonReader("File_Json");
 			//jsonReader.readAllLogFiles();
 			//List<LogEntity> logEntityList= jsonReader.generateLogEntities();

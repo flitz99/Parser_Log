@@ -25,7 +25,8 @@ public interface LogRepo extends JpaRepository<LogEntity, Long> {
     List<Conteggio> findCount();
 
 
-    @Query("SELECT new unimore.t4.Heimdall.Statistiche.Spammer(ip_cliente , COUNT(ip_cliente)) FROM log_entity GROUP BY u.ip_cliente"
+    @Query(value = "SELECT ip_cliente , count(*) FROM log_entity GROUP BY ip_cliente" ,
+            nativeQuery = true
     )
     List<Spammer> findspammer();
 
