@@ -51,5 +51,6 @@ public class LogParser {
         Map<String, Object> captureMap = gm.capture();
         logWriter.writeLog(captureMap, name);
         jsonWriter.writeOnJson(captureMap, name);
+        //TODO aggiungere la chiamata al metodo che scrive sul file di log d'errore
     }
 }
