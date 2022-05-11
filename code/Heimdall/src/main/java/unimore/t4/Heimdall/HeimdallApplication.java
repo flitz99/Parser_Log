@@ -30,13 +30,13 @@ public class HeimdallApplication {
 	@Bean
 	CommandLineRunner commandLineRunner(LogRepo logrepo){
 		return args -> {
-			/*
-			List<Spammer> mela;
-			mela = logrepo.findspammer();
-			for ( Spammer logEntity: mela){
-				System.err.println(logEntity.toString());
+
+			List<List<String>> mela;
+			mela = logrepo.findspammerobj();
+			for ( Object logEntity: mela){
+				System.out.println(logEntity);
 			}
-			*/
+
 
 			//JsonReader jsonReader = new JsonReader("File_Json");
 			//jsonReader.readAllLogFiles();

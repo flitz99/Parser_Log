@@ -17,17 +17,10 @@ import java.util.Optional;
 public interface LogRepo extends JpaRepository<LogEntity, Long> {
 
     @Query(
-       value = "select  giorno , mese ,  anno, ip_cliente ,  count(*) as quantitá_richieste FROM log_entity group by anno , ip_cliente , mese , giorno order by quantitá_richieste Desc" ,
-            nativeQuery = true
-
-
-    )
-    List<Conteggio> findCount();
-
-
-    @Query(value = "SELECT ip_cliente , count(*) FROM log_entity GROUP BY ip_cliente" ,
+            value = "select ip_cliente , count(*) as quantita from log_entity group by ip_cliente" ,
             nativeQuery = true
     )
-    List<Spammer> findspammer();
+        List<List<String>> findspammerobj();
+
 
 }
