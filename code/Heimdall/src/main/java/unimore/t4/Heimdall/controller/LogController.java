@@ -8,8 +8,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import unimore.t4.Heimdall.model.LogEntity;
+import unimore.t4.Heimdall.repo.LogRepo;
 import unimore.t4.Heimdall.service.LogService;
 
+import java.util.Collection;
 import java.util.List;
 
     /**
@@ -46,5 +48,6 @@ import java.util.List;
         @GetMapping
         public List<LogEntity> getLogEntity(){
             return List.of(new LogEntity());}
-}
+
+      }
 

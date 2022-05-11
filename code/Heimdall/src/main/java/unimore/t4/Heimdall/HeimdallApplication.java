@@ -1,16 +1,19 @@
 package unimore.t4.Heimdall;
 
 import org.springframework.beans.factory.BeanCreationException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import unimore.t4.Heimdall.PreProcessing.JsonReader;
 import unimore.t4.Heimdall.PreProcessing.LogProcessing;
+import unimore.t4.Heimdall.Statistiche.Conteggio;
 import unimore.t4.Heimdall.model.LogEntity;
 import unimore.t4.Heimdall.repo.LogRepo;
 import unimore.t4.Heimdall.service.LogService;
 
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -26,9 +29,15 @@ public class HeimdallApplication {
 	@Bean
 	CommandLineRunner commandLineRunner(LogRepo logrepo){
 		return args -> {
-			JsonReader jsonReader = new JsonReader("File_Json");
-			jsonReader.readAllLogFiles();
-			List<LogEntity> logEntityList= jsonReader.generateLogEntities();
+			List<Conteggio> banana;
+			banana = logrepo.findCount();
+
+			for ( Conteggio logEntity: banana){
+				System.err.println(logEntity.toString());
+			}
+			//JsonReader jsonReader = new JsonReader("File_Json");
+			//jsonReader.readAllLogFiles();
+			//List<LogEntity> logEntityList= jsonReader.generateLogEntities();
 			/*for (LogEntity logEntity: logEntityList){
 				logrepo.save(logEntity);
 			}*/
@@ -40,13 +49,17 @@ public class HeimdallApplication {
 	 */
 	public static void main(String[] args) {
 		LogProcessing logProcessing = new LogProcessing("File_log", "File_output", "File_Json");
-		logProcessing.logProcessing();
+		//logProcessing.logProcessing();
 		//Inizializzazione Applicazione Spring
 		try {
-			//SpringApplication.run(HeimdallApplication.class, args);
+			SpringApplication.run(HeimdallApplication.class, args);
 		}catch(BeanCreationException ex){
 			Throwable realCause = unwrap(ex);
 		}
+
+
+
+
 	}
 	public static Throwable unwrap(Throwable ex) {
 		if (ex != null && BeanCreationException.class.isAssignableFrom(ex.getClass())) {
