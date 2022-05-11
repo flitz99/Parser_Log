@@ -53,7 +53,7 @@ public class HeimdallApplication {
 		grokCompiler.registerDefaultPatterns();
 
 		/* Grok pattern to compile, here httpd logs */
-		String pattern_grok_err= "\\[(?<timestamp>%{DAY:day} %{MONTH:month} %{MONTHDAY} %{TIME} %{YEAR})\\]\\s+\\[:%{LOGLEVEL:loglevel}\\]\\s+\\[pid %{NUMBER:pid}]\\s+\\[client %{IP:clientip}:%{NUMBER:port}\\]\\s+\\[client %{IP:clientip2}.*?\\]\\s+ModSecurity:\\s+%{GREEDYDATA:error}\\s+\\[file\\s%{QS:path_file}\\]?(?:\\s+\\[line %{QS:line}])?(?:\\s+\\[id %{QS:id}\\])?(?:\\s+\\[msg %{QS:message}\\])?(?:\\s+\\[data %{QS:data}\\])?(?:\\s+\\[severity %{QS:severity}\\])?(?:\\s+\\[ver %{QS:ver}\\])?(?:\\s+\\[tag %{QS:tag}\\])?(?:\\s+\\[tag %{QS:tag2}\\])?(?:\\s+\\[tag %{QS:tag3}\\])?(?:\\s+\\[tag %{QS:tag4}\\])?(?:\\s+\\[tag %{QS:tag5}\\])?.*?\\[hostname %{QS:hostname}\\]\\s+\\[uri %{QS:uri}\\]\\s+\\[unique_id %{:unique_id_referer}\\](?:%{GREEDYDATA:referer})";
+		String pattern_grok_err= "\\[(?<timestamp>%{DAY:day} %{MONTH:month} %{MONTHDAY} %{TIME} %{YEAR})\\]\\s+\\[:%{LOGLEVEL:loglevel}\\]\\s+\\[pid %{NUMBER:pid}]\\s+\\[client %{IP:clientip}:%{NUMBER:port}\\]\\s+\\[client %{IP:clientip2}.*?\\]\\s+ModSecurity:\\s+%{GREEDYDATA:error}\\s+\\[file\\s%{QS:path_file}\\]?(?:\\s+\\[line %{QS:line}])?(?:\\s+\\[id %{QS:id}\\])?(?:\\s+\\[msg %{QS:message}\\])?(?:\\s+\\[data %{QS:data}\\])?(?:\\s+\\[severity %{QS:severity}\\])?(?:\\s+\\[ver %{QS:ver}\\])?(?:\\s+\\[tag %{QS:tag}\\])?(?:\\s+\\[tag %{QS:tag2}\\])?(?:\\s+\\[tag %{QS:tag3}\\])?(?:\\s+\\[tag %{QS:tag4}\\])?(?:\\s+\\[tag %{QS:tag5}\\])?.*?\\[hostname %{QS:hostname}\\]\\s+\\[uri %{QS:uri}\\]\\s+\\[unique_id %{QS:unique_id}\\](?:%{GREEDYDATA:referer})";
 		final Grok grok = grokCompiler.compile(pattern_grok_err);
 
 
@@ -65,6 +65,8 @@ public class HeimdallApplication {
 
 		File write= new File("");
 		File output = new File(read.getAbsolutePath()+File.separator+"File_log_errore_write");
+		if(output.exists())
+			output.delete();
 
 		BufferedWriter bw= null;
 		BufferedReader br=null;
@@ -75,9 +77,8 @@ public class HeimdallApplication {
 			//System.out.println(br.readLine());
 			String line;
 			while ((line = br.readLine()) != null) {
-				mylog = br.readLine();
-				System.out.println("Log da analizzare: "+mylog);  //stampo il log letto
-				Match gm = grok.match(mylog);  // leggo tramite grok la riga del file
+				System.out.println("Log da analizzare: "+line);  //stampo il log letto
+				Match gm = grok.match(line);  // leggo tramite grok la riga del file
 				final Map<String, Object> capture = gm.capture();
 				System.out.println("Log analizzato: "+capture); //stampo il log scansionato da grok
 				System.out.println("------------");
@@ -87,9 +88,10 @@ public class HeimdallApplication {
 				 */
 				bw.write(capture.toString());
 				bw.newLine();
-
-
+				bw.flush();
 			}
+			bw.flush();
+			bw.close();
 		}
 		catch (IOException e) {
 			System.out.println("Errore in lettura");
