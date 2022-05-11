@@ -26,9 +26,9 @@ public class HeimdallApplication {
 	@Bean
 	CommandLineRunner commandLineRunner(LogRepo logrepo){
 		return args -> {
-			JsonReader jsonReader = new JsonReader("File_Json");
-			jsonReader.readAllLogFiles();
-			List<LogEntity> logEntityList= jsonReader.generateLogEntities();
+			//JsonReader jsonReader = new JsonReader("File_Json");
+			//jsonReader.readAllLogFiles();
+			//List<LogEntity> logEntityList= jsonReader.generateLogEntities();
 			/*for (LogEntity logEntity: logEntityList){
 				logrepo.save(logEntity);
 			}*/
