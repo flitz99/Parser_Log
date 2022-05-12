@@ -5,6 +5,7 @@ import io.krakens.grok.api.GrokCompiler;
 import io.krakens.grok.api.Match;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
@@ -62,10 +63,25 @@ public class LogParser {
             throws IOException {
         Match gm = grok.match(logLine);
         Map<String, Object> captureMap = gm.capture();
-        //ricreare una nuova mappa con i campi post processati
+        //TODO ricreare una nuova mappa con i campi post-processati
         if(logError) {
+           // postProcessingMap(captureMap);
         }
         logWriter.writeLog(captureMap, name);
         jsonWriter.writeOnJson(captureMap, name);
+    }
+
+    /**
+     *metodo che implementa il post processing della mappa per correggere
+     * alcuni valori dei campi
+     * @param oldMap mappa sorgente da cui prendere i vecchi valori e chiavi
+     * @return newMap mappa destinazione su cui mettere i nuovi valori
+     */
+    public Map<String, Object> postProcessingMap (Map<String, Object> oldMap){
+        Map<String, Object> newMap = new HashMap<String, Object>(oldMap.size());
+        System.out.println(oldMap);
+        Set<String> keySet = oldMap.keySet();
+        Set<Map.Entry<String, Object>> entrySet = oldMap.entrySet();
+        return newMap;
     }
 }

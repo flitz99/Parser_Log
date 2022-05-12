@@ -45,7 +45,7 @@ public class HeimdallApplication {
 	 */
 	public static void main(String[] args) {
 		LogProcessing logProcessing = new LogProcessing("File_log", "File_output", "File_Json");
-		//logProcessing.logProcessing();
+		logProcessing.logProcessing();
 
 		LogProcessing logprocessingerr = new LogProcessing("File_log_err", "File_output_err", "File_Json_err");
 		logprocessingerr.logProcessing();
