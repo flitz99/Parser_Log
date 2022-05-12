@@ -35,41 +35,29 @@ public class HeimdallApplication {
 			/*for (LogEntity logEntity: logEntityList){
 				logrepo.save(logEntity);
 			}
-
 			// log di errore
 			JsonReader jsonreadererr = new JsonReader("File_Json_err");
 			jsonreadererr.readAllLogFiles();
 			//List<LogEntityErr> .......    DA IMPLEMENTARE e cancellare log vuoti
-
 			 */
 		};
 	}
 	@Bean
 	CommandLineRunner testingreporunner(LogRepo logRepo){
 		return args -> {
-
-				System.out.println("provo le quarries spammer ," +
+			/*System.out.println("provo le quarries spammer ," +
 						"che mi ritorna la lista di ip e le loro richieste in modo decrescnete in formato JSON");
-
-
-
 			List<Spammer> provaspammer = new ArrayList<>();		// Array che conterrá la lista degli Spammer
 			List<List<String>>repo1 = logRepo.findspammerobj(); // estraggo dal DB
 			for(List<String> iteratore : repo1){
-
 				Spammer u = new Spammer(iteratore);				// Creo Spammer
 				provaspammer.add(u);							// Aggiungo spammer al`array
 			}
 			for(Spammer iteratore : provaspammer){
-
 				System.out.println(iteratore.toString());		// Stampa il JSON ? credo
-			}
-
+			}*/
 		};
-
-
-
-			}
+	}
 	/**
 	 * Main del programma il suo lavoro e semplicemente creare una istanza di HeimdallApplication e avviarala
 	 * @param args argomenti di default
@@ -78,9 +66,8 @@ public class HeimdallApplication {
 		//LogProcessing logProcessing = new LogProcessing("File_log", "File_output", "File_Json");
 		//logProcessing.logProcessing();
 
-		//LogProcessing logprocessingerr = new LogProcessing("File_log_err", "File_output_err", "File_Json_err");
+		LogProcessing logprocessingerr = new LogProcessing("File_log_err", "File_output_err", "File_Json_err");
 		//logprocessingerr.logProcessing();
-
 		//Inizializzazione Applicazione Spring
 		try {
 			SpringApplication.run(HeimdallApplication.class, args);
