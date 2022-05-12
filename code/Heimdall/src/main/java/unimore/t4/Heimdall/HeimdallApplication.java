@@ -26,17 +26,28 @@ public class HeimdallApplication {
 	@Bean
 	CommandLineRunner commandLineRunner(LogRepo logrepo){
 		return args -> {
+			/*
 			JsonReader jsonReader = new JsonReader("File_Json");
 			jsonReader.readAllLogFiles();
 			List<LogEntity> logEntityList= jsonReader.generateLogEntities();
 			/*for (LogEntity logEntity: logEntityList){
 				logrepo.save(logEntity);
-			}*/
+			}
 
 			// log di errore
 			JsonReader jsonreadererr = new JsonReader("File_Json_err");
 			jsonreadererr.readAllLogFiles();
 			//List<LogEntityErr> .......    DA IMPLEMENTARE e cancellare log vuoti
+
+			 */
+		};
+	}
+	@Bean
+	CommandLineRunner testingreporunner(LogRepo logRepo){
+		return args -> {
+				System.out.println("provo le quarries");
+
+
 		};
 	}
 	/**
@@ -44,15 +55,15 @@ public class HeimdallApplication {
 	 * @param args argomenti di default
 	 */
 	public static void main(String[] args) {
-		LogProcessing logProcessing = new LogProcessing("File_log", "File_output", "File_Json");
+		//LogProcessing logProcessing = new LogProcessing("File_log", "File_output", "File_Json");
 		//logProcessing.logProcessing();
 
-		LogProcessing logprocessingerr = new LogProcessing("File_log_err", "File_output_err", "File_Json_err");
-		logprocessingerr.logProcessing();
+		//LogProcessing logprocessingerr = new LogProcessing("File_log_err", "File_output_err", "File_Json_err");
+		//logprocessingerr.logProcessing();
 
 		//Inizializzazione Applicazione Spring
 		try {
-			//SpringApplication.run(HeimdallApplication.class, args);
+			SpringApplication.run(HeimdallApplication.class, args);
 		}catch(BeanCreationException ex){
 			Throwable realCause = unwrap(ex);
 		}
