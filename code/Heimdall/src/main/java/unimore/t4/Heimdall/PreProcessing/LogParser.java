@@ -6,6 +6,7 @@ import io.krakens.grok.api.Match;
 
 import java.io.IOException;
 import java.util.Map;
+import java.util.Set;
 
 /**
  *Classe che utilizza la libreria grok per fare il parsing della linea di log
@@ -61,11 +62,8 @@ public class LogParser {
             throws IOException {
         Match gm = grok.match(logLine);
         Map<String, Object> captureMap = gm.capture();
+        //ricreare una nuova mappa con i campi post processati
         if(logError) {
-            //modifica campo referrer
-            String valueReferer = captureMap.get("referer").toString();
-            String newValueReferer = valueReferer.substring(valueReferer.indexOf(", referer:")+1);
-            captureMap.replace("referer",valueReferer, newValueReferer);
         }
         logWriter.writeLog(captureMap, name);
         jsonWriter.writeOnJson(captureMap, name);
