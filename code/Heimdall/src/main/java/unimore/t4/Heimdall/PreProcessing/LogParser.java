@@ -65,7 +65,7 @@ public class LogParser {
         Map<String, Object> captureMap = gm.capture();
         //TODO ricreare una nuova mappa con i campi post-processati
         if(logError) {
-           // postProcessingMap(captureMap);
+           postProcessingMap(captureMap);
         }
         logWriter.writeLog(captureMap, name);
         jsonWriter.writeOnJson(captureMap, name);
@@ -79,9 +79,22 @@ public class LogParser {
      */
     public Map<String, Object> postProcessingMap (Map<String, Object> oldMap){
         Map<String, Object> newMap = new HashMap<String, Object>(oldMap.size());
-        System.out.println(oldMap);
-        Set<String> keySet = oldMap.keySet();
+        //System.out.println(oldMap);
         Set<Map.Entry<String, Object>> entrySet = oldMap.entrySet();
+        for(Map.Entry<String, Object> entry : entrySet){
+            Map.Entry<String, Object> oldentry = entry;
+            String newValue = null;
+            if(entry.getKey().equals("referer")){
+                Object oldvalue = entry.getValue();
+                if(oldvalue != null) {//TODO da runnare e testare alla veloce
+                    String oldValueString = oldvalue.toString();
+                    newValue = oldValueString.substring(oldValueString.indexOf("referer")+1);
+                }
+            }else {
+                newValue = (String) entry.getValue();
+            }
+            newMap.put(oldentry.getKey(), newValue);
+        }
         return newMap;
     }
 }
