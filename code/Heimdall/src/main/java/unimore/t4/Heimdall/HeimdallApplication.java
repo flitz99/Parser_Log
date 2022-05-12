@@ -7,10 +7,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import unimore.t4.Heimdall.PreProcessing.JsonReader;
 import unimore.t4.Heimdall.PreProcessing.LogProcessing;
+import unimore.t4.Heimdall.Statistiche.Spammer;
 import unimore.t4.Heimdall.model.LogEntity;
 import unimore.t4.Heimdall.repo.LogRepo;
 import unimore.t4.Heimdall.service.LogService;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -45,11 +47,29 @@ public class HeimdallApplication {
 	@Bean
 	CommandLineRunner testingreporunner(LogRepo logRepo){
 		return args -> {
-				System.out.println("provo le quarries");
 
+				System.out.println("provo le quarries spammer ," +
+						"che mi ritorna la lista di ip e le loro richieste in modo decrescnete in formato JSON");
+
+
+
+			List<Spammer> provaspammer = new ArrayList<>();		// Array che conterrá la lista degli Spammer
+			List<List<String>>repo1 = logRepo.findspammerobj(); // estraggo dal DB
+			for(List<String> iteratore : repo1){
+
+				Spammer u = new Spammer(iteratore);				// Creo Spammer
+				provaspammer.add(u);							// Aggiungo spammer al`array
+			}
+			for(Spammer iteratore : provaspammer){
+
+				System.out.println(iteratore.toString());		// Stampa il JSON ? credo
+			}
 
 		};
-	}
+
+
+
+			}
 	/**
 	 * Main del programma il suo lavoro e semplicemente creare una istanza di HeimdallApplication e avviarala
 	 * @param args argomenti di default

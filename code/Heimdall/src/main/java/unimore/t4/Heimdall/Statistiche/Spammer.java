@@ -1,5 +1,7 @@
 package unimore.t4.Heimdall.Statistiche;
 
+import java.util.List;
+
 public class Spammer {
 
     private String ip;
@@ -9,6 +11,13 @@ public class Spammer {
         this.ip = ip;
         this.count = count;
     }
+
+    public Spammer(List<String> entrata){
+        this.ip = entrata.get(0);
+        this.count = entrata.get(1);
+
+    }
+
 
     public String getIp() {
         return ip;

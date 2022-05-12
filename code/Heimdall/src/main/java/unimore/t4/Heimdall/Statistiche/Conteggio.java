@@ -20,6 +20,7 @@ public class Conteggio {
         this.qunatitá_richieste = qunatitá_richieste;
     }
 
+
     public String getGiorno() {
         return giorno;
     }
