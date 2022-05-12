@@ -8,7 +8,7 @@ import java.io.IOException;
 public class LogReader {
     private File[] allLogFiles;
     private LogParser logParser;
-
+    private int todelete;
     /**
      * Costruttore, inizializza i riferimenti alla cartella contenente i file
      * di log e all'oggetto parser
