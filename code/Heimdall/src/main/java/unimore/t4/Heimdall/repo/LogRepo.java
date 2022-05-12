@@ -27,7 +27,4 @@ public interface LogRepo extends JpaRepository<LogEntity, Long> {
     )
     List<List<String>> findspammerobj();
 
-
-
-
 }

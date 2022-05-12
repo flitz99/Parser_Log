@@ -18,7 +18,7 @@ import java.util.List;
      *Classe che rappresenta il controller dell'applicazione
      */
     @RestController
-    @RequestMapping("/log")
+    @RequestMapping("/api")
     public class LogController {
 
         private final LogService logService;
@@ -39,15 +39,17 @@ import java.util.List;
             return new ResponseEntity<>(logs, HttpStatus.OK);
         }
 
-        /*Metodo per cercare da richiesta http un log dato il logId
-        @GetMapping("/find/{idLog}")
-        public ResponseEntity<LogEntity> getLogByIdLog(@PathVariable("idLog") Integer idLog){
-            LogEntity logLine = LogService.findLogByIdLog(idLog);
-            return new ResponseEntity<>(logLine, HttpStatus.OK);
-        }*/
-        @GetMapping
+        //Metodo per cercare da richiesta http un log dato il logId
+        @GetMapping("/{idLog}")
+        public LogEntity findByIdLog(@PathVariable Long idLog){
+            return LogService.findLogByIdLog(idLog);
+        }
+        /*@GetMapping
         public List<LogEntity> getLogEntity(){
-            return List.of(new LogEntity());}
-
+            return List.of(new LogEntity());}*/
+        @GetMapping
+        public  String gettestSpammer(){
+            return logService.getspammer();
+        }
       }
 

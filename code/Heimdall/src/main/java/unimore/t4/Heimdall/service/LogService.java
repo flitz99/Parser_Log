@@ -47,7 +47,7 @@ public class LogService {
         return logRepo.save(log);
     }
     */
-    @Bean
+    /*@Bean
     CommandLineRunner testingreporunner(LogRepo logRepo){
         return args -> {
 
@@ -72,6 +72,26 @@ public class LogService {
             System.out.println(JsonString);
             //return JsonString;
         };
+    }*/
+    public String getspammer(){
+        List<Spammer> provaspammer = new ArrayList<>();		// Array che conterrá la lista degli Spammer
+        List<List<String>>repo1 = logRepo.findspammerobj(); // estraggo dal DB
+        for(List<String> iteratore : repo1){
+            Spammer u = new Spammer(iteratore);				// Creo Spammer
+            provaspammer.add(u);							// Aggiungo spammer al`array
+        }
+
+        Gson gson = new Gson();
+        String JsonString="[";
+        for(Spammer iteratore : provaspammer){
+            //System.out.println(iteratore.toString());		// Stampa il JSON ? credo
+            JsonString+= gson.toJson(iteratore);
+            JsonString+=",";
+        }
+        JsonString =JsonString.substring(0,JsonString.length()-1);
+        JsonString+="]";
+        //System.out.println(JsonString);
+        return JsonString;
     }
     /**
      * metodo statico che ritorna tutti i log
@@ -87,10 +107,10 @@ public class LogService {
      * ritorna un'eccezione in caso di log non trovato
      * @return il log recuperato
      */
-    /*public static LogEntity findLogByIdLog(Integer idLog){
-        return logRepo.findLogByIdLog(idLog).orElseThrow(
+    public static LogEntity findLogByIdLog(Long idLog){
+        return (LogEntity) logRepo.findById(idLog).orElseThrow(
                 ()->new LogNotFoundException("Log con idLog " + idLog +" non trovato"));
-    }*/
+    }
     /*
     public void deleteLog(Integer idLog){
         logRepo.deleteLogByIdLog(idLog);
