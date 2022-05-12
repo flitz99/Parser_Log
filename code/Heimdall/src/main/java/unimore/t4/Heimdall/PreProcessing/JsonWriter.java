@@ -9,15 +9,18 @@ public class JsonWriter {
     private static File dirDstJson;
     private BufferedWriter bw;
 
-    public JsonWriter(String dirDstJsonName){
-        if(dirDstJsonName.equals("File_Json")){
-            dirDstJson = new File(new File("").getAbsolutePath()+File.separator
-            +dirDstJsonName);
-            dirDstJson.mkdir();}
-        else{
-            System.err.println("Invalid directories names, " +
-                    "must be: File_Json");
+    public JsonWriter(String dirDstJsonName) {
+        if (dirDstJsonName.equals("File_Json")) {
+            dirDstJson = new File(new File("").getAbsolutePath() + File.separator
+                    + dirDstJsonName);
+            dirDstJson.mkdir();
         }
+        if (dirDstJsonName.equals("File_Json_err")) {
+            dirDstJson = new File(new File("").getAbsolutePath() + File.separator
+                    + dirDstJsonName);
+            dirDstJson.mkdir();
+        }
+
     }
 
     public void writeOnJson(Map<String, Object> captureMap, String name) {

@@ -24,10 +24,12 @@ public class LogWriter {
                     + dirDstLogName);
             dirDstLog.mkdir();
         }
-        else {
-            System.err.println("Invalid directory name, " +
-                    "must be: File_output");
+        if (dirDstLogName.equals("File_output_err")){
+            dirDstLog = new File(new File("").getAbsolutePath() + File.separator
+                    + dirDstLogName);
+            dirDstLog.mkdir();
         }
+
     }
 
     /**

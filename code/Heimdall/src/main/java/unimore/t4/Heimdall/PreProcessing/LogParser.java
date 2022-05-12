@@ -21,7 +21,11 @@ public class LogParser {
     /**
      * stringa che indica il patern usato per il parsing dall'oggetto grok */
     private static final String pattern = "%{COMBINEDAPACHELOG}";
-
+    /**
+     * Pattern utilizzato per parsare gli errori
+     */
+    private static final String patter_err= "\\[(?<timestamp>%{DAY:day} %{MONTH:month} %{MONTHDAY} %{TIME} %{YEAR})\\]\\s+\\[:%{LOGLEVEL:loglevel}\\]\\s+\\[pid %{NUMBER:pid}]\\s+\\[client %{IP:clientip}:%{NUMBER:port}\\]\\s+\\[client %{IP:clientip2}.*?\\]\\s+ModSecurity:\\s+%{GREEDYDATA:error}\\s+\\[file\\s%{QS:path_file}\\]?(?:\\s+\\[line %{QS:line}])?(?:\\s+\\[id %{QS:id}\\])?(?:\\s+\\[msg %{QS:message}\\])?(?:\\s+\\[data %{QS:data}\\])?(?:\\s+\\[severity %{QS:severity}\\])?(?:\\s+\\[ver %{QS:ver}\\])?(?:\\s+\\[tag %{QS:tag}\\])?(?:\\s+\\[tag %{QS:tag2}\\])?(?:\\s+\\[tag %{QS:tag3}\\])?(?:\\s+\\[tag %{QS:tag4}\\])?(?:\\s+\\[tag %{QS:tag5}\\])?.*?\\[hostname %{QS:hostname}\\]\\s+\\[uri %{QS:uri}\\]\\s+\\[unique_id %{QS:unique_id}\\](?:%{GREEDYDATA:referer})";
+    private boolean logError;
     /**
      * Costruttore della classe che inzializza gli oggetti di libreria
      */
@@ -32,10 +36,18 @@ public class LogParser {
             grok = grokCompiler.compile(pattern);
             jsonWriter = new JsonWriter(dirDstJsonName);
             logWriter = new LogWriter(dirDstLogName);
+            logError=false;
         }
-        else
-            System.err.println("Invalid directories names, " +
-                "must be: File_output, File_Json");
+
+        if(dirDstLogName.equals("File_output_err") && dirDstJsonName.equals("File_Json_err")){
+            GrokCompiler grokCompiler= GrokCompiler.newInstance();
+            grokCompiler.registerDefaultPatterns();
+            grok=grokCompiler.compile(patter_err);
+            jsonWriter= new JsonWriter(dirDstJsonName);
+            logWriter= new LogWriter(dirDstLogName);
+            logError=true;
+        }
+
     }
 
     /**
@@ -49,8 +61,13 @@ public class LogParser {
             throws IOException {
         Match gm = grok.match(logLine);
         Map<String, Object> captureMap = gm.capture();
-       logWriter.writeLog(captureMap, name);
+        if(logError) {
+            //modifica campo referrer
+            String valueReferer = captureMap.get("referer").toString();
+            String newValueReferer = valueReferer.substring(valueReferer.indexOf(", referer:")+1);
+            captureMap.replace("referer",valueReferer, newValueReferer);
+        }
+        logWriter.writeLog(captureMap, name);
         jsonWriter.writeOnJson(captureMap, name);
-        //TODO aggiungere la chiamata al metodo che scrive sul file di log d'errore
     }
 }

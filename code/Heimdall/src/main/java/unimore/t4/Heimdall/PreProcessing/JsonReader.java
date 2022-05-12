@@ -21,16 +21,20 @@ public class JsonReader {
     //ogni mappa può essere messa in un arraylist
     private File dirSrcJson;
     private AllLogsList list;
-
+    private boolean logError;
 
     public JsonReader(String dirSrcJsonName) {
         if(dirSrcJsonName.equals("File_Json")) {
             dirSrcJson = new File(new File("").getAbsolutePath() + File.separator + dirSrcJsonName);
             dirSrcJson.mkdir();
             list = new AllLogsList();
-        }else{
-            System.err.println("Invalid directory name, " +
-                    "must be: File_Json)");
+            logError = false;
+        }
+        if (dirSrcJsonName.equals("File_Json_err")){
+            dirSrcJson = new File(new File("").getAbsolutePath() + File.separator + dirSrcJsonName);
+            dirSrcJson.mkdir();
+            list = new AllLogsList();
+            logError = true;
         }
     }
 
@@ -60,7 +64,13 @@ public class JsonReader {
             ex.printStackTrace();
         }
     }
+    public boolean isLogError() {
+        return logError;
+    }
 
+    public void setLogError(boolean logError) {
+        this.logError = logError;
+    }
     public List<LogEntity> generateLogEntities(){
         return list.fromLogEntityJsonArrayListToLogEntities();
     }

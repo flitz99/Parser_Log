@@ -1,20 +1,16 @@
 package unimore.t4.Heimdall;
 
 import org.springframework.beans.factory.BeanCreationException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import unimore.t4.Heimdall.PreProcessing.JsonReader;
 import unimore.t4.Heimdall.PreProcessing.LogProcessing;
-import unimore.t4.Heimdall.Statistiche.Conteggio;
-import unimore.t4.Heimdall.Statistiche.Spammer;
 import unimore.t4.Heimdall.model.LogEntity;
 import unimore.t4.Heimdall.repo.LogRepo;
 import unimore.t4.Heimdall.service.LogService;
 
-import java.util.Collection;
 import java.util.List;
 
 /**
@@ -30,20 +26,17 @@ public class HeimdallApplication {
 	@Bean
 	CommandLineRunner commandLineRunner(LogRepo logrepo){
 		return args -> {
-
-			List<List<String>> mela;
-			mela = logrepo.findspammerobj();
-			for ( Object logEntity: mela){
-				System.out.println(logEntity);
-			}
-
-
-			//JsonReader jsonReader = new JsonReader("File_Json");
-			//jsonReader.readAllLogFiles();
-			//List<LogEntity> logEntityList= jsonReader.generateLogEntities();
+			JsonReader jsonReader = new JsonReader("File_Json");
+			jsonReader.readAllLogFiles();
+			List<LogEntity> logEntityList= jsonReader.generateLogEntities();
 			/*for (LogEntity logEntity: logEntityList){
 				logrepo.save(logEntity);
 			}*/
+
+			// log di errore
+			JsonReader jsonreadererr = new JsonReader("File_Json_err");
+			jsonreadererr.readAllLogFiles();
+			//List<LogEntityErr> .......    DA IMPLEMENTARE e cancellare log vuoti
 		};
 	}
 	/**
@@ -52,10 +45,14 @@ public class HeimdallApplication {
 	 */
 	public static void main(String[] args) {
 		LogProcessing logProcessing = new LogProcessing("File_log", "File_output", "File_Json");
-		//logProcessing.logProcessing();
+		logProcessing.logProcessing();
+
+		LogProcessing logprocessingerr = new LogProcessing("File_log_err", "File_output_err", "File_Json_err");
+		logprocessingerr.logProcessing();
+
 		//Inizializzazione Applicazione Spring
 		try {
-			SpringApplication.run(HeimdallApplication.class, args);
+			//SpringApplication.run(HeimdallApplication.class, args);
 		}catch(BeanCreationException ex){
 			Throwable realCause = unwrap(ex);
 		}

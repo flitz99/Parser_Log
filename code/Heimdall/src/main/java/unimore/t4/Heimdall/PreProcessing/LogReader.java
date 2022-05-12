@@ -15,15 +15,19 @@ public class LogReader {
      * @param dirSrcLogName directory di input dei log
      * @param logParser oggetto parser già inizializzato
      */
-    public LogReader(String dirSrcLogName, LogParser logParser){
+    public LogReader(String dirSrcLogName,LogParser logParser){
         if(dirSrcLogName.equals("File_log") && logParser != null){
         File dirSrcLog = new File(new File("").getAbsolutePath() + File.separator
                 + dirSrcLogName);
         allLogFiles = dirSrcLog.listFiles();
         this.logParser = logParser;}
-        else
-            System.err.println("Invalid directories names, " +
-                    "must be: File_log, File_output, File_Json");
+
+        if(dirSrcLogName.equals("File_log_err") && logParser !=null){
+            File dirSrcErrLog = new File(new File("").getAbsolutePath() + File.separator
+                    + dirSrcLogName);
+            allLogFiles= dirSrcErrLog.listFiles();
+            this.logParser=logParser;
+        }
     }
 
     /**
