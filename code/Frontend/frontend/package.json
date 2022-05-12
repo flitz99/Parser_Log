@@ -9,6 +9,7 @@
     "generate": "nuxt generate"
   },
   "dependencies": {
+    "@nuxt/content": "^1.15.1",
     "@nuxtjs/proxy": "^2.1.0",
     "bootstrap-vue": "^2.22.0",
     "core-js": "^3.19.3",
@@ -21,4 +22,3 @@
   "author": "256091@studenti.unimore.it",
   "description": "README.me"
 }
-
