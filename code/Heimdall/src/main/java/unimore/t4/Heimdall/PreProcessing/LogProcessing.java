@@ -13,7 +13,7 @@ public class LogProcessing {
     /**
      * riferimento alla classe logWriter */
     private LogWriter logWriter;
-
+    private boolean logError;//booleano che indica se stiamo lavorando con i log d'errore
     private JsonWriter jsonWriter;
     /**
      * il writer su file il contenuto parsato
@@ -29,6 +29,7 @@ public class LogProcessing {
                 preprocessingDirs(dirDstLogName, dirDstJsonName);
                 logParser = new LogParser(dirDstLogName, dirDstJsonName);
                 logReader = new LogReader(dirSrcLogName, logParser);
+                logError=false;
         }
 
         if (Objects.equals(dirSrcLogName,"File_log_err")
@@ -37,6 +38,7 @@ public class LogProcessing {
             preprocessingDirs(dirDstLogName,dirDstJsonName);
             logParser = new LogParser(dirDstLogName, dirDstJsonName);
             logReader= new LogReader (dirSrcLogName,logParser);
+            logError=true;
         }
     }
     /**
@@ -47,7 +49,7 @@ public class LogProcessing {
     }
 
     private void preprocessingDirs(String dirDstLogName, String dirDstJsonName) {
-        if(Objects.equals(dirDstLogName, "File_output") && Objects.equals(dirDstJsonName, "File_Json")){
+        if(!logError){
             File dirDstJson = new File(new File("").getAbsolutePath() + File.separator
                     + dirDstJsonName);
             if (!dirDstJson.mkdir()) {
@@ -60,7 +62,7 @@ public class LogProcessing {
             }
         }
         // Controllo log di errore
-        if(Objects.equals(dirDstLogName, "File_output_err") && Objects.equals(dirDstJsonName, "File_Json_err")){
+        if(logError){
             File dirDstJsonErr = new File(new File("").getAbsolutePath() + File.separator
                     + dirDstJsonName);
             if (!dirDstJsonErr.mkdir()) {
@@ -85,5 +87,12 @@ public class LogProcessing {
             isDirDeleted = directoryToBeDeleted.delete();
         }
         return isDirDeleted;
+    }
+    public boolean isLogError() {
+        return logError;
+    }
+
+    public void setLogError(boolean logError) {
+        this.logError = logError;
     }
 }

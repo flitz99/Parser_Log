@@ -36,7 +36,7 @@ public class HeimdallApplication {
 			// log di errore
 			JsonReader jsonreadererr = new JsonReader("File_Json_err");
 			jsonreadererr.readAllLogFiles();
-			//List<LogEntityErr> .......    DA IMPLEMENTARE
+			//List<LogEntityErr> .......    DA IMPLEMENTARE e cancellare log vuoti
 		};
 	}
 	/**
