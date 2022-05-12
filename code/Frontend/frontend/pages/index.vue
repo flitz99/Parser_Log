@@ -18,7 +18,8 @@
       <b-col>
 
         <Login />
-      
+        <br><br>
+        <NuxtLink to="/logsView">Dashboard</NuxtLink>
       </b-col>
 
     </b-row> 
