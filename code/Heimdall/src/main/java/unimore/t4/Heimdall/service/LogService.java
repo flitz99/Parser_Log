@@ -1,12 +1,17 @@
 package unimore.t4.Heimdall.service;
 
+import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
+import unimore.t4.Heimdall.Statistiche.Spammer;
 import unimore.t4.Heimdall.exception.LogNotFoundException;
 import unimore.t4.Heimdall.repo.LogRepo;
 import unimore.t4.Heimdall.model.LogEntity;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -42,7 +47,32 @@ public class LogService {
         return logRepo.save(log);
     }
     */
+    @Bean
+    CommandLineRunner testingreporunner(LogRepo logRepo){
+        return args -> {
 
+            System.out.println("provo le quarries spammer ," +
+                    "che mi ritorna la lista di ip e le loro richieste in modo decrescnete in formato JSON");
+            List<Spammer> provaspammer = new ArrayList<>();		// Array che conterrá la lista degli Spammer
+            List<List<String>>repo1 = logRepo.findspammerobj(); // estraggo dal DB
+            for(List<String> iteratore : repo1){
+                Spammer u = new Spammer(iteratore);				// Creo Spammer
+                provaspammer.add(u);							// Aggiungo spammer al`array
+            }
+
+            Gson gson = new Gson();
+            String JsonString="[";
+            for(Spammer iteratore : provaspammer){
+                //System.out.println(iteratore.toString());		// Stampa il JSON ? credo
+                JsonString+= gson.toJson(iteratore);
+                JsonString+=",";
+            }
+            JsonString =JsonString.substring(0,JsonString.length()-1);
+            JsonString+="]";
+            System.out.println(JsonString);
+            //return JsonString;
+        };
+    }
     /**
      * metodo statico che ritorna tutti i log
      *
