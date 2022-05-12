@@ -30,4 +30,5 @@ public interface LogRepo extends JpaRepository<LogEntity, Long> {
 
 
 
+
 }

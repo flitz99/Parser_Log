@@ -60,10 +60,19 @@ public class HeimdallApplication {
 				Spammer u = new Spammer(iteratore);				// Creo Spammer
 				provaspammer.add(u);							// Aggiungo spammer al`array
 			}
+
+			System.out.println("[");
 			for(Spammer iteratore : provaspammer){
 
 				System.out.println(iteratore.toString());		// Stampa il JSON ? credo
 			}
+			System.out.println("]");
+
+			System.out.println("Test numero 2");
+
+
+
+
 
 		};
 
