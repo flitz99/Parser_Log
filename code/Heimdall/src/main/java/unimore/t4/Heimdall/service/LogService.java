@@ -75,7 +75,7 @@ public class LogService {
     }*/
     public String getspammer(){
         List<Spammer> provaspammer = new ArrayList<>();		// Array che conterrá la lista degli Spammer
-        List<List<String>>repo1 = logRepo.findspammerobj(); // estraggo dal DB
+        List<List<String>>repo1 = logRepo.findspammerglobal(); // estraggo dal DB
         for(List<String> iteratore : repo1){
             Spammer u = new Spammer(iteratore);				// Creo Spammer
             provaspammer.add(u);							// Aggiungo spammer al`array
