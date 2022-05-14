@@ -1,0 +1,14 @@
+version: '3.3'
+
+services:
+  front-end:
+    image: playground-web-frontend:latest
+    environment:
+      PORT: 3000
+      PROXY_API: http://localhost:8080/
+    ports:
+      - 3000:3000
+  back-end:
+    image: playground-web-backend:latest
+    ports:
+      - 8080:8080  
