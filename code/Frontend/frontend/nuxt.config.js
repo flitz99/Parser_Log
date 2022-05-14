@@ -43,14 +43,13 @@ export default {
   modules: [
     'bootstrap-vue/nuxt',
     '@nuxt/content',
+    '@nuxt/http',
   ],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
+  
   },
-  axios: {
-  },
-  proxy: {
-  },
+
 }
 

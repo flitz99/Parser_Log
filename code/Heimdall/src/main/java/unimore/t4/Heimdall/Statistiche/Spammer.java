@@ -40,6 +40,6 @@ public class Spammer {
         return "Spammer{" +
                 "ip='" + ip + '\'' +
                 ", count=" + count +
-                '}';
+                "},";
     }
 }

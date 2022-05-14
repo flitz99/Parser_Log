@@ -6,7 +6,7 @@
 
 Si vuole progettare un'applicazione web con interfacce utente chiara e intuitiva, comprensibile anche ai non addetti ai lavori.
 Il frontend sarà erogato tramite web; nella home del sito sarà presentato un form di login per accedere ai contenuti dell'applicazione.
-La pagina principale mostrerà il log corrente in un formato leggibile.
+La pagina principale mostrerà i log in un formato leggibile.
 Sarà possibile effettuare una ricerca testuale in entrambe le direzioni all'interno del log corrente secondo le preferenze dell'utente.
 Sarà possibile visualizzare le sorgenti di traffico su una mappa tramite geolocalizzazione.
 

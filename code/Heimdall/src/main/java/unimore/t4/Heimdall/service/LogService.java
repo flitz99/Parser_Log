@@ -6,6 +6,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
+import unimore.t4.Heimdall.Statistiche.LogDMY;
 import unimore.t4.Heimdall.Statistiche.Spammer;
 import unimore.t4.Heimdall.exception.LogNotFoundException;
 import unimore.t4.Heimdall.repo.LogRepo;
@@ -33,49 +34,11 @@ public class LogService {
     public List<LogEntity> getLogEntity(){
         return List.of(new LogEntity());
     }
-    /*
-    I seguenti quattro metodi sono operazioni che fanno comunicare il backend
-    con il database tramite l'interfaccia LogRepo. Devono rimanere in questa classe
-    Gli altri metodi (log processing...) e le altre tre classi possono essere separate
-    e messe in un altro package che rappresenta la core logic.
-    Le operazioni di log processing vanno comunque eseguite per prime.
-    Si può mettere qui un oggeto di tipo LogProcessing, su quale viene chiamato il
-    metodo di avvio del preprocessing dei file di log
-     */
-    /*public LogEntity addLog(LogEntity log){
-        log.setId(001);
-        return logRepo.save(log);
-    }
-    */
-    /*@Bean
-    CommandLineRunner testingreporunner(LogRepo logRepo){
-        return args -> {
 
-            System.out.println("provo le quarries spammer ," +
-                    "che mi ritorna la lista di ip e le loro richieste in modo decrescnete in formato JSON");
-            List<Spammer> provaspammer = new ArrayList<>();		// Array che conterrá la lista degli Spammer
-            List<List<String>>repo1 = logRepo.findspammerobj(); // estraggo dal DB
-            for(List<String> iteratore : repo1){
-                Spammer u = new Spammer(iteratore);				// Creo Spammer
-                provaspammer.add(u);							// Aggiungo spammer al`array
-            }
 
-            Gson gson = new Gson();
-            String JsonString="[";
-            for(Spammer iteratore : provaspammer){
-                //System.out.println(iteratore.toString());		// Stampa il JSON ? credo
-                JsonString+= gson.toJson(iteratore);
-                JsonString+=",";
-            }
-            JsonString =JsonString.substring(0,JsonString.length()-1);
-            JsonString+="]";
-            System.out.println(JsonString);
-            //return JsonString;
-        };
-    }*/
-    public String getspammer(){
+    public String getspammerglobal(){
         List<Spammer> provaspammer = new ArrayList<>();		// Array che conterrá la lista degli Spammer
-        List<List<String>>repo1 = logRepo.findspammerobj(); // estraggo dal DB
+        List<List<String>>repo1 = logRepo.findspammerglobal(); // estraggo dal DB
         for(List<String> iteratore : repo1){
             Spammer u = new Spammer(iteratore);				// Creo Spammer
             provaspammer.add(u);							// Aggiungo spammer al`array
@@ -84,15 +47,102 @@ public class LogService {
         Gson gson = new Gson();
         String JsonString="[";
         for(Spammer iteratore : provaspammer){
-            //System.out.println(iteratore.toString());		// Stampa il JSON ? credo
+
             JsonString+= gson.toJson(iteratore);
             JsonString+=",";
         }
         JsonString =JsonString.substring(0,JsonString.length()-1);
         JsonString+="]";
-        //System.out.println(JsonString);
+
         return JsonString;
     }
+
+    public String getlogall(){
+        List<LogDMY> array = new ArrayList<>();
+        List<List<String>>repo1 = logRepo.findlog();
+        for(List<String> iteratore : repo1){
+            LogDMY u = new LogDMY(iteratore);
+            array.add(u);
+        }
+
+        Gson gson = new Gson();
+        String JsonString="[";
+        for(LogDMY iteratore : array){
+
+            JsonString+= gson.toJson(iteratore);
+            JsonString+=",";
+        }
+        JsonString =JsonString.substring(0,JsonString.length()-1);
+        JsonString+="]";
+
+        return JsonString;
+    }
+
+    public String getlogmonthyear(String month , String year){
+        List<LogDMY> array = new ArrayList<>();
+        List<List<String>>repo2 = logRepo.findlogMonth(month, year);
+        for(List<String> iteratore : repo2){
+            LogDMY u = new LogDMY(iteratore);
+            array.add(u);
+        }
+
+        Gson gson = new Gson();
+        String JsonString="[";
+        for(LogDMY iteratore : array){
+
+            JsonString+= gson.toJson(iteratore);
+            JsonString+=",";
+        }
+        JsonString =JsonString.substring(0,JsonString.length()-1);
+        JsonString+="]";
+
+        return JsonString;
+    }
+
+    public String getlogbyip(String ip_da_cercare){
+        List<LogDMY> array = new ArrayList<>();
+        List<List<String>>repo2 = logRepo.findlogbyip(ip_da_cercare);
+        for(List<String> iteratore : repo2){
+            LogDMY u = new LogDMY(iteratore);
+            array.add(u);
+        }
+
+        Gson gson = new Gson();
+        String JsonString="[";
+        for(LogDMY iteratore : array){
+
+            JsonString+= gson.toJson(iteratore);
+            JsonString+=",";
+        }
+        JsonString =JsonString.substring(0,JsonString.length()-1);
+        JsonString+="]";
+
+        return JsonString;
+    }
+
+    public String getlogbyipmonthday(String month ,String day, String year , String ip){
+        List<LogDMY> array = new ArrayList<>();
+        List<List<String>>repo2 = logRepo.findlogMonthdayip(month,day,year,ip);
+        for(List<String> iteratore : repo2){
+            LogDMY u = new LogDMY(iteratore);
+            array.add(u);
+        }
+
+        Gson gson = new Gson();
+        String JsonString="[";
+        for(LogDMY iteratore : array){
+
+            JsonString+= gson.toJson(iteratore);
+            JsonString+=",";
+        }
+        JsonString =JsonString.substring(0,JsonString.length()-1);
+        JsonString+="]";
+
+        return JsonString;
+    }
+
+
+
     /**
      * metodo statico che ritorna tutti i log
      *
