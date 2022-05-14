@@ -76,7 +76,7 @@
     overflow: scroll;
   }
   
-  .ip, .res, .date , byt{
+  .ip, .res, .date , .byt{
     width: auto;
   }
 
