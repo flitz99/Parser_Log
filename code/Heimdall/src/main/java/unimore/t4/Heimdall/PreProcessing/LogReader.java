@@ -37,7 +37,14 @@ public class LogReader {
                     File.separator+"src"+File.separator+"main"+File.separator+
                     "java"+File.separator+"unimore"+File.separator+"t4"+File.separator+
                     "Heimdall"+File.separator+dirSrcLogName);
-            allLogFiles= dirSrcErrLog.listFiles();
+            if(dirSrcErrLog.exists()){
+                allLogFiles = dirSrcErrLog.listFiles();}
+            else {
+                System.out.println(dirSrcErrLog.list());
+                System.err.println("cartella File_log_err, non trovata");
+            }
+            this.logParser = logParser;
+            //allLogFiles= dirSrcErrLog.listFiles();
             this.logParser=logParser;
         }
     }
