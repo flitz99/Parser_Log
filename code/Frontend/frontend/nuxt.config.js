@@ -41,18 +41,16 @@ export default {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
-    'bootstrap-vue/nuxt'
+    'bootstrap-vue/nuxt',
+    '@nuxt/content',
   ],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
-  }
+  },
   axios: {
-    proxy: true,
-    host: 'localhost',
-    prefix: '/api/'
   },
   proxy: {
-    '/api/': 'http://localhost:8080/'
   },
 }
+

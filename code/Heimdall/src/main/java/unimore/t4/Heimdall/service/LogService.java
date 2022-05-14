@@ -1,12 +1,18 @@
 package unimore.t4.Heimdall.service;
 
+import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
+import unimore.t4.Heimdall.Statistiche.LogDMY;
+import unimore.t4.Heimdall.Statistiche.Spammer;
 import unimore.t4.Heimdall.exception.LogNotFoundException;
 import unimore.t4.Heimdall.repo.LogRepo;
 import unimore.t4.Heimdall.model.LogEntity;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -42,6 +48,98 @@ public class LogService {
         return logRepo.save(log);
     }
     */
+    /*@Bean
+    CommandLineRunner testingreporunner(LogRepo logRepo){
+        return args -> {
+
+            System.out.println("provo le quarries spammer ," +
+                    "che mi ritorna la lista di ip e le loro richieste in modo decrescnete in formato JSON");
+            List<Spammer> provaspammer = new ArrayList<>();		// Array che conterrá la lista degli Spammer
+            List<List<String>>repo1 = logRepo.findspammerobj(); // estraggo dal DB
+            for(List<String> iteratore : repo1){
+                Spammer u = new Spammer(iteratore);				// Creo Spammer
+                provaspammer.add(u);							// Aggiungo spammer al`array
+            }
+
+            Gson gson = new Gson();
+            String JsonString="[";
+            for(Spammer iteratore : provaspammer){
+                //System.out.println(iteratore.toString());		// Stampa il JSON ? credo
+                JsonString+= gson.toJson(iteratore);
+                JsonString+=",";
+            }
+            JsonString =JsonString.substring(0,JsonString.length()-1);
+            JsonString+="]";
+            System.out.println(JsonString);
+            //return JsonString;
+        };
+    }*/
+
+    public String getspammerglobal(){
+        List<Spammer> provaspammer = new ArrayList<>();		// Array che conterrá la lista degli Spammer
+        List<List<String>>repo1 = logRepo.findspammerglobal(); // estraggo dal DB
+        for(List<String> iteratore : repo1){
+            Spammer u = new Spammer(iteratore);				// Creo Spammer
+            provaspammer.add(u);							// Aggiungo spammer al`array
+        }
+
+        Gson gson = new Gson();
+        String JsonString="[";
+        for(Spammer iteratore : provaspammer){
+
+            JsonString+= gson.toJson(iteratore);
+            JsonString+=",";
+        }
+        JsonString =JsonString.substring(0,JsonString.length()-1);
+        JsonString+="]";
+
+        return JsonString;
+    }
+
+    public String getlogall(){
+        List<LogDMY> array = new ArrayList<>();
+        List<List<String>>repo1 = logRepo.findlog();
+        for(List<String> iteratore : repo1){
+            LogDMY u = new LogDMY(iteratore);
+            array.add(u);
+        }
+
+        Gson gson = new Gson();
+        String JsonString="[";
+        for(LogDMY iteratore : array){
+
+            JsonString+= gson.toJson(iteratore);
+            JsonString+=",";
+        }
+        JsonString =JsonString.substring(0,JsonString.length()-1);
+        JsonString+="]";
+
+        return JsonString;
+    }
+
+    public String getlogmonthyear(String month , String year){
+        List<LogDMY> array = new ArrayList<>();
+        List<List<String>>repo2 = logRepo.findlogMonth(month, year);
+        for(List<String> iteratore : repo2){
+            LogDMY u = new LogDMY(iteratore);
+            array.add(u);
+        }
+
+        Gson gson = new Gson();
+        String JsonString="[";
+        for(LogDMY iteratore : array){
+
+            JsonString+= gson.toJson(iteratore);
+            JsonString+=",";
+        }
+        JsonString =JsonString.substring(0,JsonString.length()-1);
+        JsonString+="]";
+
+        return JsonString;
+    }
+
+
+
 
     /**
      * metodo statico che ritorna tutti i log
@@ -57,10 +155,10 @@ public class LogService {
      * ritorna un'eccezione in caso di log non trovato
      * @return il log recuperato
      */
-    /*public static LogEntity findLogByIdLog(Integer idLog){
-        return logRepo.findLogByIdLog(idLog).orElseThrow(
+    public static LogEntity findLogByIdLog(Long idLog){
+        return (LogEntity) logRepo.findById(idLog).orElseThrow(
                 ()->new LogNotFoundException("Log con idLog " + idLog +" non trovato"));
-    }*/
+    }
     /*
     public void deleteLog(Integer idLog){
         logRepo.deleteLogByIdLog(idLog);
