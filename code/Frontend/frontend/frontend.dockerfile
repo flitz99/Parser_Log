@@ -37,4 +37,4 @@ ENV PROXY_API=$PROXY_API
 ENV PROXY_LOGIN=$PROXY_LOGIN
 
 # Start the app
-CMD [ "npm", "start" ]
+CMD [ "npm ", "run ", " dev" ]
