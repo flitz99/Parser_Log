@@ -101,9 +101,13 @@ public interface LogRepo extends JpaRepository<LogEntity, Long> {
     @Query(
             value = "Select giorno , mese , anno , orario , timezone , ip_cliente , autentificato , identificativo , dispositivo , sito_referente , richiesta ,  codice_risposta , qunatita_trasmissione from log_entity where ip_cliente = :ipx " ,
             nativeQuery = true
-    )List<List<String>> findlogMonthday(@Param("ipx") String ip  );
+    )List<List<String>> findlogbyip(@Param("ipx") String ip  );
 
 
+    @Query(
+            value = "Select giorno , mese , anno , orario , timezone , ip_cliente , autentificato , identificativo , dispositivo , sito_referente , richiesta ,  codice_risposta , qunatita_trasmissione from log_entity where mese = :mesex and giorno = :giornox and anno = :annox and ip_cliente = :ipx " ,
+            nativeQuery = true
+    )List<List<String>> findlogMonthdayip(@Param("mesex") String mese_da_cercare , @Param("giornox") String giorno_cercato ,  @Param("annox") String anno_da_cercare , @Param("ipx") String ip_da_Cercare);
 
 
 

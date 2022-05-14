@@ -38,14 +38,9 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
             return new ResponseEntity<>(logs, HttpStatus.OK);
         }
 
-        //Metodo per cercare da richiesta http un log dato il logId
-        @GetMapping("/{idLog}")
-        public LogEntity findByIdLog(@PathVariable Long idLog){
-            return LogService.findLogByIdLog(idLog);
-        }
-        /*@GetMapping
-        public List<LogEntity> getLogEntity(){
-            return List.of(new LogEntity());}*/
+
+
+
         @GetMapping("/richieste")
         public  String gettestSpammer(){
             return logService.getspammerglobal();
@@ -61,6 +56,19 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
         public  String getalllogMY(@PathVariable String mesex , @PathVariable String annox){
             return logService.getlogmonthyear(mesex, annox);
         }
+
+        @RequestMapping(value = "/alldb/ip/{ipx}" , method =  GET )
+        @ResponseBody
+        public  String getlogbyip(@PathVariable String ipx ){
+            return logService.getlogbyip(ipx);
+        }
+
+    @RequestMapping(value = "/alldb/mese/{mesex}/giorno/{dayx}/anno/{annox}/ip/{ipx}" , method =  GET )
+    @ResponseBody
+    public  String getalllogMY(@PathVariable String mesex , @PathVariable String dayx , @PathVariable String annox ,@PathVariable String ipx){
+        return logService.getlogbyipmonthday(mesex, dayx ,annox , ipx);
+    }
+
 
 
       }
