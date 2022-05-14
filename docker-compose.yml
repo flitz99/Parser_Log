@@ -2,13 +2,13 @@ version: '3.3'
 
 services:
   front-end:
-    image: heimdall-frontend:latest
+    image: playground-web-frontend:latest
     environment:
       PORT: 3000
-      PROXY_API: htpp://localhost:8080/
+      PROXY_API: http://localhost:8080/
     ports:
       - 3000:3000
   back-end:
-    image: heimdall-backend:latest
+    image: playground-web-backend:latest
     ports:
       - 8080:8080  
