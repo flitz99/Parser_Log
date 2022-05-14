@@ -21,7 +21,7 @@ public class LogReader {
             String pathFileLog = pun.getAbsolutePath()+File.separator+"src"+File.separator+"main"+File.separator+"java"+
                     File.separator+"unimore"+File.separator+"t4"+File.separator+"Heimdall"+File.separator+dirSrcLogName;
 
-            System.out.println(pun.getAbsolutePath()+ "nome cartella log: "+dirSrcLogName);
+            System.out.println("percorso assoluto: "+pun.getAbsolutePath()+ " nome cartella log: "+dirSrcLogName);
             System.out.println("percorso assoluto pathFileLog: "+pathFileLog);
             File dirSrcLog = new File(pathFileLog);
             if(dirSrcLog.exists()){

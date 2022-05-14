@@ -21,8 +21,14 @@ Il nostro frontend presenta all'utilizzatore la possibilità di rivedere i file 
 
 
 ### Installazione
-Per avviare l'applicazione: aprire l'app tramite un progetto su un ide e fare il run attraverso l'ide. Nella cartella Heimdall/out/artifacts/Heimdall_jar c'è un jar che per ora però non sembra funzionare. Il progetto non è ancora pronto per la distribuzione.
-
-
+Installazione su una macchina locale (testata su Debian 11 stable):
+Prerequisiti: una versione aggiornata di docker e docker-container (guida download: https://docs.docker.com/engine/install/debian/)
+Step 1: dirigersi nella cartella 2022t4/code/Heimdall
+Step 2: sudo docker build --file=backend.dockerfile -t playground-web-backend .
+Step 3: dirigersi nell cartella 2022t4/Frontend
+Step 4: sudo docker build --file=frontend/frontend.dockerfile -t playground-web-frontend .
+step 5: dirigersi nella cartella 2022t4/code
+step 6: sudo docker-compose -f docker-compose.yml up (digitare y <INVIO> quando viene richiesto)
+step 7: aprire un browser e collegarsi all'indirizzo 0.0.0.0:3000
 Aggiornamenti Sprint 1:
 Lo sviluppo dell'applicativo si è spostato sul branch development
