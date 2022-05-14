@@ -9,6 +9,6 @@ services:
     ports:
       - 3000:3000
   back-end:
-    image: playground-web-backend:latest
+    image: heimdall-backend:latest
     ports:
       - 8080:8080  
