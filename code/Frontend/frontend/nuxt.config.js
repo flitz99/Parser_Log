@@ -44,6 +44,7 @@ export default {
     'bootstrap-vue/nuxt',
     '@nuxt/content',
     '@nuxt/http',
+    '@nuxtjs/proxy',
   ],
   
   proxy:{
