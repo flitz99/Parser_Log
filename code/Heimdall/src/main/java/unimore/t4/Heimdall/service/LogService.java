@@ -6,6 +6,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
+import unimore.t4.Heimdall.Statistiche.LogCountBytes;
 import unimore.t4.Heimdall.Statistiche.LogDMY;
 import unimore.t4.Heimdall.Statistiche.Spammer;
 import unimore.t4.Heimdall.exception.LogNotFoundException;
@@ -141,7 +142,26 @@ public class LogService {
         return JsonString;
     }
 
+    public String getlogcountbytes(String year ){
+        List<LogCountBytes> array = new ArrayList<>();
+        List<List<String>>repo2 = logRepo.findlogMonthdayip(year);
+        for(List<String> iteratore : repo2){
+            LogCountBytes u = new LogCountBytes(iteratore);
+            array.add(u);
+        }
 
+        Gson gson = new Gson();
+        String JsonString="[";
+        for(LogCountBytes iteratore : array){
+
+            JsonString+= gson.toJson(iteratore);
+            JsonString+=",";
+        }
+        JsonString =JsonString.substring(0,JsonString.length()-1);
+        JsonString+="]";
+
+        return JsonString;
+    }
 
     /**
      * metodo statico che ritorna tutti i log

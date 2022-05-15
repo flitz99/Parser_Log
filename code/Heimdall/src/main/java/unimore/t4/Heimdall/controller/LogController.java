@@ -68,8 +68,13 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
     public  String getalllogMY(@PathVariable String mesex , @PathVariable String dayx , @PathVariable String annox ,@PathVariable String ipx){
         return logService.getlogbyipmonthday(mesex, dayx ,annox , ipx);
     }
-
-
+    /*
+    @RequestMapping(value = "/alldb/bytescount/anno/{annox}" , method =  GET )
+    @ResponseBody
+    public  String getalllogMY(@PathVariable String annox ){
+        return logService.getlogcountbytes(annox );
+    }
+    */
 
       }
 
