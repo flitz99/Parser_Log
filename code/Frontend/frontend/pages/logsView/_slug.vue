@@ -7,7 +7,19 @@
       <b-container  class="dashboard mt-5 pb-5">
                  
         <br>
-        <h3 class="mb-4">Dashboard</h3>
+
+        <div class="d-flex justify-content-between flex-row align-items-center align-self-center mb-4">
+          
+          <h3 class="m-2">Dashboard</h3>
+          
+          <div class="d-flex m-2">
+            <NuxtLink to="/charts">
+            <h3 class="stats p-2">Statistiche</h3>
+            </NuxtLink>
+            <img class="img-stats" src="~assets/stats-bars.png" />
+          </div> 
+
+        </div>
 
       
         <table class="table table-bordered table-sm table-hover text-center">
@@ -67,6 +79,19 @@
     letter-spacing: 0.3px;
     font-weight: 600;
     font-size: 18px;
+  }
+
+  .stats{
+    color: #727cf5;
+    letter-spacing: 0.3px;
+    font-weight: 600;
+    font-size: 16px;
+  }
+
+  .img-stats{
+    width: 30px;
+    filter: invert(70%);
+    height: 30px;
   }
 
   main{ background-color: #fff; }
