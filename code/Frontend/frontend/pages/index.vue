@@ -19,7 +19,9 @@
 
         <Login />
         <br><br>
-        <NuxtLink to="/logsView">Dashboard</NuxtLink>
+        <div class="text-center">
+        <NuxtLink to="/logsView" >Vai alla Dashboard</NuxtLink>
+        </div>
       </b-col>
 
     </b-row> 
