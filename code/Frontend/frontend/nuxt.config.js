@@ -43,6 +43,7 @@ export default {
   modules: [
     'bootstrap-vue/nuxt',
     '@nuxt/content',
+    '@nuxtjs/axios',
     '@nuxt/http',
     '@nuxtjs/proxy',
   ],
