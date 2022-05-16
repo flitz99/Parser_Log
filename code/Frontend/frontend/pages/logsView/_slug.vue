@@ -62,13 +62,16 @@
 <script>
 
   export default {
-
-    data: () => ({
-      logs: []
-    }),
-    async fetch() {
-      this.logs = await this.$http.$get('http://localhost:8080/api/alldb')
+ 
+    /*async asyncData({ params, $http }) {
+      const logs = await $http.$get('http://localhost:8080/api/alldb')
+      return { logs }
+    }*/
+    async asyncData({ $axios }) {
+      const logs = await $axios.$get('http://localhost:8080/api/alldb')
+      return { logs }
     }
+
   }
 </script>
 

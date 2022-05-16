@@ -99,18 +99,22 @@ export default {
         
       }
     },
-    activated() {
-      // Call fetch again if last fetch more than 30 sec ago
-      if (this.$fetchState.timestamp <= Date.now() - 30000) {
-        this.$fetch()
-      }
-    },
-    async fetch() {
+    /*async fetch() {
     const { data } = await axios.get(
       'http://localhost:8080/api/alldb/'
     );
     this.logs = data;
-  }
+  },
+    activated() {
+      // Call fetch again if last fetch more than 5 sec ago
+      if (this.$fetchState.timestamp <= Date.now() - 5000) {
+        this.$fetch()
+      }
+    },*/
+    async asyncData({ params, $http }) {
+      const logs = await $http.$get('http://localhost:8080/api/alldb')
+      return { logs }
+    }    
 }
 
 

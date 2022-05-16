@@ -48,9 +48,9 @@ export default {
     '@nuxtjs/proxy',
   ],
   
-  proxy:{
+  /*proxy:{
     '/api/alldb' : process.env.PROXY_API || 'http://localhost:8080/'
-  },
+  },*/
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
