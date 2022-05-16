@@ -1,3 +1,4 @@
+#Immagine di partenza, viene scaricata da docker hub
 FROM openjdk:13
 RUN mkdir -p /app
 WORKDIR /app
