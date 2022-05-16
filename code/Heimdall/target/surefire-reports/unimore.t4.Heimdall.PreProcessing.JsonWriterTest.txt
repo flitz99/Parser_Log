@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: unimore.t4.Heimdall.PreProcessing.JsonWriterTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 s - in unimore.t4.Heimdall.PreProcessing.JsonWriterTest
