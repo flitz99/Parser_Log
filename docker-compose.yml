@@ -3,17 +3,17 @@ version: '3.3'
 services:
   database:
     image: mysql
-      #command: --default-authentication-plugin = mysql_native_password
-    command: --init-file /data/application/init.sql
+    #command: --default-authentication-plugin = mysql_native_password
+    #command: --init-file /data/application/init.sql
     volumes:
       - ./database/shortdump.sql:/data/application/init.sql
     restart: always
-    environment: 
-      #MYSQL_ROOT_USER: root
-      MYSQL_ROOT_PASSWORD: password
-      MYSQL_DATABASE: 2022T4
-      MYSQL_USER: lollo
-      MYSQL_PASSWORD: Lollo_pswd1
+    environment:
+      MYSQL_ROOT_PASSWORD:
+      MYSQL_ALLOW_EMPTY_PASSWORD: true
+      MYSQL_DATABASE: playground-web-backend
+      MYSQL_USER: playground-web-backend
+      MYSQL_PASSWORD: playground-web-backend
     ports:
       - 3306:3306
 

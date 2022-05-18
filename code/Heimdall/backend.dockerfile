@@ -4,5 +4,5 @@ RUN mkdir -p /app
 WORKDIR /app
 COPY ./ /app
 COPY target/*.jar ./app.jar
-EXPOSE $PORT
+EXPOSE 8080
 CMD [ "java", "-jar", "./app.jar" ]
