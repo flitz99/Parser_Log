@@ -12,7 +12,7 @@ WORKDIR /app
 COPY frontend/package*.json ./
 
 # Install node packages
-RUN npm install
+RUN npm install --lts
 
 # Copy or project directory (locally) in the current directory of our docker image (/app)
 COPY frontend/ .
@@ -37,4 +37,4 @@ ENV PROXY_API=$PROXY_API
 ENV PROXY_LOGIN=$PROXY_LOGIN
 
 # Start the app
-CMD [ "npm", "start" ]
+CMD [ "npm", "run", "dev", "--lts" ]

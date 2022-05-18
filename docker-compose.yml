@@ -5,10 +5,13 @@ services:
     image: playground-web-frontend
     environment:
       PORT: 3000
-      PROXY_API: http://localhost:8080/
+      PROXY_API: http://playground-web-backend:8080/
     ports:
       - 3000:3000
   back-end:
     image: playground-web-backend
+    network_mode: host
+    environment:
+      MYSQL_URL: jdbc:mysql://212.71.250.11:3306/2022T4
     ports:
-      - 8080:8080  
+      - 8080:8080
