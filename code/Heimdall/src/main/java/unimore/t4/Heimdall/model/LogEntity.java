@@ -107,42 +107,13 @@ public class LogEntity {
             columnDefinition = "Text"
     )
     private String location;
+    @Column(
+            name = "tipo_richiesta",
+            columnDefinition = "VARCHAR(20)"
+    )
+    private String tipo_richiesta;
 
     public LogEntity() {}
-
-    public LogEntity(String request,
-                     String MONTH,
-                     String YEAR,
-                     String DAY,
-                     String agent,
-                     String ident,
-                     String auth,
-                     String TIME,
-                     String INT,
-                     String referrer,
-                     String response,
-                     String bytes,
-                     String clientip,
-                     String logcompleto,
-                     String valutazione,
-                     String location) {
-        this.request = request;
-        this.MONTH = MONTH;
-        this.YEAR = YEAR;
-        this.DAY = DAY;
-        this.agent = agent;
-        this.ident = ident;
-        this.auth = auth;
-        this.TIME = TIME;
-        this.INT = INT;
-        this.referrer = referrer;
-        this.response = response;
-        this.bytes = bytes;
-        this.clientip = clientip;
-        this.logcompleto = logcompleto;
-        this.valutazione = valutazione;
-        this.location = location;
-    }
 
     public LogEntity(Long id,
                      String request,
@@ -160,7 +131,8 @@ public class LogEntity {
                      String clientip,
                      String logcompleto,
                      String valutazione,
-                     String location) {
+                     String location,
+                     String tipo_richiesta) {
         this.id = id;
         this.request = request;
         this.MONTH = MONTH;
@@ -178,6 +150,7 @@ public class LogEntity {
         this.logcompleto = logcompleto;
         this.valutazione = valutazione;
         this.location = location;
+        this.tipo_richiesta = tipo_richiesta;
     }
 
     public Long getId() {
@@ -314,5 +287,13 @@ public class LogEntity {
 
     public void setLocation(String location) {
         this.location = location;
+    }
+
+    public String getTipo_richiesta() {
+        return tipo_richiesta;
+    }
+
+    public void setTipo_richiesta(String tipo_richiesta) {
+        this.tipo_richiesta = tipo_richiesta;
     }
 }

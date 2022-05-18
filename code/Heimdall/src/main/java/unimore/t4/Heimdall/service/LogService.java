@@ -24,167 +24,167 @@ import java.util.Locale;
  */
 @Service
 public class LogService {
-    /**
-     * riferimento all'interfaccia per chiamare metodi di servizio */
-
-    private static LogRepo logRepo;
-    @Autowired
-    public LogService(LogRepo logRepo){this.logRepo = logRepo;}
-
-    @GetMapping
-    public List<LogEntity> getLogEntity(){
-        return List.of(new LogEntity());
-    }
-
-
-    public String getspammerglobal(){
-        List<Spammer> provaspammer = new ArrayList<>();		// Array che conterrá la lista degli Spammer
-        List<List<String>>repo1 = logRepo.findspammerglobal(); // estraggo dal DB
-        for(List<String> iteratore : repo1){
-            Spammer u = new Spammer(iteratore);				// Creo Spammer
-            provaspammer.add(u);							// Aggiungo spammer al`array
-        }
-
-        Gson gson = new Gson();
-        String JsonString="[";
-        for(Spammer iteratore : provaspammer){
-
-            JsonString+= gson.toJson(iteratore);
-            JsonString+=",";
-        }
-        JsonString =JsonString.substring(0,JsonString.length()-1);
-        JsonString+="]";
-
-        return JsonString;
-    }
-
-    public String getlogall(){
-        List<LogDMY> array = new ArrayList<>();
-        List<List<String>>repo1 = logRepo.findlog();
-        for(List<String> iteratore : repo1){
-            LogDMY u = new LogDMY(iteratore);
-            array.add(u);
-        }
-
-        Gson gson = new Gson();
-        String JsonString="[";
-        for(LogDMY iteratore : array){
-
-            JsonString+= gson.toJson(iteratore);
-            JsonString+=",";
-        }
-        JsonString =JsonString.substring(0,JsonString.length()-1);
-        JsonString+="]";
-
-        return JsonString;
-    }
-
-    public String getlogmonthyear(String month , String year){
-        List<LogDMY> array = new ArrayList<>();
-        List<List<String>>repo2 = logRepo.findlogMonth(month, year);
-        for(List<String> iteratore : repo2){
-            LogDMY u = new LogDMY(iteratore);
-            array.add(u);
-        }
-
-        Gson gson = new Gson();
-        String JsonString="[";
-        for(LogDMY iteratore : array){
-
-            JsonString+= gson.toJson(iteratore);
-            JsonString+=",";
-        }
-        JsonString =JsonString.substring(0,JsonString.length()-1);
-        JsonString+="]";
-
-        return JsonString;
-    }
-
-    public String getlogbyip(String ip_da_cercare){
-        List<LogDMY> array = new ArrayList<>();
-        List<List<String>>repo2 = logRepo.findlogbyip(ip_da_cercare);
-        for(List<String> iteratore : repo2){
-            LogDMY u = new LogDMY(iteratore);
-            array.add(u);
-        }
-
-        Gson gson = new Gson();
-        String JsonString="[";
-        for(LogDMY iteratore : array){
-
-            JsonString+= gson.toJson(iteratore);
-            JsonString+=",";
-        }
-        JsonString =JsonString.substring(0,JsonString.length()-1);
-        JsonString+="]";
-
-        return JsonString;
-    }
-
-    public String getlogbyipmonthday(String month ,String day, String year , String ip){
-        List<LogDMY> array = new ArrayList<>();
-        List<List<String>>repo2 = logRepo.findlogMonthdayip(month,day,year,ip);
-        for(List<String> iteratore : repo2){
-            LogDMY u = new LogDMY(iteratore);
-            array.add(u);
-        }
-
-        Gson gson = new Gson();
-        String JsonString="[";
-        for(LogDMY iteratore : array){
-
-            JsonString+= gson.toJson(iteratore);
-            JsonString+=",";
-        }
-        JsonString =JsonString.substring(0,JsonString.length()-1);
-        JsonString+="]";
-
-        return JsonString;
-    }
-
-    public String getlogcountbytes(String year ){
-        List<LogCountBytes> array = new ArrayList<>();
-        List<List<String>>repo2 = logRepo.findlogMonthdayip(year);
-        for(List<String> iteratore : repo2){
-            LogCountBytes u = new LogCountBytes(iteratore);
-            array.add(u);
-        }
-
-        Gson gson = new Gson();
-        String JsonString="[";
-        for(LogCountBytes iteratore : array){
-
-            JsonString+= gson.toJson(iteratore);
-            JsonString+=",";
-        }
-        JsonString =JsonString.substring(0,JsonString.length()-1);
-        JsonString+="]";
-
-        return JsonString;
-    }
-
-    /**
-     * metodo statico che ritorna tutti i log
-     *
-     * @return oggetto lista di log
-     */
-    public static List<LogEntity> findAllLogs(){
-        return logRepo.findAll();
-    }
-
-    /**
-     * Metodo per trovare un log data la chiave primaria
-     * ritorna un'eccezione in caso di log non trovato
-     * @return il log recuperato
-     */
-    public static LogEntity findLogByIdLog(Long idLog){
-        return (LogEntity) logRepo.findById(idLog).orElseThrow(
-                ()->new LogNotFoundException("Log con idLog " + idLog +" non trovato"));
-    }
-    /*
-    public void deleteLog(Integer idLog){
-        logRepo.deleteLogByIdLog(idLog);
-    }
-    */
+//    /**
+//     * riferimento all'interfaccia per chiamare metodi di servizio */
+//
+//    private static LogRepo logRepo;
+//    @Autowired
+//    public LogService(LogRepo logRepo){this.logRepo = logRepo;}
+//
+//    @GetMapping
+//    public List<LogEntity> getLogEntity(){
+//        return List.of(new LogEntity());
+//    }
+//
+//
+//    public String getspammerglobal(){
+//        List<Spammer> provaspammer = new ArrayList<>();		// Array che conterrá la lista degli Spammer
+//        List<List<String>>repo1 = logRepo.findspammerglobal(); // estraggo dal DB
+//        for(List<String> iteratore : repo1){
+//            Spammer u = new Spammer(iteratore);				// Creo Spammer
+//            provaspammer.add(u);							// Aggiungo spammer al`array
+//        }
+//
+//        Gson gson = new Gson();
+//        String JsonString="[";
+//        for(Spammer iteratore : provaspammer){
+//
+//            JsonString+= gson.toJson(iteratore);
+//            JsonString+=",";
+//        }
+//        JsonString =JsonString.substring(0,JsonString.length()-1);
+//        JsonString+="]";
+//
+//        return JsonString;
+//    }
+//
+//    public String getlogall(){
+//        List<LogDMY> array = new ArrayList<>();
+//        List<List<String>>repo1 = logRepo.findlog();
+//        for(List<String> iteratore : repo1){
+//            LogDMY u = new LogDMY(iteratore);
+//            array.add(u);
+//        }
+//
+//        Gson gson = new Gson();
+//        String JsonString="[";
+//        for(LogDMY iteratore : array){
+//
+//            JsonString+= gson.toJson(iteratore);
+//            JsonString+=",";
+//        }
+//        JsonString =JsonString.substring(0,JsonString.length()-1);
+//        JsonString+="]";
+//
+//        return JsonString;
+//    }
+//
+//    public String getlogmonthyear(String month , String year){
+//        List<LogDMY> array = new ArrayList<>();
+//        List<List<String>>repo2 = logRepo.findlogMonth(month, year);
+//        for(List<String> iteratore : repo2){
+//            LogDMY u = new LogDMY(iteratore);
+//            array.add(u);
+//        }
+//
+//        Gson gson = new Gson();
+//        String JsonString="[";
+//        for(LogDMY iteratore : array){
+//
+//            JsonString+= gson.toJson(iteratore);
+//            JsonString+=",";
+//        }
+//        JsonString =JsonString.substring(0,JsonString.length()-1);
+//        JsonString+="]";
+//
+//        return JsonString;
+//    }
+//
+//    public String getlogbyip(String ip_da_cercare){
+//        List<LogDMY> array = new ArrayList<>();
+//        List<List<String>>repo2 = logRepo.findlogbyip(ip_da_cercare);
+//        for(List<String> iteratore : repo2){
+//            LogDMY u = new LogDMY(iteratore);
+//            array.add(u);
+//        }
+//
+//        Gson gson = new Gson();
+//        String JsonString="[";
+//        for(LogDMY iteratore : array){
+//
+//            JsonString+= gson.toJson(iteratore);
+//            JsonString+=",";
+//        }
+//        JsonString =JsonString.substring(0,JsonString.length()-1);
+//        JsonString+="]";
+//
+//        return JsonString;
+//    }
+//
+//    public String getlogbyipmonthday(String month ,String day, String year , String ip){
+//        List<LogDMY> array = new ArrayList<>();
+//        List<List<String>>repo2 = logRepo.findlogMonthdayip(month,day,year,ip);
+//        for(List<String> iteratore : repo2){
+//            LogDMY u = new LogDMY(iteratore);
+//            array.add(u);
+//        }
+//
+//        Gson gson = new Gson();
+//        String JsonString="[";
+//        for(LogDMY iteratore : array){
+//
+//            JsonString+= gson.toJson(iteratore);
+//            JsonString+=",";
+//        }
+//        JsonString =JsonString.substring(0,JsonString.length()-1);
+//        JsonString+="]";
+//
+//        return JsonString;
+//    }
+//
+//    public String getlogcountbytes(String year ){
+//        List<LogCountBytes> array = new ArrayList<>();
+//        List<List<String>>repo2 = logRepo.findlogMonthdayip(year);
+//        for(List<String> iteratore : repo2){
+//            LogCountBytes u = new LogCountBytes(iteratore);
+//            array.add(u);
+//        }
+//
+//        Gson gson = new Gson();
+//        String JsonString="[";
+//        for(LogCountBytes iteratore : array){
+//
+//            JsonString+= gson.toJson(iteratore);
+//            JsonString+=",";
+//        }
+//        JsonString =JsonString.substring(0,JsonString.length()-1);
+//        JsonString+="]";
+//
+//        return JsonString;
+//    }
+//
+//    /**
+//     * metodo statico che ritorna tutti i log
+//     *
+//     * @return oggetto lista di log
+//     */
+//    public static List<LogEntity> findAllLogs(){
+//        return logRepo.findAll();
+//    }
+//
+//    /**
+//     * Metodo per trovare un log data la chiave primaria
+//     * ritorna un'eccezione in caso di log non trovato
+//     * @return il log recuperato
+//     */
+//    public static LogEntity findLogByIdLog(Long idLog){
+//        return (LogEntity) logRepo.findById(idLog).orElseThrow(
+//                ()->new LogNotFoundException("Log con idLog " + idLog +" non trovato"));
+//    }
+//    /*
+//    public void deleteLog(Integer idLog){
+//        logRepo.deleteLogByIdLog(idLog);
+//    }
+//    */
 
 }

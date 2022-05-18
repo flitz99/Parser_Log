@@ -45,6 +45,7 @@ public class AllLogsList {
         logEntity.setLogcompleto(logEntityJson.getCOMBINEDAPACHELOG());
         logEntity.setValutazione(null);
         logEntity.setLocation(null);
+        logEntity.setTipo_richiesta(Tipo_di_richiesta(logEntityJson.getCOMBINEDAPACHELOG()));
         return logEntity;
     }
     public ArrayList<LogEntity> fromLogEntityJsonArrayListToLogEntities(){
@@ -53,5 +54,11 @@ public class AllLogsList {
             logEntities.add(fromLogEntityJsontoLogEntity(logEntityJsonArrayList.get(i)));
         }
         return logEntities;
+    }
+
+    public String Tipo_di_richiesta(String testo){
+        if( testo.contains("GET")){ return "GET";}
+        if( testo.contains("POST")){ return "POST";}
+        else return "NULL";
     }
 }
