@@ -34,16 +34,16 @@ public class HeimdallApplication {
 	CommandLineRunner commandLineRunner(LogRepo logrepo){
 		return args -> {
 
-			System.err.println("////////////////////001");
+			System.out.println("////////////////////001");
 			JsonReader jsonReader = new JsonReader("File_Json");
-			System.err.println("////////////////////002");
+			System.out.println("////////////////////002");
 			jsonReader.readAllLogFiles();
-			System.err.println("////////////////////003");
+			System.out.println("////////////////////003");
 			List<LogEntity> logEntityList= jsonReader.generateLogEntities();
-			System.err.println("////////////////////004");
+			System.out.println("////////////////////004");
 			for (LogEntity logEntity: logEntityList){
 				System.out.println(logEntity);
-				//logrepo.save(logEntity);
+				logrepo.save(logEntity);
 			}
 
 
