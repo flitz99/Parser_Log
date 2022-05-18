@@ -46,6 +46,9 @@ public class AllLogsList {
         logEntity.setValutazione(null);
         logEntity.setLocation(null);
         logEntity.setTipo_richiesta(Tipo_di_richiesta(logEntityJson.getCOMBINEDAPACHELOG()));
+        logEntity.setData_completa(logEntityJson.getYEAR()+"-"+logEntityJson.getMONTH()+"-"+logEntityJson.getMONTHDAY());
+
+
         return logEntity;
     }
     public ArrayList<LogEntity> fromLogEntityJsonArrayListToLogEntities(){

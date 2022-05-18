@@ -112,6 +112,11 @@ public class LogEntity {
             columnDefinition = "VARCHAR(20)"
     )
     private String tipo_richiesta;
+    @Column(
+            name = "Data_completa",
+            columnDefinition = "DATE"
+    )
+    private String Data_completa;  // anno-mese-giorno
 
     public LogEntity() {}
 
@@ -295,5 +300,13 @@ public class LogEntity {
 
     public void setTipo_richiesta(String tipo_richiesta) {
         this.tipo_richiesta = tipo_richiesta;
+    }
+
+    public String getData_completa() {
+        return Data_completa;
+    }
+
+    public void setData_completa(String data_completa) {
+        Data_completa = data_completa;
     }
 }
