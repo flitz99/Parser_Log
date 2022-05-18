@@ -1,0 +1,27 @@
+BASATO SUL COMMIT DEL 14 maggio
+
+Documentazione:
+Casi d'uso NON aggiornato. Bad. 
+UML classi. Classi di gestione del log ben organizzati. Tuttavia, le frecce soo TUTTE sbagliate
+Backlog. mancano i dettagli del backlog di s2 ed ed s3. Manca link a Taiga, per cui non posso controllare direttamente. 
+Log: Aggiornato. Spostantelo nella cartella /doc
+DB: Mysql. 2 DB, ciascuno con 1 tabella. Strano. 
+Test: presente una suite di test pare abbastazione completa. Manca il dato di coverage, che però sembrerebbe buono. Si noti che sono per lo più INTEGRATION TEST, in quanto accedono a funzionalità esterne
+Codice: VUE (js) e Spring(j). Del primo pare ci sia poco
+Note: Pipeline con Gitlab (forse), Mattermost in uso
+
+GIT
+Attività elevata e ben distribuita 
+Signali (limitati) di Pair Programming
+Dalla mappa della responsabilitò Villa e Baroni sembrano un po' in secondo piano.  
+
+
+MANCANO: 
+Retrospetiva,
+Report review  
+Dati s2 e Preparazione s3
+
+
+
+
+
