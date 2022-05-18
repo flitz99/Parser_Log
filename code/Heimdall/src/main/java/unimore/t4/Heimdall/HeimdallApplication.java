@@ -34,12 +34,19 @@ public class HeimdallApplication {
 	CommandLineRunner commandLineRunner(LogRepo logrepo){
 		return args -> {
 
+			System.err.println("////////////////////001");
 			JsonReader jsonReader = new JsonReader("File_Json");
+			System.err.println("////////////////////002");
 			jsonReader.readAllLogFiles();
+			System.err.println("////////////////////003");
 			List<LogEntity> logEntityList= jsonReader.generateLogEntities();
+			System.err.println("////////////////////004");
 			for (LogEntity logEntity: logEntityList){
-				logrepo.save(logEntity);
+				System.out.println(logEntity);
+				//logrepo.save(logEntity);
 			}
+
+
 			// log di errore
 			//JsonReader jsonreadererr = new JsonReader("File_Json_err");
 			//jsonreadererr.readAllLogFiles();
@@ -52,11 +59,11 @@ public class HeimdallApplication {
 	 * @param args argomenti di default
 	 */
 	public static void main(String[] args) {
-		LogProcessing logProcessing = new LogProcessing("File_log", "File_output", "File_Json");
-		logProcessing.logProcessing();
+		//LogProcessing logProcessing = new LogProcessing("File_log", "File_output", "File_Json");
+		//logProcessing.logProcessing();
 
-		LogProcessing logprocessingerr = new LogProcessing("File_log_err", "File_output_err", "File_Json_err");
-		logprocessingerr.logProcessing();
+		//LogProcessing logprocessingerr = new LogProcessing("File_log_err", "File_output_err", "File_Json_err");
+		//logprocessingerr.logProcessing();
 		//Inizializzazione Applicazione Spring
 		try {
 			SpringApplication.run(HeimdallApplication.class, args);

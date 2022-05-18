@@ -309,4 +309,29 @@ public class LogEntity {
     public void setData_completa(String data_completa) {
         Data_completa = data_completa;
     }
+
+    @Override
+    public String toString() {
+        return "LogEntity{" +
+                "id=" + id +
+                ", request='" + request + '\'' +
+                ", MONTH='" + MONTH + '\'' +
+                ", YEAR='" + YEAR + '\'' +
+                ", DAY='" + DAY + '\'' +
+                ", agent='" + agent + '\'' +
+                ", ident='" + ident + '\'' +
+                ", auth='" + auth + '\'' +
+                ", TIME='" + TIME + '\'' +
+                ", INT='" + INT + '\'' +
+                ", referrer='" + referrer + '\'' +
+                ", response='" + response + '\'' +
+                ", bytes='" + bytes + '\'' +
+                ", clientip='" + clientip + '\'' +
+                ", logcompleto='" + logcompleto + '\'' +
+                ", valutazione='" + valutazione + '\'' +
+                ", location='" + location + '\'' +
+                ", tipo_richiesta='" + tipo_richiesta + '\'' +
+                ", Data_completa='" + Data_completa + '\'' +
+                '}';
+    }
 }
