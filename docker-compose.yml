@@ -1,17 +1,32 @@
 version: '3.3'
 
 services:
+  database:
+    image: mysql
+      #command: --default-authentication-plugin = mysql_native_password
+    command: --init-file /data/application/init.sql
+    volumes:
+      - ./database/shortdump.sql:/data/application/init.sql
+    restart: always
+    environment: 
+      #MYSQL_ROOT_USER: root
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: 2022T4
+      MYSQL_USER: lollo
+      MYSQL_PASSWORD: Lollo_pswd1
+    ports:
+      - 3306:3306
+
   front-end:
-    image: playground-web-frontend
+    image: playground-web-frontend:latest
     environment:
       PORT: 3000
       PROXY_API: http://playground-web-backend:8080/
     ports:
       - 3000:3000
+
   back-end:
     image: playground-web-backend
-    network_mode: host
-    environment:
-      MYSQL_URL: jdbc:mysql://212.71.250.11:3306/2022T4
+      MYSQL_URL: jdbc:mysql//database:3306/2002T4
     ports:
       - 8080:8080
