@@ -53,8 +53,8 @@ public class AllLogsList {
 
         logEntity.setLocation_state(give_mappa.get(0));
         logEntity.setLocation_city(give_mappa.get(1));
-        logEntity.setLocation_city(give_mappa.get(2));
-        logEntity.setLocation_city(give_mappa.get(3));
+        logEntity.setLocation_lati(give_mappa.get(2));
+        logEntity.setLocation_long(give_mappa.get(3));
 
 
 

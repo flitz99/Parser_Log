@@ -40,6 +40,8 @@ public class HeimdallApplication {
 			System.out.println("//////////////2");
 			jsonReader.readAllLogFiles();
 
+			System.out.println();
+
 			System.out.println("//////////////3");
 			List<LogEntity> logEntityList= jsonReader.generateLogEntities();
 			System.out.println("//////////////4");
