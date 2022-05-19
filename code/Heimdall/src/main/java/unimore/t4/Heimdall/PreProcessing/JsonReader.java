@@ -60,6 +60,7 @@ public class JsonReader {
             while ((sourceJsonLogLine = br.readLine()) != null) {
                 LogEntityJson logEntityJson = mapper.readValue(sourceJsonLogLine, LogEntityJson.class);
                 list.add(logEntityJson);
+                System.err.println("lo stai facendo ?");
             }
         } catch (Exception ex) {
             ex.printStackTrace();
