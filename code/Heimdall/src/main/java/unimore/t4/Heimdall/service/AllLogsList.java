@@ -46,6 +46,7 @@ public class AllLogsList {
         logEntity.setClientip(logEntityJson.getClientip());
         logEntity.setLogcompleto(logEntityJson.getCOMBINEDAPACHELOG());
         logEntity.setValutazione(null);
+        System.err.println(logEntityJson.getCOMBINEDAPACHELOG());
         logEntity.setTipo_richiesta(Tipo_di_richiesta(logEntityJson.getCOMBINEDAPACHELOG()));
         logEntity.setData_completa(Crea_data_bella(logEntityJson.getMONTH(),logEntityJson.getYEAR(),logEntityJson.getMONTHDAY()));
         List<String> give_mappa = mappa.getthelocationbyip(logEntityJson.getClientip());
@@ -75,7 +76,8 @@ public class AllLogsList {
         if( testo.contains("PUT")){ return "PUT";}
         if( testo.contains("OPTIONS")){ return "OPTIONS";}
         if( testo.contains("TRACE")){ return "TRACE";}
-
+        if( testo.contains("CONNECT")){ return "CONNECT";}
+        if( testo.contains("DELETE")){ return "DELETE";}
         else return "NULL";
     }
 

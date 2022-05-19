@@ -35,14 +35,14 @@ public class HeimdallApplication {
 	CommandLineRunner commandLineRunner(LogRepo logrepo){
 		return args -> {
 
-
+		System.out.println("//////////////1");
 			JsonReader jsonReader = new JsonReader("File_Json");
-
+			System.out.println("//////////////2");
 			jsonReader.readAllLogFiles();
 
-			HelloGeoIP2 mappatore = new HelloGeoIP2("mappatore creato"); // suona figo
+			System.out.println("//////////////3");
 			List<LogEntity> logEntityList= jsonReader.generateLogEntities();
-
+			System.out.println("//////////////4");
 			for (LogEntity logEntity: logEntityList){
 				System.out.println(logEntity);
 				//logrepo.save(logEntity);
@@ -66,10 +66,10 @@ public class HeimdallApplication {
 		System.out.println("/////////////avvio processing dei file /////////////////");
 		System.out.println("////////////////////////////////////////////////////////");
 
-		HelloGeoIP2 banana = new HelloGeoIP2("banana");
 
-		//LogProcessing logProcessing = new LogProcessing("File_log", "File_output", "File_Json");
-		//logProcessing.logProcessing();
+
+		LogProcessing logProcessing = new LogProcessing("File_log", "File_output", "File_Json");
+		logProcessing.logProcessing();
 
 		//LogProcessing logprocessingerr = new LogProcessing("File_log_err", "File_output_err", "File_Json_err");
 		//logprocessingerr.logProcessing();

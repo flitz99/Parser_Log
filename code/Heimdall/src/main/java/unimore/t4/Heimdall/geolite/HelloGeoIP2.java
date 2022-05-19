@@ -19,14 +19,14 @@ import com.maxmind.geoip2.record.Subdivision;
 public class HelloGeoIP2 {
     DatabaseReader reader = null;
 
-    public HelloGeoIP2(String banana) {
+    public HelloGeoIP2(String stringa_di_prova_per_cercare) {
 
         // A File object pointing to your GeoLite2 database
         File dbFile = new File(new File("").getAbsolutePath() + File.separator
                 + "geo"+ File.separator + "GeoLite2-City.mmdb");
 
         System.out.println(dbFile.getAbsolutePath());
-        System.out.println(banana);
+        System.out.println(stringa_di_prova_per_cercare);
 
         // This creates the DatabaseReader object,
         // which should be reused across lookups.
