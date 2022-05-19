@@ -49,7 +49,7 @@ public class HelloGeoIP2 {
 
         InetAddress ipAddress = null;
         try {
-            ipAddress = InetAddress.getByName("35.233.102.46");
+            ipAddress = InetAddress.getByName(ip);
         } catch (UnknownHostException e) {
             throw new RuntimeException(e);
         }

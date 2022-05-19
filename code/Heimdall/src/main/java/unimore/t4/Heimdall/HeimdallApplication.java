@@ -35,26 +35,20 @@ public class HeimdallApplication {
 	CommandLineRunner commandLineRunner(LogRepo logrepo){
 		return args -> {
 
-		System.out.println("//////////////1");
-			JsonReader jsonReader = new JsonReader("File_Json");
-			System.out.println("//////////////2");
-			jsonReader.readAllLogFiles();
 
-			System.out.println();
-
-			System.out.println("//////////////3");
-			List<LogEntity> logEntityList= jsonReader.generateLogEntities();
-			System.out.println("//////////////4");
-			for (LogEntity logEntity: logEntityList){
-				System.out.println(logEntity);
-				//logrepo.save(logEntity);
-			}
-
-
-			// log di errore
-			//JsonReader jsonreadererr = new JsonReader("File_Json_err");
-			//jsonreadererr.readAllLogFiles();
-			//List<LogEntityErr> .......    DA IMPLEMENTARE e cancellare log vuoti
+//			JsonReader jsonReader = new JsonReader("File_Json");
+//			jsonReader.readAllLogFiles();
+//			List<LogEntity> logEntityList= jsonReader.generateLogEntities();
+//			for (LogEntity logEntity: logEntityList){
+//				System.out.println(logEntity);
+//				//logrepo.save(logEntity);
+//			}
+//
+//
+//
+//			JsonReader jsonreadererr = new JsonReader("File_Json_err");
+//			jsonreadererr.readAllLogFiles();
+//			List<LogEntityErr> .......    DA IMPLEMENTARE e cancellare log vuoti
 
 		};
 	}
@@ -64,17 +58,17 @@ public class HeimdallApplication {
 	 */
 	public static void main(String[] args) {
 
-		System.out.println("////////////////////////////////////////////////////////");
-		System.out.println("/////////////avvio processing dei file /////////////////");
-		System.out.println("////////////////////////////////////////////////////////");
-
-
-
-		LogProcessing logProcessing = new LogProcessing("File_log", "File_output", "File_Json");
-		logProcessing.logProcessing();
-
-		//LogProcessing logprocessingerr = new LogProcessing("File_log_err", "File_output_err", "File_Json_err");
-		//logprocessingerr.logProcessing();
+//		System.out.println("////////////////////////////////////////////////////////");
+//		System.out.println("/////////////avvio processing dei file /////////////////");
+//		System.out.println("////////////////////////////////////////////////////////");
+//
+//
+//
+//		LogProcessing logProcessing = new LogProcessing("File_log", "File_output", "File_Json");
+//		logProcessing.logProcessing();
+//
+//		LogProcessing logprocessingerr = new LogProcessing("File_log_err", "File_output_err", "File_Json_err");
+//		logprocessingerr.logProcessing();
 		//Inizializzazione Applicazione Spring
 		try {
 			SpringApplication.run(HeimdallApplication.class, args);
