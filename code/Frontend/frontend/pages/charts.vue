@@ -51,7 +51,7 @@
 </template>
 
 <script>
-import axios from 'axios';
+//import axios from 'axios';
 
 export default {
 
@@ -111,10 +111,10 @@ export default {
         this.$fetch()
       }
     },*/
-    async asyncData({ params, $http }) {
-      const logs = await $http.$get('http://localhost:8080/api/alldb')
+    async asyncData({ $axios }) {
+      const logs = await $axios.$get('/alldb')
       return { logs }
-    }    
+    }
 }
 
 

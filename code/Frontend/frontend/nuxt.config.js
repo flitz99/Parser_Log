@@ -47,10 +47,16 @@ export default {
     '@nuxt/http',
     '@nuxtjs/proxy',
   ],
-  
-  /*proxy:{
-    '/api/alldb' : process.env.PROXY_API || 'http://localhost:8080/'
-  },*/
+
+  axios: {
+    proxy: true,
+    host: 'localhost',
+    prefix: '/api/',
+  },
+
+  proxy:{
+    '/api/': 'http://localhost:8080/'
+  },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
