@@ -30,13 +30,19 @@ public class HeimdallApplication {
 	 * 2)fare un test di parsing con logProcessing
 	 */
 
-	/*@Bean
-	CommandLineRunner commandLineRunner(LogRepo logrepo){
+	@Bean
+	CommandLineRunner commandLineRunner(LogRepo logrepo) {
 		return args -> {
 
 			JsonReader jsonReader = new JsonReader("File_Json");
 			jsonReader.readAllLogFiles();
-			List<LogEntity> logEntityList= jsonReader.generateLogEntities();
+			List<LogEntity> logEntityList = jsonReader.generateLogEntities();
+			for(int i=0; i <= 6; i++) {
+				//logrepo.save(logEntityList.get(i));
+			}
+			return;
+		};
+	}
 			/*for (LogEntity logEntity: logEntityList){
 				logrepo.save(logEntity);
 			}
@@ -46,7 +52,7 @@ public class HeimdallApplication {
 			//List<LogEntityErr> .......    DA IMPLEMENTARE e cancellare log vuoti
 
 		};
-	}*/
+	}
 	/**
 	 * Main del programma il suo lavoro e semplicemente creare una istanza di HeimdallApplication e avviarala
 	 * @param args argomenti di default

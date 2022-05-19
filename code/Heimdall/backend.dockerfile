@@ -1,7 +1,8 @@
+#Immagine di partenza, viene scaricata da docker hub
 FROM openjdk:13
 RUN mkdir -p /app
 WORKDIR /app
 COPY ./ /app
 COPY target/*.jar ./app.jar
-EXPOSE $PORT
+EXPOSE 8080
 CMD [ "java", "-jar", "./app.jar" ]
