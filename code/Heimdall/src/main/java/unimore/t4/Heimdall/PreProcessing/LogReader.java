@@ -59,12 +59,12 @@ public class LogReader {
             try {
                 br = new BufferedReader(new FileReader(fileCur));
                 String sourceLogLine;
-                JsonWriter.addOpeningParenthesis(fileCur.getName());
+                //JsonWriter.addOpeningParenthesis(fileCur.getName());
                 while ((sourceLogLine = br.readLine()) != null) {
 		        // viene salvato in una mappa json
                     logParser.matchLogMakeMap(sourceLogLine, fileCur.getName());
                 }
-                JsonWriter.addClosingParenthesis(fileCur.getName());
+                //JsonWriter.addClosingParenthesis(fileCur.getName());
             } catch (IOException e) {
                 e.printStackTrace();
             }

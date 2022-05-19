@@ -143,4 +143,6 @@ public class LogEntityJson {
     public String getTimestamp() {
         return timestamp;
     }
+
+
 }

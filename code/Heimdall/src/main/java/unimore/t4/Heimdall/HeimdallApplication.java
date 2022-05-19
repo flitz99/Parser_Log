@@ -12,6 +12,7 @@ import unimore.t4.Heimdall.PreProcessing.LogProcessing;
 import unimore.t4.Heimdall.Statistiche.LogDMY;
 import unimore.t4.Heimdall.Statistiche.Spammer;
 import unimore.t4.Heimdall.Statistiche.SpammerDMY;
+import unimore.t4.Heimdall.geolite.HelloGeoIP2;
 import unimore.t4.Heimdall.model.LogEntity;
 import unimore.t4.Heimdall.repo.LogRepo;
 import unimore.t4.Heimdall.service.LogService;
@@ -34,16 +35,17 @@ public class HeimdallApplication {
 	CommandLineRunner commandLineRunner(LogRepo logrepo){
 		return args -> {
 
-			System.out.println("////////////////////001");
+
 			JsonReader jsonReader = new JsonReader("File_Json");
-			System.out.println("////////////////////002");
+
 			jsonReader.readAllLogFiles();
-			System.out.println("////////////////////003");
+
+			HelloGeoIP2 mappatore = new HelloGeoIP2("mappatore creato"); // suona figo
 			List<LogEntity> logEntityList= jsonReader.generateLogEntities();
-			System.out.println("////////////////////004");
+
 			for (LogEntity logEntity: logEntityList){
 				System.out.println(logEntity);
-				logrepo.save(logEntity);
+				//logrepo.save(logEntity);
 			}
 
 
@@ -59,6 +61,13 @@ public class HeimdallApplication {
 	 * @param args argomenti di default
 	 */
 	public static void main(String[] args) {
+
+		System.out.println("////////////////////////////////////////////////////////");
+		System.out.println("/////////////avvio processing dei file /////////////////");
+		System.out.println("////////////////////////////////////////////////////////");
+
+		HelloGeoIP2 banana = new HelloGeoIP2("banana");
+
 		//LogProcessing logProcessing = new LogProcessing("File_log", "File_output", "File_Json");
 		//logProcessing.logProcessing();
 

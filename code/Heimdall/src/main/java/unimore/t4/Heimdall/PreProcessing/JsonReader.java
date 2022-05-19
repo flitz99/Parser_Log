@@ -1,6 +1,7 @@
 package unimore.t4.Heimdall.PreProcessing;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import unimore.t4.Heimdall.geolite.HelloGeoIP2;
 import unimore.t4.Heimdall.model.LogEntity;
 import unimore.t4.Heimdall.service.AllLogsList;
 import unimore.t4.Heimdall.service.LogEntityJson;

@@ -68,7 +68,7 @@ public class LogParser {
            captureMap = postProcessingMap(captureMap);
         }
         logWriter.writeLog(captureMap, name);
-        jsonWriter.writeOnJson(captureMap, name);
+        jsonWriter.writeOnJsonlog(captureMap, name);
     }
 
     /**

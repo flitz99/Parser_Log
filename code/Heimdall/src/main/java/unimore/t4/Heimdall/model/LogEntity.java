@@ -103,13 +103,13 @@ public class LogEntity {
     )
     private String valutazione;
     @Column(
-            name = "posizione",
+            name = "posizione_stato",
             columnDefinition = "Text"
     )
-    private String location;
+    private String location_state;
     @Column(
             name = "tipo_richiesta",
-            columnDefinition = "VARCHAR(20)"
+            columnDefinition = "VARCHAR(50)"
     )
     private String tipo_richiesta;
     @Column(
@@ -117,46 +117,26 @@ public class LogEntity {
             columnDefinition = "DATE"
     )
     private String Data_completa;  // anno-mese-giorno
+    @Column(
+            name = "posizione_citta",
+            columnDefinition = "VARCHAR(50)"
+    )
+    private String location_city;
+    @Column(
+            name = "latitudine",
+            columnDefinition = "VARCHAR(30)"
+    )
+    private String location_lati;
+    @Column(
+            name = "longitudine",
+            columnDefinition = "VARCHAR(30)"
+    )
+    private String location_long;
+
+
 
     public LogEntity() {}
 
-    public LogEntity(Long id,
-                     String request,
-                     String MONTH,
-                     String YEAR,
-                     String DAY,
-                     String agent,
-                     String ident,
-                     String auth,
-                     String TIME,
-                     String INT,
-                     String referrer,
-                     String response,
-                     String bytes,
-                     String clientip,
-                     String logcompleto,
-                     String valutazione,
-                     String location,
-                     String tipo_richiesta) {
-        this.id = id;
-        this.request = request;
-        this.MONTH = MONTH;
-        this.YEAR = YEAR;
-        this.DAY = DAY;
-        this.agent = agent;
-        this.ident = ident;
-        this.auth = auth;
-        this.TIME = TIME;
-        this.INT = INT;
-        this.referrer = referrer;
-        this.response = response;
-        this.bytes = bytes;
-        this.clientip = clientip;
-        this.logcompleto = logcompleto;
-        this.valutazione = valutazione;
-        this.location = location;
-        this.tipo_richiesta = tipo_richiesta;
-    }
 
     public Long getId() {
         return id;
@@ -286,12 +266,36 @@ public class LogEntity {
         this.valutazione = valutazione;
     }
 
-    public String getLocation() {
-        return location;
+    public String getLocation_state() {
+        return location_state;
     }
 
-    public void setLocation(String location) {
-        this.location = location;
+    public void setLocation_state(String location_state) {
+        this.location_state = location_state;
+    }
+
+    public String getLocation_city() {
+        return location_city;
+    }
+
+    public void setLocation_city(String location_city) {
+        this.location_city = location_city;
+    }
+
+    public String getLocation_lati() {
+        return location_lati;
+    }
+
+    public void setLocation_lati(String location_lati) {
+        this.location_lati = location_lati;
+    }
+
+    public String getLocation_long() {
+        return location_long;
+    }
+
+    public void setLocation_long(String location_long) {
+        this.location_long = location_long;
     }
 
     public String getTipo_richiesta() {
@@ -329,9 +333,12 @@ public class LogEntity {
                 ", clientip='" + clientip + '\'' +
                 ", logcompleto='" + logcompleto + '\'' +
                 ", valutazione='" + valutazione + '\'' +
-                ", location='" + location + '\'' +
+                ", location_state='" + location_state + '\'' +
                 ", tipo_richiesta='" + tipo_richiesta + '\'' +
                 ", Data_completa='" + Data_completa + '\'' +
+                ", location_city='" + location_city + '\'' +
+                ", location_lati='" + location_lati + '\'' +
+                ", location_long='" + location_long + '\'' +
                 '}';
     }
 }

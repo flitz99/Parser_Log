@@ -1,7 +1,9 @@
 package unimore.t4.Heimdall.service;
 
+import unimore.t4.Heimdall.geolite.HelloGeoIP2;
 import unimore.t4.Heimdall.model.LogEntity;
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class AllLogsList {
@@ -27,7 +29,7 @@ public class AllLogsList {
             System.out.println(lej.toString());
         }
     }
-    public LogEntity fromLogEntityJsontoLogEntity(LogEntityJson logEntityJson){
+    public LogEntity fromLogEntityJsontoLogEntity(LogEntityJson logEntityJson , HelloGeoIP2 mappa){
         LogEntity logEntity = new LogEntity();
         logEntity.setRequest(logEntityJson.getRequest());
         logEntity.setYEAR(logEntityJson.getYEAR());
@@ -44,17 +46,24 @@ public class AllLogsList {
         logEntity.setClientip(logEntityJson.getClientip());
         logEntity.setLogcompleto(logEntityJson.getCOMBINEDAPACHELOG());
         logEntity.setValutazione(null);
-        logEntity.setLocation(null);
         logEntity.setTipo_richiesta(Tipo_di_richiesta(logEntityJson.getCOMBINEDAPACHELOG()));
         logEntity.setData_completa(Crea_data_bella(logEntityJson.getMONTH(),logEntityJson.getYEAR(),logEntityJson.getMONTHDAY()));
+        List<String> give_mappa = mappa.getthelocationbyip(logEntityJson.getClientip());
+
+        logEntity.setLocation_state(give_mappa.get(0));
+        logEntity.setLocation_city(give_mappa.get(1));
+        logEntity.setLocation_city(give_mappa.get(2));
+        logEntity.setLocation_city(give_mappa.get(3));
+
 
 
         return logEntity;
     }
     public ArrayList<LogEntity> fromLogEntityJsonArrayListToLogEntities(){
         logEntities = new ArrayList<>();
+        HelloGeoIP2 mappatore = new HelloGeoIP2("mappatore creato"); // suona figo
         for(int i=0; i < logEntityJsonArrayList.size(); i++){
-            logEntities.add(fromLogEntityJsontoLogEntity(logEntityJsonArrayList.get(i)));
+            logEntities.add(fromLogEntityJsontoLogEntity(logEntityJsonArrayList.get(i) , mappatore));
         }
         return logEntities;
     }
@@ -62,6 +71,11 @@ public class AllLogsList {
     public String Tipo_di_richiesta(String testo){
         if( testo.contains("GET")){ return "GET";}
         if( testo.contains("POST")){ return "POST";}
+        if( testo.contains("HEAD")){ return "HEAD";}
+        if( testo.contains("PUT")){ return "PUT";}
+        if( testo.contains("OPTIONS")){ return "OPTIONS";}
+        if( testo.contains("TRACE")){ return "TRACE";}
+
         else return "NULL";
     }
 

@@ -37,6 +37,20 @@ public class JsonWriter {
             e.printStackTrace();
         }
     }
+                // per processing
+    public void writeOnJsonlog(Map<String, Object> captureMap, String name) {
+        File currentOutputLog = new File(dirDstJson.getAbsolutePath()+
+                File.separator+name+".json");
+        try {
+            bw = new BufferedWriter( new FileWriter(currentOutputLog,true));
+            mapper.writeValue(bw,captureMap);//questa write fa chiudere lo stream
+            bw = new BufferedWriter( new FileWriter(currentOutputLog,true));
+            bw.newLine();
+            bw.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     public BufferedWriter getBw() {
         return bw;
     }
