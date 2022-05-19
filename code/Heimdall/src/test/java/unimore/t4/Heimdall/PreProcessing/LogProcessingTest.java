@@ -14,15 +14,15 @@ class LogProcessingTest {
         LogProcessing LP = new LogProcessing("c","a","b");
         String dirD = "/Users/jacopovecchi/PDS/2022t4/code/Heimdall/src/test/java/unimore/t4/Heimdall/todelete";
         File pathdaEliminare = new File("src/test/java/unimore/t4/Heimdall/todelete");
-        try {
-          if (  LP.deleteDirectory(pathdaEliminare)){
-              System.out.println("direcotry cancellata");
-          }else{
-              System.out.println("directory sbagliata");
-          }
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+//        try {
+//          if (  LP.deleteDirectory(pathdaEliminare)){
+//              System.out.println("direcotry cancellata");
+//          }else{
+//              System.out.println("directory sbagliata");
+//          }
+//        } catch (Exception e) {
+//            throw new RuntimeException(e);
+//        }
 
 
     }
@@ -39,11 +39,11 @@ class LogProcessingTest {
          */
         String dirD = "stringa";
         File pathdaEliminare = new File("src/test/java/unimore/t4/Heimdall/todelete");
-        try {
-            LP.deleteDirectory(pathdaEliminare);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+//        try {
+//            LP.deleteDirectory(pathdaEliminare);
+//        } catch (Exception e) {
+//            throw new RuntimeException(e);
+//        }
         /**
          * Dopo che abbiamo fatto partire il test ci siamo ritrovati il codice
          * completamente cancellato.
