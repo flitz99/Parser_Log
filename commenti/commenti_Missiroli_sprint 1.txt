@@ -1,0 +1,39 @@
+GIT
+Commit abbastanza equilibrati si nota anche il lavoro in pair programming. Spicca "massimilano" con un solo commit. Why?
+ 
+/test vuoto
+
+/Database vuoto
+/scrumble OK
+
+Retrospective (spostare in cartella s1): La parte di autoanalisi è buona, fin troppo dura a tratti
+Dovreste però fare action point più precisi e verificabili, "ci impegneremo" non vuol dire nulla. Ipotesi: "nello  daily scrum ogni giorno i due sottteam si comunicano gli avanzamenti". "Tenere sotto controllo il numero di LOC prodotto al giorno,producento un grafico". 
+Solo solo esempi ma spero di aver resto l'idea
+
+Backlog:
+Aggiornato
+
+
+/doc
+Casi d'uso: Non aggiornato, ma era accettabile
+log: non aggiornato (fermo al 16 aprile) 
+Diagramma architetturale: OK
+Documento rischi AGGIORNATO, meglio
+UML classi: manca
+Manca ANCORA la Descrizione. Quello presente nel file README - peraltro brevissima-  è una descrizione della soluzione (i.e. progettazione), non del problema (i.e. analisi)
+[fate un po' di pulizia, vedo un sacco di documenti obsoleti. GIT mantiene sempre tutto]
+
+
+Taiga: Non vedo l'url del progetto, potete metterlo e invitarmi.
+
+
+review: Non l'avete fatto. Male. Cercate di organizzarvi per la prossima release
+
+
+
+
+
+
+
+
+
