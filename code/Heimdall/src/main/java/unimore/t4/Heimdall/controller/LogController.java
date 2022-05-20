@@ -76,5 +76,19 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
     }
 
 
+    @RequestMapping(value = "/smart/anno/{annox}/mese/{mesex}" , method =  GET )
+    @ResponseBody
+    public  String smartdaymonth(@PathVariable String annox , @PathVariable String mesex){
+        return logService.smart_ym(annox, mesex);
+    }
+
+    @RequestMapping(value = "/smart/anno/{annox}/mese/{mesex}/giorno/{giornox}" , method =  GET )
+    @ResponseBody
+    public  String smartdaymonthyear( @PathVariable String annox , @PathVariable String mesex , @PathVariable String giornox){
+        return logService.smart_ymd(annox, mesex , giornox);
+    }
+
+
+
       }
 

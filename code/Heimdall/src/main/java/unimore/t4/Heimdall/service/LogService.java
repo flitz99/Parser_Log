@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
 import unimore.t4.Heimdall.Statistiche.LogCountBytes;
 import unimore.t4.Heimdall.Statistiche.LogDMY;
+import unimore.t4.Heimdall.Statistiche.LogMinimo;
 import unimore.t4.Heimdall.Statistiche.Spammer;
 import unimore.t4.Heimdall.exception.LogNotFoundException;
 import unimore.t4.Heimdall.repo.LogRepo;
@@ -155,6 +156,46 @@ public class LogService {
         for(LogCountBytes iteratore : array){
 
             JsonString+= gson.toJson(iteratore);
+            JsonString+=",";
+        }
+        JsonString =JsonString.substring(0,JsonString.length()-1);
+        JsonString+="]";
+
+        return JsonString;
+    }
+    public String smart_ymd(String year , String mont , String day){
+        List<LogMinimo> array = new ArrayList<>();
+        List<List<String>>repo2 = logRepo.smartYMD(year,mont,day);
+        for(List<String> iterator : repo2){
+            LogMinimo u = new LogMinimo(iterator);
+            array.add(u);
+        }
+
+        Gson gson = new Gson();
+        String JsonString="[";
+        for(LogMinimo iterator : array){
+
+            JsonString+= gson.toJson(iterator);
+            JsonString+=",";
+        }
+        JsonString =JsonString.substring(0,JsonString.length()-1);
+        JsonString+="]";
+
+        return JsonString;
+    }
+    public String smart_ym(String year , String mont ){
+        List<LogMinimo> array = new ArrayList<>();
+        List<List<String>>repo2 = logRepo.smartYM(year,mont);
+        for(List<String> iterator : repo2){
+            LogMinimo u = new LogMinimo(iterator);
+            array.add(u);
+        }
+
+        Gson gson = new Gson();
+        String JsonString="[";
+        for(LogMinimo iterator : array){
+
+            JsonString+= gson.toJson(iterator);
             JsonString+=",";
         }
         JsonString =JsonString.substring(0,JsonString.length()-1);

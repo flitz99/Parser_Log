@@ -118,4 +118,15 @@ public interface LogRepo extends JpaRepository<LogEntity, Long> {
             nativeQuery = true
     )List<List<String>> findlogMonthdayip(  @Param("annox") String anno_da_cercare );
 
+    @Query(
+            value = "Select  data_completa , orario , ip_cliente  , tipo_richiesta,   codice_risposta , qunatita_trasmissione , posizione_stato , posizione_citta , id  from log_entity where anno = :annox and mese = :mesex   " ,
+            nativeQuery = true
+        )
+    List<List<String>> smartYM ( @Param("annox") String anno_da_cercare , @Param("mesex") String mese_da_cercare  );
+
+    @Query(
+            value = "Select data_completa , orario , ip_cliente  , tipo_richiesta,   codice_risposta , qunatita_trasmissione , posizione_stato , posizione_citta , id  from log_entity where anno = :annox and mese = :mesex and giorno = :giornox  " ,
+            nativeQuery = true
+    )
+    List<List<String>> smartYMD( @Param("annox") String anno_da_cercare , @Param("mesex") String mese_da_cercare , @Param("giornox") String giorno_cercato  );
 }

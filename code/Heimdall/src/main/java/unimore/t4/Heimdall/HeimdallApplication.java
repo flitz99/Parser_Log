@@ -69,7 +69,9 @@ public class HeimdallApplication {
 //
 //		LogProcessing logprocessingerr = new LogProcessing("File_log_err", "File_output_err", "File_Json_err");
 //		logprocessingerr.logProcessing();
-		//Inizializzazione Applicazione Spring
+		/**
+		 * Inizializzazione della applicazione Spring
+		 */
 		try {
 			SpringApplication.run(HeimdallApplication.class, args);
 		}catch(BeanCreationException ex){
