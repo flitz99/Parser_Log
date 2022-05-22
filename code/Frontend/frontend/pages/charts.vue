@@ -128,12 +128,13 @@ h1{
     font-weight: 600;
     font-size: 28px;
 }
- h3{
+ /*h3{
     color: #6c757d;
     letter-spacing: -0.3px;
     font-weight: 600;
     font-size: 15px;
-  }
+  }*/
+  
 .chart{
 
     width: 100%;
