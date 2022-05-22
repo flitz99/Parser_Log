@@ -1,10 +1,10 @@
 <template>
 
-  <main>
+  <main class="mb-5">
         
     <navbar /> 
 
-      <b-container  class="dashboard mt-5 pb-5">
+      <b-container  class="dashboard mt-1 pb-0" >
                  
         <br>
 
@@ -20,253 +20,147 @@
           </div> 
 
         </div>
-        <!--Vecchia tabella-->
-        <!--
-        <table class="table table-bordered table-sm table-hover text-center">
-
-          <!--INTENZIONE STATICA DELLA TABELLA
-          <thead class="">
-            <tr class="bg-header">
-            <th scope="col">#</th>
-            <th scope="col">Request</th>
-            <th scope="col">Date</th>
-            <th scope="col">Response</th>
-            <th scope="col">Bytes</th>
-            <th scope="col">Ip</th>
-            </tr>
-          </thead>
-
-                <!--CORPO DELLA TABELLA
-            <tbody class="align-middle">
-
-              <tr v-for="( log, index) in logs" :key="log.id">  
-                <th scope="row" class="id align-middle"> {{ index }}</th>
-                <td class="req align-middle">{{ log.richiesta }}</td>
-                <td class="date align-middle">{{ log.orario }}-{{ log.giorno }}-{{ log.mese }}-{{ log.anno }}</td>
-                <td class="res align-middle" >{{ log.codice_risposta }}</td>
-                <td class="byt align-middle">{{ log.quantita_trasmissione }}</td>
-                <td class="ip align-middle">{{ log.ip_cliente }} </td>
-              </tr>
-
-            </tbody>
-
-        </table>-->
          
-        <!-- User Interface controls -->
-    <b-row>
+      </b-container>
 
-      <b-col lg="6" class="my-1">
-        
-        <!--label per sort-->
-        <b-form-group
-          label="Sort"
-          label-for="sort-by-select"
-          label-cols-sm="3"
-          label-align-sm="right"
-          label-size="sm"
-          class="mb-0"
-          v-slot="{ ariaDescribedby }"
-        >
-          <b-input-group size="sm">
+      <b-container class="d-flex flex-column-reverse shadow p-3 mb-5 bg-white rounded">
 
-            <b-form-select
-              id="sort-by-select"
-              v-model="sortBy"
-              :options="sortOptions"
-              :aria-describedby="ariaDescribedby"
-              class="w-75"
-            >
-              <template #first>
-                <option value="">-- none --</option>
-              </template>
-            </b-form-select>
-
-            <b-form-select
-              v-model="sortDesc"
-              :disabled="!sortBy"
-              :aria-describedby="ariaDescribedby"
-              size="sm"
-              class="w-25"
-            >
-              <option :value="false">Asc</option>
-              <option :value="true">Desc</option>
-
-            </b-form-select>
-
-          </b-input-group>
-
-        </b-form-group>
-
-      </b-col>
-
-      <b-col lg="6" class="my-1">
-        <b-form-group
-          label="Initial sort"
-          label-for="initial-sort-select"
-          label-cols-sm="3"
-          label-align-sm="right"
-          label-size="sm"
-          class="mb-0"
-        >
-          <b-form-select
-            id="initial-sort-select"
-            v-model="sortDirection"
-            :options="['asc', 'desc', 'last']"
-            size="sm"
-          ></b-form-select>
-        </b-form-group>
-      </b-col>
-
-      <b-col lg="6" class="my-1">
-        <b-form-group
-          label="Filter"
-          label-for="filter-input"
-          label-cols-sm="3"
-          label-align-sm="right"
-          label-size="sm"
-          class="mb-0"
-        >
-          <b-input-group size="sm">
-            <b-form-input
-              id="filter-input"
-              v-model="filter"
-              type="search"
-              placeholder="Type to Search"
-            ></b-form-input>
-
-            <b-input-group-append>
-              <b-button :disabled="!filter" @click="filter = ''">Clear</b-button>
-            </b-input-group-append>
-          </b-input-group>
-        </b-form-group>
-      </b-col>
-
-      <b-col lg="6" class="my-1">
-        <b-form-group
-          v-model="sortDirection"
-          label="Filter On"
-          description="Leave all unchecked to filter on all data"
-          label-cols-sm="3"
-          label-align-sm="right"
-          label-size="sm"
-          class="mb-0"
-          v-slot="{ ariaDescribedby }"
-        >
-          <b-form-checkbox-group
-            v-model="filterOn"
-            :aria-describedby="ariaDescribedby"
-            class="mt-1"
+            <b-container fluid class="m-0">
+                <b-table
+            :items="logs"
+            :fields="fields"
+            :current-page="currentPage"
+            :per-page="perPage"
+            :filter="filter"
+            :filter-included-fields="filterOn"
+            :filter-ignored-fields="filterOff"
+            :tbody-tr-class="rowClass"
+            :filter-debounce="1000"
+            stacked="md"          
+            show-empty  
+            small
+            @filtered="onFiltered"
+            class="tbl"
           >
-            <b-form-checkbox value="name">richiesta</b-form-checkbox>
-            <b-form-checkbox value="age">Age</b-form-checkbox>
-            <b-form-checkbox value="isActive">Active</b-form-checkbox>
-          </b-form-checkbox-group>
-        </b-form-group>
-      </b-col>
+          <template #cell(richiesta)="row">
+            {{ row.item.richiesta }}
+          </template>
 
-      <b-col sm="5" md="6" class="my-1">
-        <b-form-group
-          label="Per page"
-          label-for="per-page-select"
-          label-cols-sm="6"
-          label-cols-md="4"
-          label-cols-lg="3"
-          label-align-sm="right"
-          label-size="sm"
-          class="mb-0"
-        >
-          <b-form-select
-            id="per-page-select"
-            v-model="perPage"
-            :options="pageOptions"
-            size="sm"
-          ></b-form-select>
-        </b-form-group>
-      </b-col>
+          <template #cell(data)="row">
+            {{ row.item.giorno }} {{ row.item.mese }} {{ row.item.anno }} 
+          </template>
 
-      <b-col sm="7" md="6" class="my-1">
-        <b-pagination
-          v-model="currentPage"
-          :total-rows="totalRows"
-          :per-page="perPage"
-          align="fill"
-          size="sm"
-          class="my-0"
-        ></b-pagination>
-      </b-col>
-    </b-row>
+          <template #cell(ip)="row">
+            {{ row.item.ip_cliente }}
+          </template>
 
-    <!-- Main table element -->
-    <b-table
-      :items="logs"
-      :fields="fields"
-      :current-page="currentPage"
-      :per-page="perPage"
-      :filter="filter"
-      :filter-included-fields="filterOn"
-      :sort-by.sync="sortBy"
-      :sort-desc.sync="sortDesc"
-      :sort-direction="sortDirection"
-      stacked="md"
-      show-empty
-      small
-      @filtered="onFiltered"
-    >
-    <!--
-      { key: 'richiesta', label: 'Richiesta', sortable: true, sortDirection: 'desc'},
-          { key: 'ip', label: 'Ip', sortable: true, class: 'text-center'},
-          { key: 'status', label: 'Codice status', class: 'text-center' },
-          { key: 'actions', label: 'Actions' }-->
+          <template #cell(Codice status)="row">
+            {{ row.item.codice_risposta }}
+          </template>
 
-      <template #cell(richiesta)="row">
-        {{ row.item.richiesta }}
-      </template>
+          <!--Mostra i bottoni della Actions-->
+          <template #cell(actions)="row">
+            <b-button size="sm" @click="row.toggleDetails" class="btn-clear">
+              {{ row.detailsShowing ? 'Hide' : 'Show' }} Details
+            </b-button>
+          </template>
 
-      <template #cell(data)="row">
-        {{ row.item.giorno }}-{{ row.item.mese }}-{{ row.item.anno }} 
-      </template>
+          <!--mostrai dettagli dopo aver cliccato show|hide details-->
+          <!--Meglio se apre una nuova pagina..-->
+          <template #row-details="row">
+            <b-card>
+              <ul>
+                <li v-for="(value, key) in row.item" :key="key">{{ key }}: {{ value }}</li>
+                <!--dovrebbe andarci una cartina per la geoloc.-->
+              </ul>
+            </b-card>
+          </template>
 
-      <template #cell(ip)="row">
-        {{ row.item.ip_cliente }}
-      </template>
+                </b-table>
 
-      <template #cell(status)="row">
-        {{ row.item.codice_risposta }}   
-      </template>
+                <b-pagination
+              v-model="currentPage"
+              :total-rows="totalRows"
+              :per-page="perPage"
+              align="fill"
+              size="sm"     
+              class="mx-auto" style="width: 350px;"
+            >
+                </b-pagination>
+            </b-container>
 
-      <!--Mostra i bottoni della Actions-->
-      <template #cell(actions)="row">
+            <b-container fluid class="pt-1 shadow-sm p-3 mb-5 bg-white rounded">
 
-         <!-- non serve
-        <b-button size="sm" @click="info(row.item.giorno, row.index, $event.target)" class="mr-1">
-          Info modal 
-        </b-button>-->
+              <b-form-group
+              label-for="filter-input"
+              label="Filtra"
+              label-cols="1"
+              content-cols="5"
+              label-class="label"
+             >
+            <b-input-group size="sm">
+                <b-form-input
+                  id="filter-input"
+                  v-model="filter"
+                  type="search"
+                  placeholder="Cerca nel log.."
+                ></b-form-input>
 
-        <b-button size="sm" @click="row.toggleDetails">
-          {{ row.detailsShowing ? 'Hide' : 'Show' }} Details
-        </b-button>
+                <b-input-group-append>
+                  <b-button :disabled="!filter" @click="filter = ''" class="btn-clear">Clear</b-button>
+                </b-input-group-append>
 
-      </template>
+              </b-input-group>
 
-      <!--mostrai dettagli dopo aver cliccato show|hide details-->
-      <!--Meglio se apre una nuova pagina..-->
-      <template #row-details="row">
-        <b-card>
-          <ul>
-            <li v-for="(value, key) in row.item" :key="key">{{ key }}: {{ value }}</li>
-            <!--dovrebbe andarci una cartina per la geoloc.-->
-          </ul>
-        </b-card>
-      </template>
-    </b-table>
+              </b-form-group>
 
-    <!-- Mostra le info nel modal non serve
-    <b-modal :id="infoModal.id" :title="infoModal.title" ok-only @hide="resetInfoModal">
-      <pre>{{ infoModal.content }}</pre>
-    </b-modal> -->
-  
-    </b-container>
-        
+              <b-form-group
+               
+                label="Filter On"
+                description="Leave all unchecked to filter on all data"
+                label-cols="1"
+                label-align="left"
+                label-size="sm"
+                class="mb-3"
+                label-class="label2"
+                v-slot="{ ariaDescribedby }"  
+              >
+                <b-form-checkbox-group
+                  v-model="filterOn"
+                  :aria-describedby="ariaDescribedby"
+                  class="mt-1"
+                >
+                  <b-form-checkbox value="richiesta">richiesta</b-form-checkbox>
+                  <b-form-checkbox value="data">data</b-form-checkbox>
+                  <b-form-checkbox value="ip_cliente">ip</b-form-checkbox>               
+                  <b-form-checkbox value="codice_risposta">Status code</b-form-checkbox> 
+                </b-form-checkbox-group>
+              </b-form-group>
+
+              <b-form-group
+              label="Logs per page"
+              label-for="per-page-select"
+              label-cols="1"
+              label-class="label2"
+              label-align-sm="left"
+              label-size="sm"
+              content-cols="1"
+              class="mb-0"
+            >
+              <b-form-select
+                id="per-page-select"
+                v-model="perPage"
+                :options="pageOptions"
+                size="sm"
+              >
+              </b-form-select>
+              </b-form-group>
+            </b-container>
+            
+
+      </b-container>
+
+    
   </main>       
 
 </template>
@@ -280,109 +174,42 @@
     },
     data() {
       return {
-        /*Dati della tabella*/
-        items: [/*
-          { isActive: true, age: 40, name: { first: 'Dickerson', last: 'Macdonald' } },
-          { isActive: false, age: 21, name: { first: 'Larsen', last: 'Shaw' } },
-          {
-            isActive: false,
-            age: 9,
-            name: { first: 'Mini', last: 'Navarro' },
-            _rowVariant: 'success'
-          },
-          { isActive: false, age: 89, name: { first: 'Geneva', last: 'Wilson' } },
-          { isActive: true, age: 38, name: { first: 'Jami', last: 'Carney' } },
-          { isActive: false, age: 27, name: { first: 'Essie', last: 'Dunlap' } },
-          { isActive: true, age: 40, name: { first: 'Thor', last: 'Macdonald' } },
-          {
-            isActive: true,
-            age: 87,
-            name: { first: 'Larsen', last: 'Shaw' },
-            _cellVariants: { age: 'danger', isActive: 'warning' }
-          },
-          { isActive: false, age: 26, name: { first: 'Mitzi', last: 'Navarro' } },
-          { isActive: false, age: 22, name: { first: 'Genevieve', last: 'Wilson' } },
-          { isActive: true, age: 38, name: { first: 'John', last: 'Carney' } },
-          { isActive: false, age: 29, name: { first: 'Dick', last: 'Dunlap' } }*/
-        ],
-
-        /*Intestazione della tabella
         fields: [
-          { key: 'name', label: 'Person full name', sortable: true, sortDirection: 'desc' },
-          { key: 'age', label: 'Person age', sortable: true, class: 'text-center' },
-          {
-            key: 'isActive',
-            label: 'Is Active',
-            formatter: (value, key, item) => {
-              return value ? 'Yes' : 'No'
-            },
-            sortable: true,
-            sortByFormatted: true,
-            filterByFormatted: true
-          },
-          { key: 'actions', label: 'Actions' }
-        ],*/
-        fields: [
-         /* { key: 'name', label: 'Person full name', sortable: true, sortDirection: 'desc' },
-          { key: 'age', label: 'Person age', sortable: true, class: 'text-center' },*/
-          /*{
-            key: 'isActive',
-            label: 'Is Active',
-            formatter: (value, key, item) => {
-              return value ? 'Yes' : 'No'
-            },
-            sortable: true,
-            sortByFormatted: true,
-            filterByFormatted: true
-          },*/
-          { key: 'richiesta', label: 'Richiesta', sortable: true, sortDirection: 'desc'},
-          { key: 'data', label: 'Data', sortable: true, sortDirection: 'desc'},
-          { key: 'ip', label: 'Ip', sortable: true, class: 'text-center'},
-          { key: 'status', label: 'Codice status', class: 'text-center' },
-          { key: 'actions', label: 'Actions' }
+          { key: 'richiesta', label: 'Richiesta'},
+          { key: 'data', label: 'Data'},
+          { key: 'ip_cliente', label: 'Ip'},
+          { key: 'codice_risposta', label: 'Codice status', class: 'text-center'},
+          { key: 'actions', label: 'Actions'},
         ],
         totalRows: 1,
         currentPage: 1,
         perPage: 5,
         pageOptions: [5, 10, 15, { value: 100, text: "Show a lot" }],
-        sortBy: '',
-        sortDesc: false,
-        sortDirection: 'asc',
         filter: null,
         filterOn: [],
-        infoModal: {
-          id: 'info-modal',
-          title: '',
-          content: ''
-        }
+        filterOff: ['timezone', 'autentificato', 'identificativo', 'dispositivo', 'stato_referente', 'quantita_trasmissione'],
+       
       }
     },
     computed: {
-      sortOptions() {
-        // Create an options list from our fields
-        return this.fields
-          .filter(f => f.sortable)
-          .map(f => {
-            return { text: f.label, value: f.key }
-          })
-      }
+    
     },
     mounted() {
       // Set the initial number of items
-      this.totalRows = this.items.length
+      this.totalRows = this.logs.length;
     },
     methods: {
-      /* non serve
-      info(item, index, button) {
-        this.infoModal.title = `Row index: ${index}`
-        this.infoModal.content = JSON.stringify(item, null, 2)
-        this.$root.$emit('bv::show::modal', this.infoModal.id, button)
+      
+      rowClass(log, type){
+
+          if (!log || type !== 'row') return
+          if (log.codice_risposta == 200) return 'table-success'
+          if ((log.codice_risposta == 401) || 
+              (log.codice_risposta == 451) || 
+              (log.codice_risposta == 451)) 
+              return 'table-dark'
+          if (log.codice_risposta > 500) return 'table-warning'  
       },
-      resetInfoModal() {
-        this.infoModal.title = ''
-        this.infoModal.content = ''
-      },
-      */
       onFiltered(filteredItems) {
         // Trigger pagination to update the number of buttons/pages due to filtering
         this.totalRows = filteredItems.length
@@ -396,18 +223,34 @@
 
 <style>
     
-  h3{
+ h3{
     color: #6c757d;
     letter-spacing: 0.3px;
     font-weight: 600;
-    font-size: 18px;
+    font-size: 22px;
   }
 
   .stats{
     color: #727cf5;
     letter-spacing: 0.3px;
     font-weight: 600;
-    font-size: 16px;
+    font-size: 16px!important;
+  }
+
+  .label{
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    font-size: 18px;
+    color: #808080;
+    /*margin-left: 5px !important;*/
+  }
+
+  .label2{
+    font-weight: 500;
+    letter-spacing: 0.3px;
+    font-size: 13px;
+    color: #000;
+    /*margin-left: 5px !important;*/
   }
 
   .img-stats{
@@ -418,16 +261,22 @@
 
   main{ background-color: #fff; }
 
-  .req{
-    max-width:200px !important;
-    overflow: scroll;
+  td div {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 300px !important;
   }
-  
-  .ip, .res, .date , .byt{
-    width: auto;
+ 
+  .btn-clear{
+    background-color: #007bff !important;
+    border-color: #007bff;
+    z-index: 3  ;
+    color: #fff;
   }
 
-  .bg-header{
-    background-color:lightsteelblue ;
+  .tbl{
+    margin-top: 5px!important;
   }
+
 </style>
