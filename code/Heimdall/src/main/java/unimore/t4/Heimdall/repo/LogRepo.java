@@ -129,4 +129,10 @@ public interface LogRepo extends JpaRepository<LogEntity, Long> {
             nativeQuery = true
     )
     List<List<String>> smartYMD( @Param("annox") String anno_da_cercare , @Param("mesex") String mese_da_cercare , @Param("giornox") String giorno_cercato  );
+
+    @Query(
+            value = " Select * from log_entity where id=:idx" ,
+            nativeQuery = true
+    )
+    List<String> getvyid(@Param ("idx") String id_Da_cercare);
 }
