@@ -6,10 +6,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
-import unimore.t4.Heimdall.Statistiche.LogCountBytes;
-import unimore.t4.Heimdall.Statistiche.LogDMY;
-import unimore.t4.Heimdall.Statistiche.LogMinimo;
-import unimore.t4.Heimdall.Statistiche.Spammer;
+import unimore.t4.Heimdall.Statistiche.*;
 import unimore.t4.Heimdall.exception.LogNotFoundException;
 import unimore.t4.Heimdall.repo.LogRepo;
 import unimore.t4.Heimdall.model.LogEntity;
@@ -70,6 +67,26 @@ public class LogService {
         Gson gson = new Gson();
         String JsonString="[";
         for(LogDMY iteratore : array){
+
+            JsonString+= gson.toJson(iteratore);
+            JsonString+=",";
+        }
+        JsonString =JsonString.substring(0,JsonString.length()-1);
+        JsonString+="]";
+
+        return JsonString;
+    }
+    public String getlogallsuper(){
+        List<LogComplete> array = new ArrayList<>();
+        List<List<String>>repo1 = logRepo.findalllogsuper();
+        for(List<String> iteratore : repo1){
+            LogComplete u = new LogComplete(iteratore);
+            array.add(u);
+        }
+
+        Gson gson = new Gson();
+        String JsonString="[";
+        for(LogComplete iteratore : array){
 
             JsonString+= gson.toJson(iteratore);
             JsonString+=",";
@@ -223,6 +240,27 @@ public class LogService {
 
         return JsonString;
     }
+    public String smartip(String id){
+        List<LogMinimo> array = new ArrayList<>();
+        List<List<String>>repo2 = logRepo.findsmartlog();
+        for(List<String> iterator : repo2){
+            LogMinimo u = new LogMinimo(iterator);
+            array.add(u);
+        }
+
+        Gson gson = new Gson();
+        String JsonString="[";
+        for(LogMinimo iterator : array){
+
+            JsonString+= gson.toJson(iterator);
+            JsonString+=",";
+        }
+        JsonString =JsonString.substring(0,JsonString.length()-1);
+        JsonString+="]";
+
+        return JsonString;
+    }
+
 
     /**
      * metodo statico che ritorna tutti i log

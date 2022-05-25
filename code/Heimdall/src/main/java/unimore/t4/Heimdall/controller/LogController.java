@@ -51,6 +51,11 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
             return logService.getlogall();
         }
 
+       @GetMapping("/alldb/all")
+       public  String getalllogsuper(){
+        return logService.getlogallsuper();
+    }
+
         @RequestMapping(value = "/alldb/mese/{mesex}/anno/{annox}" , method =  GET )
         @ResponseBody
         public  String getalllogMY(@PathVariable String mesex , @PathVariable String annox){
