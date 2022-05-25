@@ -203,6 +203,26 @@ public class LogService {
 
         return JsonString;
     }
+    public String smartalldb(){
+        List<LogMinimo> array = new ArrayList<>();
+        List<List<String>>repo2 = logRepo.findsmartlog();
+        for(List<String> iterator : repo2){
+            LogMinimo u = new LogMinimo(iterator);
+            array.add(u);
+        }
+
+        Gson gson = new Gson();
+        String JsonString="[";
+        for(LogMinimo iterator : array){
+
+            JsonString+= gson.toJson(iterator);
+            JsonString+=",";
+        }
+        JsonString =JsonString.substring(0,JsonString.length()-1);
+        JsonString+="]";
+
+        return JsonString;
+    }
 
     /**
      * metodo statico che ritorna tutti i log

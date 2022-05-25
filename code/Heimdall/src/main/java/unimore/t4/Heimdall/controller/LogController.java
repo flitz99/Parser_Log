@@ -88,7 +88,11 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
         return logService.smart_ymd(annox, mesex , giornox);
     }
 
-
+    @RequestMapping(value = "/smart/alldb" , method =  GET )
+    @ResponseBody
+    public  String smartalldb( ){
+        return logService.smartalldb();
+    }
 
       }
 

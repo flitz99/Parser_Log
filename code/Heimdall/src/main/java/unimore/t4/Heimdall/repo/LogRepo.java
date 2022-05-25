@@ -72,6 +72,11 @@ public interface LogRepo extends JpaRepository<LogEntity, Long> {
             nativeQuery = true
     )List<List<String>> findlog();
 
+    @Query(
+            value = "Select data_completa , orario , ip_cliente  , tipo_richiesta,   codice_risposta , qunatita_trasmissione , posizione_stato , posizione_citta , id from log_entity " ,
+            nativeQuery = true
+    )List<List<String>> findsmartlog();
+
     /**
      * FUNZIONE che prende dal nostro intero database tutti i log che abbiamo in un determinato mese o anno
      * @param mese_da_cercare  indica il mese
