@@ -97,14 +97,28 @@ public class LogService {
         return JsonString;
     }
 
-    public String getlogid(String id){
-       List<String> repo1= logRepo.getbyid(id);
+    public String getlogallsuperid(String idx){
+        List<LogComplete> array = new ArrayList<>();
+        List<List<String>>repo1 = logRepo.findalllogsuperid(idx);
+        for(List<String> iteratore : repo1){
+            LogComplete u = new LogComplete(iteratore);
+            array.add(u);
+        }
 
-       LogComplete u = new LogComplete(repo1);
-       System.err.println(u.toString());
+        Gson gson = new Gson();
+        String JsonString="[";
+        for(LogComplete iteratore : array){
 
-        return u.toString();
+            JsonString+= gson.toJson(iteratore);
+            JsonString+=",";
+        }
+        JsonString =JsonString.substring(0,JsonString.length()-1);
+        JsonString+="]";
+
+        return JsonString;
     }
+
+
 
     public String getlogmonthyear(String month , String year){
         List<LogDMY> array = new ArrayList<>();

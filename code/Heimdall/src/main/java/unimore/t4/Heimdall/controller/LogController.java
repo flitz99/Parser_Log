@@ -56,13 +56,12 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
         return logService.getlogallsuper();
     }
 
-
-
     @RequestMapping(value = "/alldb/all/{idx}" , method =  GET )
     @ResponseBody
-    public  String  getlogid(@PathVariable String idx){
-        return logService.getlogid(idx);
+    public  String getlogsuperid(@PathVariable String idx ){
+        return logService.getlogallsuperid(idx);
     }
+
 
         @RequestMapping(value = "/alldb/mese/{mesex}/anno/{annox}" , method =  GET )
         @ResponseBody

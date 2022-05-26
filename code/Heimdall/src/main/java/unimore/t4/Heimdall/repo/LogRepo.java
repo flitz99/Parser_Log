@@ -142,6 +142,5 @@ public interface LogRepo extends JpaRepository<LogEntity, Long> {
     @Query(
             value = " Select id , giorno , data_completa , timezone , mese , orario , anno , dispositivo , autentificato , qunatita_trasmissione  , ip_cliente , identificativo , posizione_Citta , latitudine , longitudine , posizione_stato , log_completo , sito_referente , richiesta , codice_risposta , tipo_richiesta , valutazione from log_entity where id = :idx  " ,
             nativeQuery = true
-    )
-    List<String> getbyid(@Param ("idx") String id_Da_cercare);
+    )List<List<String>> findalllogsuperid(@Param("idx") String id_log );
 }
