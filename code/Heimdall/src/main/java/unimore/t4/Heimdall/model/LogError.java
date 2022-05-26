@@ -26,87 +26,74 @@ public class LogError {
     private String DAY;
     @Column(
             name = "Mese" ,
-            columnDefinition = "VARCHAR(20)",
-            nullable = false
+            columnDefinition = "VARCHAR(20)"
     )
     private String MONTH;
     @Column(
             name = "Data" ,
-            columnDefinition = "VARCHAR(20)",
-            nullable = false
+            columnDefinition = "VARCHAR(20)"
     )
     private String MONTHDAY;
     @Column(
             name = "Orario" ,
-            columnDefinition = "VARCHAR(20)",
-            nullable = false
+            columnDefinition = "VARCHAR(20)"
     )
     private String TIME;
     @Column(
             name = "Anno" ,
-            columnDefinition = "VARCHAR(30)",
-            nullable = false
+            columnDefinition = "VARCHAR(30)"
     )
     private String YEAR;
     @Column(
             name = "Livello_Log" ,
-            columnDefinition = "VARCHAR(20)",
-            nullable = false
+            columnDefinition = "VARCHAR(20)"
     )
     private String LOGLEVEL;
     @Column(
             name = "pid" ,
-            columnDefinition = "VARCHAR(30)",
-            nullable = false
+            columnDefinition = "VARCHAR(30)"
     )
     private String PID;
     @Column(
 
             name = "IPV6" ,
-            columnDefinition = "VARCHAR(30)",
-            nullable = false
+            columnDefinition = "VARCHAR(30)"
     )
     private String ClientIP_Port;
     @Column(
 
             name = "IPV4" ,
-            columnDefinition = "VARCHAR(20)",
-            nullable = false
+            columnDefinition = "VARCHAR(20)"
     )
     private String ClientIP;
     @Column(
 
             name = "Tipo_di_errore" ,
-            columnDefinition = "TEXT",
-            nullable = false
+            columnDefinition = "TEXT"
     )
     private String Error;
     @Column(
 
             name = "Path_File" ,
-            columnDefinition = "TEXT",
-            nullable = false
+            columnDefinition = "TEXT"
     )
     private String Path_File;
     @Column(
 
             name = "Linea ",
-            columnDefinition = "VARCHAR(30)",
-            nullable = false
+            columnDefinition = "VARCHAR(30)"
     )
     private String Line;
     @Column(
 
             name = "ID_numerico ",
-            columnDefinition = "VARCHAR(30)",
-            nullable = false
+            columnDefinition = "VARCHAR(30)"
     )
     private String ID;
     @Column(
 
             name = "Messaggio" ,
-            columnDefinition = "TEXT",
-            nullable = false
+            columnDefinition = "TEXT"
     )
     private String Message;
     @Column(
@@ -181,7 +168,11 @@ public class LogError {
             columnDefinition = "Text"
     )
     private String Referer;
-
+    @Column(
+            name = "Data_completa",
+            columnDefinition = "DATE"
+    )
+    private String Data_completa;  // anno-mese-giorno
     public LogError() {
     }
 
@@ -211,7 +202,8 @@ public class LogError {
                     String hostname,
                     String url,
                     String unique_ID,
-                    String referer)
+                    String referer,
+                    String Datacompleta)
     {
         this.id = id;
         this.DAY = DAY;
@@ -240,6 +232,7 @@ public class LogError {
         Url = url;
         this.unique_ID = unique_ID;
         Referer = referer;
+        this.Data_completa = Datacompleta;
     }
 
     public Long getId() {
