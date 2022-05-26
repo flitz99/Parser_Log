@@ -3,7 +3,7 @@ package unimore.t4.Heimdall.model;
 import javax.persistence.*;
 
 @Entity
-@Table(indexes = @Index(name = "log_tab" , columnList = "id , Data_completa , orario , IP_cliente ,  tipo_richiesta , Codice_risposta ,tipo_richiesta "))
+@Table(indexes = @Index(name = "log_minimo" , columnList = "id , Data_completa , orario ,   Qunatita_trasmissione , IP_cliente , Codice_risposta , tipo_richiesta "))
 public class LogEntity {
 
     @Id

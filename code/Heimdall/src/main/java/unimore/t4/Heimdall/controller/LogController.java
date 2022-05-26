@@ -56,7 +56,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
        @GetMapping("/alldb/all")
        public  String getalllogsuper(){
-        return logService.getlogallsuper();
+        return logService.smartalldb();
     }
 
     @RequestMapping(value = "/alldb/all/{idx}" , method =  GET )
@@ -88,19 +88,6 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
     @ResponseBody
     public  String getalllogMY(@PathVariable String annox ){
         return logService.getlogcountbytes(annox );
-    }
-
-
-    @RequestMapping(value = "/smart/anno/{annox}/mese/{mesex}" , method =  GET )
-    @ResponseBody
-    public  String smartdaymonth(@PathVariable String annox , @PathVariable String mesex){
-        return logService.smart_ym(annox, mesex);
-    }
-
-    @RequestMapping(value = "/smart/anno/{annox}/mese/{mesex}/giorno/{giornox}" , method =  GET )
-    @ResponseBody
-    public  String smartdaymonthyear( @PathVariable String annox , @PathVariable String mesex , @PathVariable String giornox){
-        return logService.smart_ymd(annox, mesex , giornox);
     }
 
     @RequestMapping(value = "/smart/alldb" , method =  GET )

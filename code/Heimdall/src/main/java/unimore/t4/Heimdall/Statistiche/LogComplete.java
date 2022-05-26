@@ -33,26 +33,26 @@ public class LogComplete {
 
     public LogComplete(List<String> arrays ) {
         this.id = arrays.get(0);
-        this.giorno =  arrays.get(1);
+        this.giorno =  arrays.get(1); // togli
         this.data_completo =  arrays.get(2);
         this.timezone =  arrays.get(3);
-        this.mese =  arrays.get(4);
+        this.mese =  arrays.get(4);    // togli
         this.orario =  arrays.get(5);
-        this.anno =  arrays.get(6);
-        this.dispositivo =  arrays.get(7);
-        this.autenticato =  arrays.get(8);
+        this.anno =  arrays.get(6);  // togli
+        this.dispositivo =  arrays.get(7);  // togli
+        this.autenticato =  arrays.get(8);   // togli
         this.quantita_trasmissione =  arrays.get(9);
         this.ip_cliente =  arrays.get(10);
-        this.identificativo =  arrays.get(11);
-        this.posizione_citta =  arrays.get(12);
-        this.latitudine =  arrays.get(13);
-        this.longitudine =  arrays.get(14);
-        this.posizione_stato = arrays.get(15);
-        this.sito_referente = arrays.get(16);
+        this.identificativo =  arrays.get(11);    // togli
+        this.posizione_citta =  arrays.get(12);   // togli
+        this.latitudine =  arrays.get(13);    // togli
+        this.longitudine =  arrays.get(14);   // togli
+        this.posizione_stato = arrays.get(15);   // togli
+        this.sito_referente = arrays.get(16);   // togli
         this.richiesta = arrays.get(17);
         this.codice_risposta = arrays.get(18);
         this.tipo_richiesta = arrays.get(19);
-        this.valutazione = arrays.get(20);
+        this.valutazione = arrays.get(20);   // togli
 
 
     }

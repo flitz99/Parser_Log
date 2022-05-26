@@ -267,60 +267,9 @@ public class LogService {
             return JsonString;
         }
 
-    /**
-     * funzione che fa tramite logRepo.smartYMD
-     * @param year anno da cercare
-     * @param mont mese da cercare
-     * @param day giorno da cercare
-     * @return
-     */
-    public String smart_ymd(String year , String mont , String day){
-            List<LogMinimo> array = new ArrayList<>();
-            List<List<String>>repo2 = logRepo.smartYMD(year,mont,day);
-            for(List<String> iterator : repo2){
-                LogMinimo u = new LogMinimo(iterator);
-                array.add(u);
-            }
 
-            Gson gson = new Gson();
-            String JsonString="[";
-            for(LogMinimo iterator : array){
 
-                JsonString+= gson.toJson(iterator);
-                JsonString+=",";
-            }
-            JsonString =JsonString.substring(0,JsonString.length()-1);
-            JsonString+="]";
 
-            return JsonString;
-        }
-
-    /**
-     * funzione che fa da tramite a logRepo.smartYM(year,mont)
-     * @param year anno
-     * @param mont mese
-     * @return
-     */
-        public String smart_ym(String year , String mont ){
-            List<LogMinimo> array = new ArrayList<>();
-            List<List<String>>repo2 = logRepo.smartYM(year,mont);
-            for(List<String> iterator : repo2){
-                LogMinimo u = new LogMinimo(iterator);
-                array.add(u);
-            }
-
-            Gson gson = new Gson();
-            String JsonString="[";
-            for(LogMinimo iterator : array){
-
-                JsonString+= gson.toJson(iterator);
-                JsonString+=",";
-            }
-            JsonString =JsonString.substring(0,JsonString.length()-1);
-            JsonString+="]";
-
-            return JsonString;
-        }
 
     /**
      *  funzione che fa da tramite a logRepo.findsmartlog
