@@ -484,4 +484,12 @@ public class LogError {
     public void setReferer(String referer) {
         Referer = referer;
     }
+
+    public String getData_completa() {
+        return Data_completa;
+    }
+
+    public void setData_completa(String data_completa) {
+        Data_completa = data_completa;
+    }
 }

@@ -63,6 +63,7 @@ public class AllLogListsErr {
         logError.setMONTH(logEntityErrJson.getMonth());
         logError.setLOGLEVEL(logEntityErrJson.getLoglevel());
         logError.setMONTHDAY(logEntityErrJson.getMONTHDAY());
+        logError.setData_completa(Crea_data_bella(logEntityErrJson.getMonth(),logEntityErrJson.getYEAR() ,logEntityErrJson.getMONTHDAY()));
 
         return logError;
     }
