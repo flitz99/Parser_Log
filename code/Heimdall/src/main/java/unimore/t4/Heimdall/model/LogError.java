@@ -19,8 +19,7 @@ public class LogError {
     private Long id;
     @Column(
             name = "Giorno" ,
-            columnDefinition = "VARCHAR(20)",
-            nullable = false
+            columnDefinition = "VARCHAR(20)"
     )
 
     private String DAY;
@@ -163,39 +162,6 @@ public class LogError {
     )
     private String unique_ID;
 
-    @Override
-    public String toString() {
-        return "LogError{" +
-                "id=" + id +
-                ", DAY='" + DAY + '\'' +
-                ", MONTH='" + MONTH + '\'' +
-                ", MONTHDAY='" + MONTHDAY + '\'' +
-                ", TIME='" + TIME + '\'' +
-                ", YEAR='" + YEAR + '\'' +
-                ", LOGLEVEL='" + LOGLEVEL + '\'' +
-                ", PID='" + PID + '\'' +
-                ", ClientIP_Port='" + ClientIP_Port + '\'' +
-                ", ClientIP='" + ClientIP + '\'' +
-                ", Error='" + Error + '\'' +
-                ", Path_File='" + Path_File + '\'' +
-                ", Line='" + Line + '\'' +
-                ", ID='" + ID + '\'' +
-                ", Message='" + Message + '\'' +
-                ", Data='" + Data + '\'' +
-                ", Severity='" + Severity + '\'' +
-                ", Ver='" + Ver + '\'' +
-                ", Tag1='" + Tag1 + '\'' +
-                ", Tag2='" + Tag2 + '\'' +
-                ", Tag3='" + Tag3 + '\'' +
-                ", Tag4='" + Tag4 + '\'' +
-                ", Tag5='" + Tag5 + '\'' +
-                ", Hostname='" + Hostname + '\'' +
-                ", Url='" + Url + '\'' +
-                ", unique_ID='" + unique_ID + '\'' +
-                ", Referer='" + Referer + '\'' +
-                '}';
-    }
-
     @Column(
 
             name = "Referer",
@@ -203,71 +169,13 @@ public class LogError {
     )
     private String Referer;
     @Column(
-            name = "Data_completa",
+            name = "Data_formattata",
             columnDefinition = "DATE"
     )
-    private String Data_completa;  // anno-mese-giorno
+    private String Data_completa = null;  // anno-mese-giorno
     public LogError() {
     }
 
-    public LogError(Long id,
-                    String DAY,
-                    String MONTH,
-                    String MONTHDAY,
-                    String TIME,
-                    String YEAR,
-                    String LOGLEVEL,
-                    String PID,
-                    String clientIP_Port,
-                    String clientIP,
-                    String error,
-                    String path_File,
-                    String line,
-                    String ID,
-                    String message,
-                    String data,
-                    String severity,
-                    String ver,
-                    String tag1,
-                    String tag2,
-                    String tag3,
-                    String tag4,
-                    String tag5,
-                    String hostname,
-                    String url,
-                    String unique_ID,
-                    String referer,
-                    String Datacompleta)
-    {
-        this.id = id;
-        this.DAY = DAY;
-        this.MONTH = MONTH;
-        this.MONTHDAY = MONTHDAY;
-        this.TIME = TIME;
-        this.YEAR = YEAR;
-        this.LOGLEVEL = LOGLEVEL;
-        this.PID = PID;
-        ClientIP_Port = clientIP_Port;
-        ClientIP = clientIP;
-        Error = error;
-        Path_File = path_File;
-        Line = line;
-        this.ID = ID;
-        Message = message;
-        Data = data;
-        Severity = severity;
-        Ver = ver;
-        Tag1 = tag1;
-        Tag2 = tag2;
-        Tag3 = tag3;
-        Tag4 = tag4;
-        Tag5 = tag5;
-        Hostname = hostname;
-        Url = url;
-        this.unique_ID = unique_ID;
-        Referer = referer;
-        this.Data_completa = Datacompleta;
-    }
 
     public Long getId() {
         return id;
@@ -491,5 +399,39 @@ public class LogError {
 
     public void setData_completa(String data_completa) {
         Data_completa = data_completa;
+    }
+
+    @Override
+    public String toString() {
+        return "LogError{" +
+                "id=" + id +
+                ", DAY='" + DAY + '\'' +
+                ", MONTH='" + MONTH + '\'' +
+                ", MONTHDAY='" + MONTHDAY + '\'' +
+                ", TIME='" + TIME + '\'' +
+                ", YEAR='" + YEAR + '\'' +
+                ", LOGLEVEL='" + LOGLEVEL + '\'' +
+                ", PID='" + PID + '\'' +
+                ", ClientIP_Port='" + ClientIP_Port + '\'' +
+                ", ClientIP='" + ClientIP + '\'' +
+                ", Error='" + Error + '\'' +
+                ", Path_File='" + Path_File + '\'' +
+                ", Line='" + Line + '\'' +
+                ", ID='" + ID + '\'' +
+                ", Message='" + Message + '\'' +
+                ", Data='" + Data + '\'' +
+                ", Severity='" + Severity + '\'' +
+                ", Ver='" + Ver + '\'' +
+                ", Tag1='" + Tag1 + '\'' +
+                ", Tag2='" + Tag2 + '\'' +
+                ", Tag3='" + Tag3 + '\'' +
+                ", Tag4='" + Tag4 + '\'' +
+                ", Tag5='" + Tag5 + '\'' +
+                ", Hostname='" + Hostname + '\'' +
+                ", Url='" + Url + '\'' +
+                ", unique_ID='" + unique_ID + '\'' +
+                ", Referer='" + Referer + '\'' +
+                ", Data_completa='" + Data_completa + '\'' +
+                '}';
     }
 }

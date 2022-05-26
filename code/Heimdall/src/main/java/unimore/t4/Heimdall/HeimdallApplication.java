@@ -55,9 +55,11 @@ public class HeimdallApplication {
 
 			JsonReader jsonreadererr = new JsonReader("File_Json_err");
 			jsonreadererr.readAllLogFiles();
+
 			List<LogError> logErrorList = jsonreadererr.generateLogErrors();
+
 			for (LogError logError : logErrorList){
-				System.out.println(logError.toString());
+
 				logErrRepo.save(logError);
 			}
 

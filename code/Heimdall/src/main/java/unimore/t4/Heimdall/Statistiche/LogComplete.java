@@ -83,5 +83,6 @@ public class LogComplete {
                 ", valutazione='" + valutazione + '\'' +
                 '}';
     }
+
 }
 
