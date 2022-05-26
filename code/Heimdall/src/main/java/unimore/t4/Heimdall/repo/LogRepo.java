@@ -78,7 +78,7 @@ public interface LogRepo extends JpaRepository<LogEntity, Long> {
     )List<List<String>> findsmartlog();
 
     @Query(
-            value = " Select id , giorno , data_completa , timezone , mese , orario , anno , dispositivo , autentificato , qunatita_trasmissione  , ip_cliente , identificativo , posizione_Citta , latitudine , longitudine , posizione_stato , log_completo , sito_referente , richiesta , codice_risposta , tipo_richiesta , valutazione from log_entity  " ,
+            value = " Select id , giorno , data_completa , timezone , mese , orario , anno , dispositivo , autentificato , qunatita_trasmissione  , ip_cliente , identificativo , posizione_Citta , latitudine , longitudine , posizione_stato ,  sito_referente , richiesta , codice_risposta , tipo_richiesta , valutazione from log_entity " ,
             nativeQuery = true
     )List<List<String>> findalllogsuper();
     /**
