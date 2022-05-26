@@ -4,6 +4,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.*;
 import java.util.Map;
 
+/**
+ * Classe che scrive i log parsati in formato Json
+ */
 public class JsonWriter {
     private final ObjectMapper mapper = new ObjectMapper();
     private static File dirDstJson;

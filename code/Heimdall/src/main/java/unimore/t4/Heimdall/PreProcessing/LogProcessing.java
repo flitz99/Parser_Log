@@ -3,6 +3,9 @@ package unimore.t4.Heimdall.PreProcessing;
 import java.io.File;
 import java.util.Objects;
 
+/**
+ * Classe che preprocessa le cartelle da leggere/scrivere
+ */
 public class LogProcessing {
     /**
      * riferimento alla classe logReader */

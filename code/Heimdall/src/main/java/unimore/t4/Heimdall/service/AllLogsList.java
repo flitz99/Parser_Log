@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class AllLogsList {
+public class AllLogsList extends AllLogListsErr{
     private ArrayList<LogEntityJson> logEntityJsonArrayList = null;
     private ArrayList<LogEntity> logEntities = null;
 

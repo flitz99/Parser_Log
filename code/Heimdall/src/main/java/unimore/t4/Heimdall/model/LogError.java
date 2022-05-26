@@ -175,6 +175,40 @@ public class LogError {
             columnDefinition = "Text"
     )
     private String unique_ID;
+
+    @Override
+    public String toString() {
+        return "LogError{" +
+                "id=" + id +
+                ", DAY='" + DAY + '\'' +
+                ", MONTH='" + MONTH + '\'' +
+                ", MONTHDAY='" + MONTHDAY + '\'' +
+                ", TIME='" + TIME + '\'' +
+                ", YEAR='" + YEAR + '\'' +
+                ", LOGLEVEL='" + LOGLEVEL + '\'' +
+                ", PID='" + PID + '\'' +
+                ", ClientIP_Port='" + ClientIP_Port + '\'' +
+                ", ClientIP='" + ClientIP + '\'' +
+                ", Error='" + Error + '\'' +
+                ", Path_File='" + Path_File + '\'' +
+                ", Line='" + Line + '\'' +
+                ", ID='" + ID + '\'' +
+                ", Message='" + Message + '\'' +
+                ", Data='" + Data + '\'' +
+                ", Severity='" + Severity + '\'' +
+                ", Ver='" + Ver + '\'' +
+                ", Tag1='" + Tag1 + '\'' +
+                ", Tag2='" + Tag2 + '\'' +
+                ", Tag3='" + Tag3 + '\'' +
+                ", Tag4='" + Tag4 + '\'' +
+                ", Tag5='" + Tag5 + '\'' +
+                ", Hostname='" + Hostname + '\'' +
+                ", Url='" + Url + '\'' +
+                ", unique_ID='" + unique_ID + '\'' +
+                ", Referer='" + Referer + '\'' +
+                '}';
+    }
+
     @Column(
 
             name = "Referer",

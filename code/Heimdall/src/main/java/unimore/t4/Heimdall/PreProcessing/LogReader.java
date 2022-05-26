@@ -6,6 +6,9 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 
+/**
+ * Classe che legge i file di log
+ */
 public class LogReader {
     private File[] allLogFiles = null;
     private LogParser logParser;

@@ -3,7 +3,10 @@ package unimore.t4.Heimdall.PreProcessing;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import unimore.t4.Heimdall.geolite.HelloGeoIP2;
 import unimore.t4.Heimdall.model.LogEntity;
+import unimore.t4.Heimdall.model.LogError;
+import unimore.t4.Heimdall.service.AllLogListsErr;
 import unimore.t4.Heimdall.service.AllLogsList;
+import unimore.t4.Heimdall.service.LogEntityErrJson;
 import unimore.t4.Heimdall.service.LogEntityJson;
 
 import java.io.BufferedReader;
@@ -22,19 +25,27 @@ public class JsonReader {
     //ogni mappa può essere messa in un arraylist
     private File dirSrcJson;
     private AllLogsList list;
+
+    private AllLogListsErr listerr;
     private boolean logError;
 
+    /**
+     *
+     * @param dirSrcJsonName
+     */
     public JsonReader(String dirSrcJsonName) {
         if(dirSrcJsonName.equals("File_Json")) {
             dirSrcJson = new File(new File("").getAbsolutePath() + File.separator + dirSrcJsonName);
             dirSrcJson.mkdir();
             list = new AllLogsList();
+            listerr=null;
             logError = false;
         }
         if (dirSrcJsonName.equals("File_Json_err")){
             dirSrcJson = new File(new File("").getAbsolutePath() + File.separator + dirSrcJsonName);
             dirSrcJson.mkdir();
-            list = new AllLogsList();
+            list=null;
+            listerr = new AllLogListsErr();
             logError = true;
         }
     }
@@ -58,9 +69,15 @@ public class JsonReader {
             BufferedReader br = new BufferedReader(new FileReader(jsonLogFile));
             String sourceJsonLogLine;
             while ((sourceJsonLogLine = br.readLine()) != null) {
-                LogEntityJson logEntityJson = mapper.readValue(sourceJsonLogLine, LogEntityJson.class);
-                list.add(logEntityJson);
-                System.err.println("lo stai facendo ?");
+                if(logError==true) { // se analizzo log di errore
+                    LogEntityErrJson logEntityErrJson= mapper.readValue(sourceJsonLogLine,LogEntityErrJson.class);
+                    listerr.add(logEntityErrJson);
+                }
+                else {          //se analizzo log normali
+                    LogEntityJson logEntityJson = mapper.readValue(sourceJsonLogLine, LogEntityJson.class);
+                    list.add(logEntityJson);
+                    //System.err.println("lo stai facendo ?");
+                }
             }
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -75,5 +92,9 @@ public class JsonReader {
     }
     public List<LogEntity> generateLogEntities(){
         return list.fromLogEntityJsonArrayListToLogEntities();
+    }
+
+    public List<LogError> generateLogErrors(){
+        return listerr.fromLogErrorJsonArrayListToLogErrors();
     }
 }

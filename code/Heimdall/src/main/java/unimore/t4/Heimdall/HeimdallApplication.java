@@ -14,6 +14,8 @@ import unimore.t4.Heimdall.Statistiche.Spammer;
 import unimore.t4.Heimdall.Statistiche.SpammerDMY;
 import unimore.t4.Heimdall.geolite.HelloGeoIP2;
 import unimore.t4.Heimdall.model.LogEntity;
+import unimore.t4.Heimdall.model.LogError;
+import unimore.t4.Heimdall.repo.LogErrRepo;
 import unimore.t4.Heimdall.repo.LogRepo;
 import unimore.t4.Heimdall.service.LogService;
 
@@ -32,23 +34,25 @@ public class HeimdallApplication {
 	 */
 
 	@Bean
-	CommandLineRunner commandLineRunner(LogRepo logrepo){
+	CommandLineRunner commandLineRunner(LogRepo logrepo, LogErrRepo logrepoerr){
 		return args -> {
 
+	/*
+		JsonReader jsonReader = new JsonReader("File_Json");
+			jsonReader.readAllLogFiles();
+			List<LogEntity> logEntityList= jsonReader.generateLogEntities();
+		for (LogEntity logEntity: logEntityList){
+			System.out.println(logEntity);
+				//logrepo.save(logEntity);
+		}*/
 
-//			JsonReader jsonReader = new JsonReader("File_Json");
-//			jsonReader.readAllLogFiles();
-//			List<LogEntity> logEntityList= jsonReader.generateLogEntities();
-//			for (LogEntity logEntity: logEntityList){
-//				System.out.println(logEntity);
-//				//logrepo.save(logEntity);
-//			}
-//
-//
-//
-//			JsonReader jsonreadererr = new JsonReader("File_Json_err");
-//			jsonreadererr.readAllLogFiles();
-//			List<LogEntityErr> .......    DA IMPLEMENTARE e cancellare log vuoti
+		JsonReader jsonreadererr = new JsonReader("File_Json_err");
+		jsonreadererr.readAllLogFiles();
+		List<LogError> logErrorList = jsonreadererr.generateLogErrors();
+		for (LogError logError: logErrorList ){
+				System.out.println(logError.toString());
+				//logrepoerr.save(logError);
+		}
 
 		};
 	}
@@ -64,11 +68,11 @@ public class HeimdallApplication {
 //
 //
 //
-//		LogProcessing logProcessing = new LogProcessing("File_log", "File_output", "File_Json");
-//		logProcessing.logProcessing();
+		//LogProcessing logProcessing = new LogProcessing("File_log", "File_output", "File_Json");
+		//logProcessing.logProcessing();
 //
-//		LogProcessing logprocessingerr = new LogProcessing("File_log_err", "File_output_err", "File_Json_err");
-//		logprocessingerr.logProcessing();
+		//LogProcessing logprocessingerr = new LogProcessing("File_log_err", "File_output_err", "File_Json_err");
+		//logprocessingerr.logProcessing();
 		/**
 		 * Inizializzazione della applicazione Spring
 		 */
