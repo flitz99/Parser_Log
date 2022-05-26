@@ -5,8 +5,10 @@ import unimore.t4.Heimdall.model.LogEntity;
 import java.util.ArrayList;
 import java.util.List;
 
-
-public class AllLogsList extends AllLogListsErr{
+/**
+ * classe per ottenere
+ */
+public class AllLogsList {
     private ArrayList<LogEntityJson> logEntityJsonArrayList = null;
     private ArrayList<LogEntity> logEntities = null;
 
@@ -62,7 +64,7 @@ public class AllLogsList extends AllLogListsErr{
     }
     public ArrayList<LogEntity> fromLogEntityJsonArrayListToLogEntities(){
         logEntities = new ArrayList<>();
-        HelloGeoIP2 mappatore = new HelloGeoIP2("mappatore creato"); // suona figo
+        HelloGeoIP2 mappatore = new HelloGeoIP2("mappatore creato");
         for(int i=0; i < logEntityJsonArrayList.size(); i++){
             logEntities.add(fromLogEntityJsontoLogEntity(logEntityJsonArrayList.get(i) , mappatore));
         }

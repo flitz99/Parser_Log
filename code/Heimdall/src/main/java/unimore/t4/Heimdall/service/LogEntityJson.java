@@ -1,5 +1,8 @@
 package unimore.t4.Heimdall.service;
 
+/**
+ * Logentity in formato Json
+ */
 public class LogEntityJson {
     public String request;
     public String MONTH;

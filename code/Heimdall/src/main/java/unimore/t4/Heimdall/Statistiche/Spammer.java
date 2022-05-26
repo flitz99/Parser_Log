@@ -2,6 +2,9 @@ package unimore.t4.Heimdall.Statistiche;
 
 import java.util.List;
 
+/**
+ * Claase creata per contare le quantita richieste fatte da un singolo ip in tutto al database
+ */
 public class Spammer {
 
     private String ip;

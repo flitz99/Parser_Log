@@ -73,12 +73,12 @@ public interface LogRepo extends JpaRepository<LogEntity, Long> {
     )List<List<String>> findlog();
 
     @Query(
-            value = "Select data_completa , orario , ip_cliente  , tipo_richiesta,   codice_risposta , qunatita_trasmissione , posizione_stato , posizione_citta , id from log_entity " ,
+            value = "select  id , data_completa , orario , qunatita_trasmissione, ip_cliente , richiesta , codice_risposta , tipo_richiesta from log_entity " ,
             nativeQuery = true
     )List<List<String>> findsmartlog();
 
     @Query(
-            value = " Select id , giorno , data_completa , timezone , mese , orario , anno , dispositivo , autentificato , qunatita_trasmissione  , ip_cliente , identificativo , posizione_Citta , latitudine , longitudine , posizione_stato , log_completo , sito_referente , richiesta , codice_risposta , tipo_richiesta , valutazione from log_entity  " ,
+            value = " Select id , giorno , data_completa , timezone , mese , orario , anno , dispositivo , autentificato , qunatita_trasmissione  , ip_cliente , identificativo , posizione_Citta , latitudine , longitudine , posizione_stato ,  sito_referente , richiesta , codice_risposta , tipo_richiesta , valutazione from log_entity " ,
             nativeQuery = true
     )List<List<String>> findalllogsuper();
     /**
@@ -92,23 +92,6 @@ public interface LogRepo extends JpaRepository<LogEntity, Long> {
             nativeQuery = true
     )List<List<String>> findlogMonth(@Param("mesex") String mese_da_cercare , @Param("annox") String anno_da_cercare );
 
-    /**
-     * FUNZIONE che prende dal nostro intero database tutti i log che abbiamo in un determinato  mese  anno e giorno
-     * @param mese_da_cercare indica il mese
-     * @param giorno_cercato  indica giorno
-     * @param anno_da_cercare   indica anno
-     * @return Lista contentenente liste di stringhe che rappresentano i log per i criteri scelti
-     */
-    @Query(
-            value = "Select giorno , mese , anno , orario , timezone , ip_cliente , autentificato , identificativo , dispositivo , sito_referente , richiesta ,  codice_risposta , qunatita_trasmissione from log_entity where mese = :mesex and giorno = :giornox and anno = :annox " ,
-            nativeQuery = true
-    )List<List<String>> findlogMonthday(@Param("mesex") String mese_da_cercare , @Param("giornox") String giorno_cercato ,  @Param("annox") String anno_da_cercare  );
-
-    /**
-     * FUNZIONE che prende dal nostro intero databse tutti i log appartententi a un certo ip
-     * @param ip da cercare
-     * @return Lista contentenente liste di stringhe che rappresentano i log per i criteri scelti
-     */
 
     @Query(
             value = "Select giorno , mese , anno , orario , timezone , ip_cliente , autentificato , identificativo , dispositivo , sito_referente , richiesta ,  codice_risposta , qunatita_trasmissione from log_entity where ip_cliente = :ipx " ,
@@ -127,20 +110,15 @@ public interface LogRepo extends JpaRepository<LogEntity, Long> {
             nativeQuery = true
     )List<List<String>> findlogMonthdayip(  @Param("annox") String anno_da_cercare );
 
-    @Query(
-            value = "Select  data_completa , orario , ip_cliente  , tipo_richiesta,   codice_risposta , qunatita_trasmissione , posizione_stato , posizione_citta , id  from log_entity where anno = :annox and mese = :mesex   " ,
-            nativeQuery = true
-        )
-    List<List<String>> smartYM ( @Param("annox") String anno_da_cercare , @Param("mesex") String mese_da_cercare  );
 
     @Query(
-            value = "Select data_completa , orario , ip_cliente  , tipo_richiesta,   codice_risposta , qunatita_trasmissione , posizione_stato , posizione_citta , id  from log_entity where anno = :annox and mese = :mesex and giorno = :giornox  " ,
-            nativeQuery = true
-    )
-    List<List<String>> smartYMD( @Param("annox") String anno_da_cercare , @Param("mesex") String mese_da_cercare , @Param("giornox") String giorno_cercato  );
-
-    @Query(
-            value = " Select id , giorno , data_completa , timezone , mese , orario , anno , dispositivo , autentificato , qunatita_trasmissione  , ip_cliente , identificativo , posizione_Citta , latitudine , longitudine , posizione_stato , log_completo , sito_referente , richiesta , codice_risposta , tipo_richiesta , valutazione from log_entity where id = :idx  " ,
+            value = " Select id , giorno , data_completa , timezone , mese , orario , anno , dispositivo , autentificato , qunatita_trasmissione  , ip_cliente , identificativo , posizione_Citta , latitudine , longitudine , posizione_stato ,  sito_referente , richiesta , codice_risposta , tipo_richiesta , valutazione from log_entity where id = :idx  " ,
             nativeQuery = true
     )List<List<String>> findalllogsuperid(@Param("idx") String id_log );
+
+
+    @Query(
+            value = "select codice_risposta ,  count(*) as quantitá from log_entity group by codice_risposta" ,
+            nativeQuery = true
+    )List<List<String>> smartstats();
 }

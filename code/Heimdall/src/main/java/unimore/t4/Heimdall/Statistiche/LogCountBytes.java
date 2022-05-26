@@ -2,6 +2,9 @@ package unimore.t4.Heimdall.Statistiche;
 
 import java.util.List;
 
+/**
+ * Classe creata per contenere la quarries di quanti byte sono stati sambianti in un determinato mese
+ */
 public class LogCountBytes {
 
    private String mese;

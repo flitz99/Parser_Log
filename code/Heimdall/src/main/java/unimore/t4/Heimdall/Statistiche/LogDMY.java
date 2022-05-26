@@ -2,6 +2,9 @@ package unimore.t4.Heimdall.Statistiche;
 
 import java.util.List;
 
+/**
+ * classe creata come contenitore per quarrie relativa a un log in un determinato giorno mese anno
+ */
 public class LogDMY {
 
     private String giorno;
