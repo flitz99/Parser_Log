@@ -129,7 +129,7 @@ public class LogService {
                 //JsonString+=",";
             }
             JsonString =JsonString.substring(0,JsonString.length()-1);
-            JsonString+="]";
+            JsonString+="}]";
 
             return JsonString;
         }
