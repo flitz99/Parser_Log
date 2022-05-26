@@ -2,6 +2,9 @@ package unimore.t4.Heimdall.Statistiche;
 
 import java.util.List;
 
+/**
+ * Classe creata come contenitore per al quarries di un log formato ridotto
+ */
 public class LogMinimo {
 
     private String data_completa;

@@ -5,7 +5,9 @@ import unimore.t4.Heimdall.model.LogEntity;
 import java.util.ArrayList;
 import java.util.List;
 
-
+/**
+ * classe per ottenere
+ */
 public class AllLogsList {
     private ArrayList<LogEntityJson> logEntityJsonArrayList = null;
     private ArrayList<LogEntity> logEntities = null;

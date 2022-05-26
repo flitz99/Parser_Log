@@ -2,6 +2,10 @@ package unimore.t4.Heimdall.Statistiche;
 
 import java.util.List;
 
+/**
+ *  Classe creata come contenitore per la ricerca nei quarries per il conteggio della quantita di richieste
+ *  di un derterminato ip
+ */
 public class SpammerDMY {
     String ip_cliente;
     String mese;

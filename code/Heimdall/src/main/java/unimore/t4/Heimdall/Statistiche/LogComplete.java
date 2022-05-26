@@ -2,6 +2,9 @@ package unimore.t4.Heimdall.Statistiche;
 
 import java.util.List;
 
+/**
+ * Classe creata per contenere nella sua interezza i log salvati nel database
+ */
 public class LogComplete {
 
     private String id;

@@ -39,7 +39,10 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
         }
 
 
-
+    @GetMapping("/all/stats")
+    public  String smartstats(){
+        return logService.smartstats();
+    }
 
         @GetMapping("/richieste")
         public  String gettestSpammer(){
@@ -102,8 +105,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
     @RequestMapping(value = "/smart/alldb" , method =  GET )
     @ResponseBody
-    public  String smartalldb( ){
-        return logService.smartalldb();
+    public  String smartalldb( ){return logService.smartalldb();
     }
 
       }
