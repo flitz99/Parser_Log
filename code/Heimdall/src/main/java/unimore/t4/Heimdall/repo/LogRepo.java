@@ -140,7 +140,7 @@ public interface LogRepo extends JpaRepository<LogEntity, Long> {
     List<List<String>> smartYMD( @Param("annox") String anno_da_cercare , @Param("mesex") String mese_da_cercare , @Param("giornox") String giorno_cercato  );
 
     @Query(
-            value = " Select id , giorno , data_completa , timezone , mese , orario , anno , dispositivo , autentificato , qunatita_trasmissione  , ip_cliente , identificativo , posizione_Citta , latitudine , longitudine , posizione_stato , log_completo , sito_referente , richiesta , codice_risposta , tipo_richiesta , valutazione from log_entity where id = :idx  " ,
+            value = " Select id , giorno , data_completa , timezone , mese , orario , anno , dispositivo , autentificato , qunatita_trasmissione  , ip_cliente , identificativo , posizione_Citta , latitudine , longitudine , posizione_stato ,  sito_referente , richiesta , codice_risposta , tipo_richiesta , valutazione from log_entity where id = :idx  " ,
             nativeQuery = true
     )List<List<String>> findalllogsuperid(@Param("idx") String id_log );
 

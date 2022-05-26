@@ -36,13 +36,14 @@ public class HeimdallApplication {
 		return args -> {
 
 
+
 //			JsonReader jsonReader = new JsonReader("File_Json");
 //			jsonReader.readAllLogFiles();
 //			List<LogEntity> logEntityList= jsonReader.generateLogEntities();
 //			for (LogEntity logEntity: logEntityList){
 //				System.out.println(logEntity);
-//				//logrepo.save(logEntity);
-//			}
+//				logrepo.save(logEntity);
+//		}
 //
 //
 //

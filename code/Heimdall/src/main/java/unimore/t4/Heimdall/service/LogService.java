@@ -126,7 +126,7 @@ public class LogService {
             for(LogComplete iteratore : array){
 
                 JsonString+= gson.toJson(iteratore);
-                JsonString+=",";
+                //JsonString+=",";
             }
             JsonString =JsonString.substring(0,JsonString.length()-1);
             JsonString+="]";

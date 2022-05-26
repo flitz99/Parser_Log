@@ -64,7 +64,7 @@ public class AllLogsList {
     }
     public ArrayList<LogEntity> fromLogEntityJsonArrayListToLogEntities(){
         logEntities = new ArrayList<>();
-        HelloGeoIP2 mappatore = new HelloGeoIP2("mappatore creato"); // suona figo
+        HelloGeoIP2 mappatore = new HelloGeoIP2("mappatore creato");
         for(int i=0; i < logEntityJsonArrayList.size(); i++){
             logEntities.add(fromLogEntityJsontoLogEntity(logEntityJsonArrayList.get(i) , mappatore));
         }
