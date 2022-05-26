@@ -97,6 +97,15 @@ public class LogService {
         return JsonString;
     }
 
+    public String getlogid(String id){
+       List<String> repo1= logRepo.getbyid(id);
+
+       LogComplete u = new LogComplete(repo1);
+       System.err.println(u.toString());
+
+        return u.toString();
+    }
+
     public String getlogmonthyear(String month , String year){
         List<LogDMY> array = new ArrayList<>();
         List<List<String>>repo2 = logRepo.findlogMonth(month, year);

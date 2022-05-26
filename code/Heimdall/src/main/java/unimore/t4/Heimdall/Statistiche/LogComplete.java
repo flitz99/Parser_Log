@@ -30,7 +30,7 @@ public class LogComplete {
     public LogComplete( List<String> array) {
         this.id = array.get(0);
         this.giorno = array.get(1);
-        this.data_completo = array.get(2);
+        this.data_completo = Crea_data_bella(array.get(4),array.get(6),array.get(1));
         this.timezone = array.get(3);
         this.mese = array.get(4);
         this.orario = array.get(5);
@@ -254,5 +254,39 @@ public class LogComplete {
                 ", tipo_richiesta='" + tipo_richiesta + '\'' +
                 ", valutazione='" + valutazione + '\'' +
                 '}';
+    }
+
+    public String Crea_data_bella(String mese , String anno , String giorno){
+
+        switch (mese){
+            case "Jan":
+                return (anno+"-01-"+giorno);
+            case "Feb":
+                return (anno+"-02-"+giorno);
+            case "Mar":
+                return (anno+"-03-"+giorno);
+            case "Apr":
+                return (anno+"-04-"+giorno);
+            case "May":
+                return (anno+"-05-"+giorno);
+            case "Jun":
+                return (anno+"-06-"+giorno);
+            case "Jul":
+                return (anno+"-07-"+giorno);
+            case "Aug":
+                return (anno+"-08-"+giorno);
+            case "Sep":
+                return (anno+"-09-"+giorno);
+            case "Oct":
+                return (anno+"-10-"+giorno);
+            case "Nov":
+                return (anno+"-11-"+giorno);
+            case "Dec":
+                return (anno+"-12-"+giorno);
+            default: return "2022-01-01";
+
+        }
+
+
     }
 }
