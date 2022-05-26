@@ -14,6 +14,8 @@ import unimore.t4.Heimdall.Statistiche.Spammer;
 import unimore.t4.Heimdall.Statistiche.SpammerDMY;
 import unimore.t4.Heimdall.geolite.HelloGeoIP2;
 import unimore.t4.Heimdall.model.LogEntity;
+import unimore.t4.Heimdall.model.LogError;
+import unimore.t4.Heimdall.repo.LogErrRepo;
 import unimore.t4.Heimdall.repo.LogRepo;
 import unimore.t4.Heimdall.service.LogService;
 
@@ -32,7 +34,7 @@ public class HeimdallApplication {
 	 */
 
 	@Bean
-	CommandLineRunner commandLineRunner(LogRepo logrepo){
+	CommandLineRunner commandLineRunner(LogRepo logrepo, LogErrRepo logErrRepo){
 		return args -> {
 
 
@@ -44,12 +46,22 @@ public class HeimdallApplication {
 //				System.out.println(logEntity);
 //				logrepo.save(logEntity);
 //		}
-//
-//
-//
-//			JsonReader jsonreadererr = new JsonReader("File_Json_err");
-//			jsonreadererr.readAllLogFiles();
-//			List<LogEntityErr> .......    DA IMPLEMENTARE e cancellare log vuoti
+
+		};
+	}
+	@Bean
+	CommandLineRunner commandLine(LogErrRepo logErrRepo){
+		return args -> {
+
+			JsonReader jsonreadererr = new JsonReader("File_Json_err");
+			jsonreadererr.readAllLogFiles();
+			List<LogError> logErrorList = jsonreadererr.generateLogErrors();
+			for (LogError logError : logErrorList){
+				System.out.println(logError.toString());
+				logErrRepo.save(logError);
+			}
+
+
 
 		};
 	}
