@@ -23,18 +23,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Classe di partenza dell'applicazione
+ *Classe Main del programma
  */
 @SpringBootApplication
 public class HeimdallApplication {
-	/**
-	 * costruttore di HeimdallApplication, attualmente fa 2 cose:
-	 * 1)inizializzare il  {@link LogService}
-	 * 2)fare un test di parsing con logProcessing
-	 */
 
+
+	/**
+	 * Funzione Che parte una volta che Spring si é avviato per inserire i log parsati in formato json nel database
+	 * @param logrepo
+	 * @return
+	 */
 	@Bean
-	CommandLineRunner commandLineRunner(LogRepo logrepo, LogErrRepo logErrRepo){
+	CommandLineRunner Salva_File_Log_Database(LogRepo logrepo){
 		return args -> {
 
 
@@ -49,8 +50,15 @@ public class HeimdallApplication {
 
 		};
 	}
+
+	/**
+	 *Funzione Che parte una volta che Spring si é avviato per inserire i log errori parsati in formato json nel database
+	 * @param logErrRepo
+	 * @return
+	 */
+
 	@Bean
-	CommandLineRunner commandLine(LogErrRepo logErrRepo){
+	CommandLineRunner Salva_File_Log_Err_Database(LogErrRepo logErrRepo){
 		return args -> {
 
 /*			JsonReader jsonreadererr = new JsonReader("File_Json_err");
@@ -79,8 +87,7 @@ public class HeimdallApplication {
 //
 //
 //
-//		LogProcessing logProcessing = new LogProcessing("File_log", "File_output", "File_Json");
-//		logProcessing.logProcessing();
+//
 //
 //		LogProcessing logprocessingerr = new LogProcessing("File_log_err", "File_output_err", "File_Json_err");
 //		logprocessingerr.logProcessing();
@@ -99,6 +106,11 @@ public class HeimdallApplication {
 		} else {
 			return ex;
 		}
+	}
+
+	public void start_processing(){
+//		LogProcessing logProcessing = new LogProcessing("File_log", "File_output", "File_Json");
+//		logProcessing.logProcessing();
 	}
 }
 

@@ -3,7 +3,7 @@ package unimore.t4.Heimdall.Statistiche;
 import java.util.List;
 
 /**
- * Classe creata per contenere nella sua interezza i log salvati nel database
+ * classe creati come contenitore per la relativia statisica calcolata
  */
 public class LogComplete {
 

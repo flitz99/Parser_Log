@@ -1,7 +1,7 @@
 package unimore.t4.Heimdall.service;
 
 /**
- * Logentity in formato Json
+ * {@link unimore.t4.Heimdall.model.LogEntity} in formato JSON
  */
 public class LogEntityJson {
     public String request;

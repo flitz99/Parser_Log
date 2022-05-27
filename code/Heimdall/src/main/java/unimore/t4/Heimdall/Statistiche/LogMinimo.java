@@ -3,7 +3,7 @@ package unimore.t4.Heimdall.Statistiche;
 import java.util.List;
 
 /**
- * Classe creata come contenitore per al quarries di un log formato ridotto
+ * classe creati come contenitore per la relativia statisica calcolata
  */
 public class LogMinimo {
 

@@ -16,14 +16,19 @@ import java.util.List;
 import java.util.Locale;
 
 /**
- *Classe di servizio che serve per inizializzare i tre componenti principali
- *che fanno da  macro contenitori alle funzioni che andremmo usare. Affianca la
- *classe LogController e svolge la logica per essa.
+ * Classe che si occupa di formattare i dati ricevuti dalle quarries situate in {@link LogRepo}
+ *
+ * ogni funzione viene chiamata dalla sua controparte in {@link  unimore.t4.Heimdall.controller.LogController}
+ * per poi invocare la controparte in {@link LogRepo} e ottenere un array di
  */
+
 @Service
 public class LogService {
-        /**
-         * riferimento all'interfaccia per chiamare metodi di servizio */
+    /**
+     * riferimento all'interfaccia per chiamare metodi di servizio
+     *
+     * */
+
 
         private static LogRepo logRepo;
         @Autowired
@@ -35,8 +40,9 @@ public class LogService {
         }
 
     /**
-     *  funzione che ritrona una lista json della classe Spammer
-     * @return
+     *   funzione che chiama la quarrie in {@link LogRepo} per avere una lista contenente
+     *   ip e quantita di richieste globali di ogni ip nel database
+     *
      */
         public String getspammerglobal(){
             List<Spammer> provaspammer = new ArrayList<>();		// Array che conterrá la lista degli Spammer
@@ -58,9 +64,10 @@ public class LogService {
 
             return JsonString;
         }
+
     /**
-     *  funzione che ritrona una lista json della classe LogDMY
-     * @return
+     *   funzione che chiama la quarrie in {@link LogRepo}
+     * @return  prende tutti i log in f
      */
         public String getlogall(){
             List<LogDMY> array = new ArrayList<>();
@@ -87,6 +94,7 @@ public class LogService {
      * funzione che fa da tramite  per logRepo.findalllogsuper()
      * @return
      */
+
     public String getlogallsuper(){
             List<LogComplete> array = new ArrayList<>();
             List<List<String>>repo1 = logRepo.findalllogsuper();
@@ -267,8 +275,46 @@ public class LogService {
             return JsonString;
         }
 
+    public String getlogcountbytesmonth(String year ){
+        List<LogCountBytes> array = new ArrayList<>();
+        List<List<String>>repo2 = logRepo.findlogMonthdayip(year);
+        for(List<String> iteratore : repo2){
+            LogCountBytes u = new LogCountBytes(iteratore);
+            array.add(u);
+        }
 
+        Gson gson = new Gson();
+        String JsonString="[";
+        for(LogCountBytes iteratore : array){
 
+            JsonString+= gson.toJson(iteratore);
+            JsonString+=",";
+        }
+        JsonString =JsonString.substring(0,JsonString.length()-1);
+        JsonString+="]";
+
+        return JsonString;
+    }
+    public String getcontabytesmese(String year , String month){
+        List<LogCountBytes> array = new ArrayList<>();
+        List<List<String>>repo2 = logRepo.findlogcountmonth(year , month);
+        for(List<String> iteratore : repo2){
+            LogCountBytes u = new LogCountBytes(iteratore);
+            array.add(u);
+        }
+
+        Gson gson = new Gson();
+        String JsonString="[";
+        for(LogCountBytes iteratore : array){
+
+            JsonString+= gson.toJson(iteratore);
+            JsonString+=",";
+        }
+        JsonString =JsonString.substring(0,JsonString.length()-1);
+        JsonString+="]";
+
+        return JsonString;
+    }
 
 
     /**
@@ -296,31 +342,12 @@ public class LogService {
             return JsonString;
         }
 
+    public static List<LogEntity> findAllLogs(){
 
+        return logRepo.findAll();
 
-
-        /**
-         * metodo statico che ritorna tutti i log
-         *
-         * @return oggetto lista di log
-         */
-        public static List<LogEntity> findAllLogs(){
-            return logRepo.findAll();
         }
 
-        /**
-         * Metodo per trovare un log data la chiave primaria
-         * ritorna un'eccezione in caso di log non trovato
-         * @return il log recuperato
-         */
-        public static LogEntity findLogByIdLog(Long idLog){
-            return (LogEntity) logRepo.findById(idLog).orElseThrow(
-                    ()->new LogNotFoundException("Log con idLog " + idLog +" non trovato"));
-        }
-        /*
-        public void deleteLog(Integer idLog){
-            logRepo.deleteLogByIdLog(idLog);
-        }
-        */
+
 
 }

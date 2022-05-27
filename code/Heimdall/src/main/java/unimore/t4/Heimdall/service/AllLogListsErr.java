@@ -7,6 +7,9 @@ import unimore.t4.Heimdall.model.LogError;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Classe che trasforma  {@link LogEntityErrJson} in {@link LogError}
+ */
 public class AllLogListsErr {
 
     private ArrayList<LogEntityErrJson> logEntityJsonErrArrayList = null;

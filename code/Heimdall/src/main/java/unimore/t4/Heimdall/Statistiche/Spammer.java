@@ -3,17 +3,13 @@ package unimore.t4.Heimdall.Statistiche;
 import java.util.List;
 
 /**
- * Claase creata per contare le quantita richieste fatte da un singolo ip in tutto al database
+ * classe creati come contenitore per la relativia statisica calcolata
  */
 public class Spammer {
 
     private String ip;
     private String count;
 
-    public Spammer(String ip, String count) {
-        this.ip = ip;
-        this.count = count;
-    }
 
     public Spammer(List<String> entrata){
         this.ip = entrata.get(0);
@@ -30,13 +26,7 @@ public class Spammer {
         this.ip = ip;
     }
 
-    public String getCount() {
-        return count;
-    }
 
-    public void setCount(String count) {
-        this.count = count;
-    }
 
     @Override
     public String toString() {

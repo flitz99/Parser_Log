@@ -110,6 +110,10 @@ public interface LogRepo extends JpaRepository<LogEntity, Long> {
             nativeQuery = true
     )List<List<String>> findlogMonthdayip(  @Param("annox") String anno_da_cercare );
 
+    @Query(
+            value = "select mese , SUM(qunatita_trasmissione) as quantita_bytes_totale , count(ip_cliente) as numero_transazioni  from log_entity where anno = :annox and mese = :mesex group by   mese , anno " ,
+            nativeQuery = true
+    )List<List<String>> findlogcountmonth(  @Param("annox") String anno_da_cercare , @Param("mesex") String mese_da_cercare  );
 
     @Query(
             value = " Select id , giorno , data_completa , timezone , mese , orario , anno , dispositivo , autentificato , qunatita_trasmissione  , ip_cliente , identificativo , posizione_Citta , latitudine , longitudine , posizione_stato ,  sito_referente , richiesta , codice_risposta , tipo_richiesta , valutazione from log_entity where id = :idx  " ,

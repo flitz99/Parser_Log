@@ -1,5 +1,8 @@
 package unimore.t4.Heimdall.service;
 
+/**
+ * {@link unimore.t4.Heimdall.model.LogError} in formato JSON
+ */
 public class LogEntityErrJson {
     public String referer;
     public String clientip2;

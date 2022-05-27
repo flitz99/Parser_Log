@@ -66,7 +66,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
     }
 
 
-        @RequestMapping(value = "/alldb/mese/{mesex}/anno/{annox}" , method =  GET )
+    @RequestMapping(value = "/alldb/mese/{mesex}/anno/{annox}" , method =  GET )
         @ResponseBody
         public  String getalllogMY(@PathVariable String mesex , @PathVariable String annox){
             return logService.getlogmonthyear(mesex, annox);
@@ -88,6 +88,12 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
     @ResponseBody
     public  String getalllogMY(@PathVariable String annox ){
         return logService.getlogcountbytes(annox );
+    }
+
+    @RequestMapping(value = "/alldb/bytescount/anno/{annox}/mese/{mesex}" , method =  GET )
+    @ResponseBody
+    public  String getbytesmonth(@PathVariable String annox ,@PathVariable String  mesex){
+        return logService.getcontabytesmese(annox , mesex );
     }
 
     @RequestMapping(value = "/smart/alldb" , method =  GET )

@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * classe per ottenere
+ * Classe che trasforma  {@link LogEntityJson} in {@link LogEntity}
  */
 public class AllLogsList {
     private ArrayList<LogEntityJson> logEntityJsonArrayList = null;

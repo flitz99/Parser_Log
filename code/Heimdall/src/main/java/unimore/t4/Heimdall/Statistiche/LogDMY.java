@@ -3,7 +3,7 @@ package unimore.t4.Heimdall.Statistiche;
 import java.util.List;
 
 /**
- * classe creata come contenitore per quarrie relativa a un log in un determinato giorno mese anno
+ * classe creati come contenitore per la relativia statisica calcolata
  */
 public class LogDMY {
 
@@ -55,109 +55,6 @@ public class LogDMY {
         this.quantita_trasmissione = quantita_trasmissione;
     }
 
-    public String getGiorno() {
-        return giorno;
-    }
-
-    public void setGiorno(String giorno) {
-        this.giorno = giorno;
-    }
-
-    public String getMese() {
-        return mese;
-    }
-
-    public void setMese(String mese) {
-        this.mese = mese;
-    }
-
-    public String getAnno() {
-        return anno;
-    }
-
-    public void setAnno(String anno) {
-        this.anno = anno;
-    }
-
-    public String getOrario() {
-        return orario;
-    }
-
-    public void setOrario(String orario) {
-        this.orario = orario;
-    }
-
-    public String getTimezone() {
-        return timezone;
-    }
-
-    public void setTimezone(String timezone) {
-        this.timezone = timezone;
-    }
-
-    public String getIp_cliente() {
-        return ip_cliente;
-    }
-
-    public void setIp_cliente(String ip_cliente) {
-        this.ip_cliente = ip_cliente;
-    }
-
-    public String getAutentificato() {
-        return autentificato;
-    }
-
-    public void setAutentificato(String autentificato) {
-        this.autentificato = autentificato;
-    }
-
-    public String getIdentificativo() {
-        return identificativo;
-    }
-
-    public void setIdentificativo(String identificativo) {
-        this.identificativo = identificativo;
-    }
-
-    public String getDispositivo() {
-        return dispositivo;
-    }
-
-    public void setDispositivo(String dispositivo) {
-        this.dispositivo = dispositivo;
-    }
-
-    public String getStato_referente() {
-        return stato_referente;
-    }
-
-    public void setStato_referente(String stato_referente) {
-        this.stato_referente = stato_referente;
-    }
-
-    public String getRichiesta() {
-        return richiesta;
-    }
-
-    public void setRichiesta(String richiesta) {
-        this.richiesta = richiesta;
-    }
-
-    public String getCodice_risposta() {
-        return codice_risposta;
-    }
-
-    public void setCodice_risposta(String codice_risposta) {
-        this.codice_risposta = codice_risposta;
-    }
-
-    public String getQuantita_trasmissione() {
-        return quantita_trasmissione;
-    }
-
-    public void setQuantita_trasmissione(String quantita_trasmissione) {
-        this.quantita_trasmissione = quantita_trasmissione;
-    }
 
     @Override
     public String toString() {
