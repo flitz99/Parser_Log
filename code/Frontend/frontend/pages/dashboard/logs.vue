@@ -16,7 +16,8 @@
             <NuxtLink to="/charts">
             <h3 class="stats p-2">Statistiche</h3>
             </NuxtLink>
-            <img class="img-stats" src="~assets/stats-bars.png" />
+            <img src="~/assets/stats-bars.png" class="img-stats"/>
+
           </div> 
 
         </div>
@@ -25,75 +26,77 @@
 
       <b-container class="d-flex flex-column-reverse shadow p-3 mb-5 bg-white rounded">
 
-            <b-container fluid class="m-0">
+            <b-container fluid class="m-0 mt-5">
                 <b-table
-            :items="logs"
-            :fields="fields"
-            :current-page="currentPage"
-            :per-page="perPage"
-            :filter="filter"
-            :filter-included-fields="filterOn"
-            :filter-ignored-fields="filterOff"
-            :tbody-tr-class="rowClass"
-            :filter-debounce="1000"
-            stacked="md"          
-            show-empty  
-            small
-            @filtered="onFiltered"
-            class="tbl"
-          >
-          <template #cell(richiesta)="row">
-            {{ row.item.richiesta }}
-          </template>
+                :items="logs"
+                :fields="fields"
+                :current-page="currentPage"
+                :per-page="perPage"
+                :filter="filter"
+                :filter-included-fields="filterOn"
+                :tbody-tr-class="rowClass"
+                :filter-debounce="1000"
+                stacked="md"          
+                show-empty  
+                small
+                @filtered="onFiltered"
+                class="tbl"
+              >
+              <template #cell(richiesta)="row">
+                {{ row.item.richiesta }}
+              </template>
 
-          <template #cell(data)="row">
-            {{ row.item.giorno }} {{ row.item.mese }} {{ row.item.anno }} 
-          </template>
+              <template #cell(data_completo)="row">
+                {{ row.item.data_completo }} 
+              </template>
 
-          <template #cell(ip)="row">
-            {{ row.item.ip_cliente }}
-          </template>
+              <template #cell(ip)="row">
+                {{ row.item.ip_cliente }}
+              </template>
 
-          <template #cell(Codice status)="row">
-            {{ row.item.codice_risposta }}
-          </template>
+              <template #cell(codice_risposta)="row">
+                {{ row.item.codice_risposta }}
+              </template>
 
-          <!--Mostra i bottoni della Actions-->
-          <template #cell(actions)="row">
-            <b-button size="sm" @click="row.toggleDetails" class="btn-clear">
-              {{ row.detailsShowing ? 'Hide' : 'Show' }} Details
-            </b-button>
-          </template>
+              <!--Mostra i bottoni della Actions-->
+              <template #cell(actions)="row">
+                <!--<b-button size="sm" @click="row.toggleDetails" class="btn-clear">
+                  {{ row.detailsShowing ? 'Hide' : 'Show' }} Details
+                </b-button>-->
+                <NuxtLink :to="`/dashboard/logdetails/${row.item.id}`">
+                  mostra dettagli
+                </NuxtLink>
+              </template>
 
-          <!--mostrai dettagli dopo aver cliccato show|hide details-->
-          <!--Meglio se apre una nuova pagina..-->
-          <template #row-details="row">
-            <b-card>
-              <ul>
-                <li v-for="(value, key) in row.item" :key="key">{{ key }}: {{ value }}</li>
-                <!--dovrebbe andarci una cartina per la geoloc.-->
-              </ul>
-            </b-card>
-          </template>
+              <!--mostrai dettagli dopo aver cliccato show|hide details
+              Meglio se apre una nuova pagina..
+              <template #row-details="row">
+                <b-card>
+                  <ul>
+                    <li v-for="(value, key) in row.item" :key="key">{{ key }}: {{ value }}</li>
+                    <!--dovrebbe andarci una cartina per la geoloc
+                  </ul>
+                </b-card>
+              </template>.-->
 
-                </b-table>
+              </b-table>
 
                 <b-pagination
-              v-model="currentPage"
-              :total-rows="totalRows"
-              :per-page="perPage"
-              align="fill"
-              size="sm"     
-              class="mx-auto" style="width: 350px;"
-            >
+                v-model="currentPage"
+                :total-rows="totalRows"
+                :per-page="perPage"
+                align="fill"
+                size="sm"     
+                class="mx-auto" style="width: 350px;"
+              >
                 </b-pagination>
             </b-container>
 
-            <b-container fluid class="pt-1 shadow-sm p-3 mb-5 bg-white rounded">
+            <b-container fluid class="pt-1">
 
               <b-form-group
               label-for="filter-input"
-              label="Filtra"
+              label="Filtra:"
               label-cols="1"
               content-cols="5"
               label-class="label"
@@ -116,8 +119,8 @@
 
               <b-form-group
                
-                label="Filter On"
-                description="Leave all unchecked to filter on all data"
+                label="Filtra su"
+                description="Lascia tutto deselezionato per filtrare su tutti i dati"
                 label-cols="1"
                 label-align="left"
                 label-size="sm"
@@ -131,14 +134,17 @@
                   class="mt-1"
                 >
                   <b-form-checkbox value="richiesta">richiesta</b-form-checkbox>
-                  <b-form-checkbox value="data">data</b-form-checkbox>
+                  <b-form-checkbox value="data_completo">
+                    data 
+                    <small>(yyyy-mm-dd)</small>
+                  </b-form-checkbox>
                   <b-form-checkbox value="ip_cliente">ip</b-form-checkbox>               
-                  <b-form-checkbox value="codice_risposta">Status code</b-form-checkbox> 
+                  <b-form-checkbox value="codice_risposta">Codice stato</b-form-checkbox> 
                 </b-form-checkbox-group>
               </b-form-group>
 
               <b-form-group
-              label="Logs per page"
+              label="Logs per pagina"
               label-for="per-page-select"
               label-cols="1"
               label-class="label2"
@@ -168,17 +174,17 @@
 <script>
 
   export default {
-    async asyncData({ $axios }) {
-      const logs = await $axios.$get('/alldb')
+    async asyncData({ $axios}) {
+      const logs = await $axios.$get('/alldb/all')
       return { logs }
     },
     data() {
       return {
         fields: [
           { key: 'richiesta', label: 'Richiesta'},
-          { key: 'data', label: 'Data'},
+          { key: 'data_completo', label: 'Data'},
           { key: 'ip_cliente', label: 'Ip'},
-          { key: 'codice_risposta', label: 'Codice status', class: 'text-center'},
+          { key: 'codice_risposta', label: 'Codice stato', class: 'text-center'},
           { key: 'actions', label: 'Actions'},
         ],
         totalRows: 1,
@@ -187,7 +193,7 @@
         pageOptions: [5, 10, 15, { value: 100, text: "Show a lot" }],
         filter: null,
         filterOn: [],
-        filterOff: ['timezone', 'autentificato', 'identificativo', 'dispositivo', 'stato_referente', 'quantita_trasmissione'],
+        //filterOff: ['timezone', 'autentificato', 'identificativo', 'dispositivo', 'stato_referente', 'quantita_trasmissione'],
        
       }
     },
@@ -202,14 +208,25 @@
       
       rowClass(log, type){
 
-          if (!log || type !== 'row') return
-          if (log.codice_risposta == 200) return 'table-success'
+          if (!log || type !== 'row') 
+                return
+
+          if ((log.codice_risposta >= 200) && (log.codice_risposta < 400)) 
+                return 'log_success'
+                
           if ((log.codice_risposta == 401) || 
-              (log.codice_risposta == 451) || 
-              (log.codice_risposta == 451)) 
-              return 'table-dark'
-          if (log.codice_risposta > 500) return 'table-warning'  
-      },
+              (log.codice_risposta == 429) || 
+              (log.codice_risposta == 403) ||
+              (log.codice_risposta == 451))
+                return 'log_danger'
+
+          if ((log.codice_risposta >= 500))
+                return 'table-warning'  
+      },/*
+      formatDate(date){
+        const options = { year: 'numeric', month: 'long', day: 'numeric'}
+        return new Date(date).toLocaleString('en', options)
+      },*/
       onFiltered(filteredItems) {
         // Trigger pagination to update the number of buttons/pages due to filtering
         this.totalRows = filteredItems.length
@@ -222,7 +239,23 @@
 </script>
 
 <style>
-    
+
+  th{
+    background-color: #fff;
+  }
+
+  .log_success {
+    background-color: #b6eef5;
+  }
+
+  .log_warning{
+    background-color: #d8eb2e;
+  }
+
+  .log_danger{
+    background-color: #E34234;
+  }
+
  h3{
     color: #6c757d;
     letter-spacing: 0.3px;
@@ -265,7 +298,7 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    max-width: 300px !important;
+    max-width: 500px !important;
   }
  
   .btn-clear{
@@ -278,5 +311,7 @@
   .tbl{
     margin-top: 5px!important;
   }
-
+  small{
+    font-size: 12px;
+  }
 </style>

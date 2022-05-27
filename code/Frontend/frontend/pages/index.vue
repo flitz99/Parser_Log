@@ -20,7 +20,7 @@
         <Login />
         <br><br>
         <div class="text-center">
-        <NuxtLink to="/logsView" >Vai alla Dashboard</NuxtLink>
+        <NuxtLink to="/dashboard/logs" >Vai alla Dashboard</NuxtLink>
         </div>
       </b-col>
 
