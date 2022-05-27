@@ -53,7 +53,7 @@ public class HeimdallApplication {
 	CommandLineRunner commandLine(LogErrRepo logErrRepo){
 		return args -> {
 
-			JsonReader jsonreadererr = new JsonReader("File_Json_err");
+/*			JsonReader jsonreadererr = new JsonReader("File_Json_err");
 			jsonreadererr.readAllLogFiles();
 
 			List<LogError> logErrorList = jsonreadererr.generateLogErrors();
@@ -61,7 +61,7 @@ public class HeimdallApplication {
 			for (LogError logError : logErrorList){
 
 				logErrRepo.save(logError);
-			}
+			}*/
 
 
 
