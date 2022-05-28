@@ -12,13 +12,20 @@
           
           <h3 class="m-2">Dashboard</h3>
           
-          <div class="d-flex m-2">
-            <NuxtLink to="/charts">
-            <h3 class="stats p-2">Statistiche</h3>
-            </NuxtLink>
-            <img src="~/assets/stats-bars.png" class="img-stats"/>
-
-          </div> 
+          <div class="d-flex flex-column justify-content-center">
+            <div class="d-flex m-0">
+              <NuxtLink to="/charts">
+              <h3 class="stats p-2">Statistiche</h3>
+              </NuxtLink>
+              <img src="~/assets/stats-bars.png" class="img-stats"/>
+            </div> 
+            <div class="err-stats d-flex ">
+              <NuxtLink to="/dashboard/logerrors">
+                <h3 class="stats p-2">Error logs</h3>
+              </NuxtLink>
+              <img src="~/assets/alert.png" class="img-stats p-1 ms-"/>
+            </div>
+          </div>
 
         </div>
          
@@ -172,8 +179,18 @@
 </template>
 
 <script>
-
+  
   export default {
+    head: {
+    title: 'Logs View',
+    meta: [
+      {
+        hid: 'description',
+        name: 'description',
+      },
+      
+    ],
+  },
     async asyncData({ $axios}) {
       const logs = await $axios.$get('/alldb/all')
       return { logs }
@@ -240,10 +257,14 @@
 
 <style>
 
+  .err-stats{
+    margin-top: -10px;
+    margin-left: 2px;
+  }
   th{
     background-color: #fff;
   }
-
+  
   .log_success {
     background-color: #b6eef5;
   }
@@ -260,7 +281,7 @@
     color: #6c757d;
     letter-spacing: 0.3px;
     font-weight: 600;
-    font-size: 22px;
+    font-size: 22px!important;
   }
 
   .stats{
