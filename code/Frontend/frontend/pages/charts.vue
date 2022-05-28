@@ -21,26 +21,22 @@
       <b-row>
         <b-col class="">
           <BarChart :chartData="chartData" :options="chartOptions" class="chart" />
-          <h3 class="mt-3 mb-3 ml-3">Tot. Transazioni: 4089 transizioni</h3>
+          <h3 class="mt-3 mb-3 ml-3">Tot. Transazioni: 4090 transizioni</h3>
         </b-col>
         <b-col class="">
           <LineChart :chartData="chartData2" :options="chartOptions" class="chart" />
-          <h3 class="mt-3 mb-3 ml-3">Num. Bytes scambiati: 56744688 bytes</h3>
+          <h3 class="mt-3 mb-3 ml-3">Num. Bytes scambiati: 19953971 bytes</h3>
         </b-col>
       </b-row>
 
       <b-row class="mt-5">  
 
-        <b-col class="">
-            <NutChart v-if="loaded" :chartData="chartData3" :options="chartOptions" class="chart" />
-            
+        <b-col class="text-center">
+             <h3 class="mt-3 mb-3 ml-3 pb-5">Log status code </h3>
+            <NutChart :chartData="chartData3" :options="chartOptions" class="chart" />
         </b-col>
 
-        <b-col class="bg-warning">
-              <ul>
-              <li v-for="info in infos" :key="info.id">{{ info.codice }}</li>
-            </ul>
-        </b-col>
+        
 
       </b-row>
 
@@ -64,7 +60,7 @@ export default {
                 borderWidth: 2,
                 fill: true,
                 //borderColor: ['red', '#fff','#fff','#fff', '#fff','#fff','#fff'], 
-                data: [0, 0, 0, 0, 0, 0, 0, 1529, 2560, 0, 0, 0],
+                data: [0, 0, 0, 0, 0, 0, 0, 1529, 2561, 0, 0, 0],
             }]
         },
         chartData2: {
@@ -74,20 +70,21 @@ export default {
                 borderWidth: 2,
                 fill: true,
                 //borderColor: ['red', '#fff','#fff','#fff', '#fff','#fff','#fff'], 
-                data: [0, 0, 0, 0, 0, 0, 0, 15861539, 40886149, 0, 0, 0],
+                data: [0, 0, 0, 0, 0, 0, 0, 15861538, 4092433, 0, 0, 0],
             }]
         },
+      
         chartData3: {
             labels: [ "200", "302", "404", "400", "201", "301", "401", "304", "307", "206"],
             datasets: [{
                 label: "Log ",
                 borderWidth: 2,
                 fill: true,
-                backgroundColor: ['#b6eef5', '#b6eef5', '#d8eb2e', '#00D8FF', '#b6eef5', '#b6eef5'], 
+                backgroundColor: ['#2185d0', '#d8eb2e', '#F05F52', '#F05F52', '#2185d0', '#d8eb2e', '#F05F52', '#d8eb2e', '#d8eb2e', '#2185d0'], 
                 data: [2869, 320, 205, 23, 5, 662, 2, 2, 1, 1 ],
             }]
         },
-        chartData3: null,
+       
         chartOptions: {
             maintainAspectRatio: false,
             responsive: true,
@@ -110,10 +107,7 @@ export default {
       }
   },
   
-  async fetch() {
-    this.info = await fetch('/alldb/all/stats').then(res => res.json())
-  },
-  
+
 }
 
 
