@@ -120,7 +120,7 @@
               <b-form-group
                
                 label="Filtra su"
-                description="Lascia tutto deselezionato per filtrare su tutti i dati"
+                description=""
                 label-cols="1"
                 label-align="left"
                 label-size="sm"
@@ -311,7 +311,5 @@
   .tbl{
     margin-top: 5px!important;
   }
-  small{
-    font-size: 12px;
-  }
+  
 </style>
