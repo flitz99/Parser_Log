@@ -42,7 +42,6 @@ export default {
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     'bootstrap-vue/nuxt',
-    '@nuxt/content',
     '@nuxtjs/axios',
     '@nuxt/http',
     '@nuxtjs/proxy',
