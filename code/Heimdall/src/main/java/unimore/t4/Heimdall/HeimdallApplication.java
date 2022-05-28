@@ -24,6 +24,20 @@ import java.util.List;
 
 /**
  *Classe Main del programma
+ * il nostro backend si divide in 2 parti
+ * preprocessing :
+ * file di log grezzi                 					==>     file Json mappati di Grok (parser)
+ * file Json mappati di Grok (parser) 					==>     file Json processati con Geolocalizzazione e altro
+ * file Json processati con Geolocalizzazione e altro	==>		Salvataggio nel DataBase
+ *
+ * Communicazione con FrontEnd:
+ *
+ * Richieste URL                                    	==>		LogController-LogErrController
+ * LogController-LogErrController						==>		LogService-LogErrService
+ * LogService-LogErrService								==>		LogRepo-LogErrRepo
+ * LogRepo-LogErrRepo									==>		Database
+ *
+ * @author Team4
  */
 @SpringBootApplication
 public class HeimdallApplication {
@@ -61,15 +75,15 @@ public class HeimdallApplication {
 	CommandLineRunner Salva_File_Log_Err_Database(LogErrRepo logErrRepo){
 		return args -> {
 
-/*			JsonReader jsonreadererr = new JsonReader("File_Json_err");
-			jsonreadererr.readAllLogFiles();
-
-			List<LogError> logErrorList = jsonreadererr.generateLogErrors();
-
-			for (LogError logError : logErrorList){
-
-				logErrRepo.save(logError);
-			}*/
+//			JsonReader jsonreadererr = new JsonReader("File_Json_err");
+//			jsonreadererr.readAllLogFiles();
+//
+//			List<LogError> logErrorList = jsonreadererr.generateLogErrors();
+//
+//			for (LogError logError : logErrorList){
+//
+//				logErrRepo.save(logError);
+//			}
 
 
 
@@ -81,19 +95,10 @@ public class HeimdallApplication {
 	 */
 	public static void main(String[] args) {
 
-//		System.out.println("////////////////////////////////////////////////////////");
-//		System.out.println("/////////////avvio processing dei file /////////////////");
-//		System.out.println("////////////////////////////////////////////////////////");
-//
-//
-//
-//
-//
-//		LogProcessing logprocessingerr = new LogProcessing("File_log_err", "File_output_err", "File_Json_err");
-//		logprocessingerr.logProcessing();
-		/**
-		 * Inizializzazione della applicazione Spring
-		 */
+		//HeimdallApplication.start_processing();
+
+		//HeimdallApplication.start_processing_err();
+
 		try {
 			SpringApplication.run(HeimdallApplication.class, args);
 		}catch(BeanCreationException ex){
@@ -108,10 +113,25 @@ public class HeimdallApplication {
 		}
 	}
 
-	public void start_processing(){
-//		LogProcessing logProcessing = new LogProcessing("File_log", "File_output", "File_Json");
-//		logProcessing.logProcessing();
+	/**
+	 * funzione che si dedica al processing dei log dal file path dato
+	 */
+	public static void start_processing(){
+		System.out.println("log processing in avvio");
+		LogProcessing logProcessing = new LogProcessing("File_log", "File_output", "File_Json");
+		logProcessing.logProcessing();
+		System.out.println("log processing finito");
 	}
+	/**
+	 * funzione che si dedica al processing dei log errore dal file path dato
+	 */
+	public static void start_processing_err(){
+		System.out.println("log err processing in avvio");
+		LogProcessing logprocessingerr = new LogProcessing("File_log_err", "File_output_err", "File_Json_err");
+		logprocessingerr.logProcessing();
+		System.out.println("log err processing finito");
+	}
+
 }
 
 
