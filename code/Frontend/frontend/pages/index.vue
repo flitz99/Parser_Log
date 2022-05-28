@@ -32,6 +32,16 @@
 
 <script>
 export default {
+  head: {
+    title: 'Login',
+    meta: [
+      {
+        hid: 'description',
+        name: 'description',
+      },
+      
+    ],
+  },
   name: 'IndexPage'
 }
 </script>
