@@ -1,45 +1,9 @@
 :root {
-
     --body-fonts: 'Source Sans Pro', sans-serif;  
-    --main-px-dim: 13px;
-    --p-px-dim: 14px;
-    --c-black: #000000;
-    --c-grey: #808080;
-    --c-white: #FFFFFF;
-    --f-l: 300;
-    --f-r: 400;
-    --f-sm-b: 600;
-    --f-b: 700;
 }
 
 p,
 h1, h2, h3, h4, h5, h6, a{
 
     font-family: var(--body-fonts)!important;
-}
-
-
-.f-li{
-    font-weight: var(--f-l);
-}
-
-.f-reg{
-    font-weight: var(--f-r);
-}
-
-.f-sm-b{
-    font-weight: var(--f-sm-b);
-}
-
-.f-reg{
-    font-weight: var(--f-r);
-}
-
-.f-reg{
-    font-weight: var(--f-r);
-}
-
-.f-bol{
-
-    font-weight: var(--f-b);
 }
