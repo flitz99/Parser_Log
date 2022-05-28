@@ -8,7 +8,7 @@ import unimore.t4.Heimdall.service.LogErrService;
 
 
 @RestController
-@RequestMapping("/err")
+@RequestMapping("/api")
 public class LogErrController {
 
     private final LogErrService logService;
@@ -21,7 +21,7 @@ public class LogErrController {
      * Funzione che chiama {@link LogErrService#getlogall()}
      * @return
      */
-    @GetMapping("/alllogs")
+    @GetMapping("/alllogerr")
     public  String getalllog(){
         return logService.getlogall();
     }
