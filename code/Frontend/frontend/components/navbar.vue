@@ -2,7 +2,7 @@
     
         <nav>
             <b-container class="navbar">
-                <p class="brand m-3">H</p>
+                <p class="brand m-3">Heimdall</p>
             </b-container>  
         </nav>   
     
@@ -19,8 +19,9 @@ export default {
 
 .brand {
     font-weight: 700 ;
-    font-size: 30px;
-    color: black !important;
+    font-size: 25px;
+    color: #808080 !important;
+    margin-left: 5px!important;
 }
 
 nav{  background-color: #f0f3fa; }
@@ -33,7 +34,5 @@ nav{  background-color: #f0f3fa; }
     justify-content:flex-start;
     flex-wrap: nowrap;
 }
-.butn{
-    background-color: #727cf5;
-}
+
 </style>
