@@ -60,18 +60,20 @@
                 <p>Stato:</p> {{ log.posizione_stato }}
                 </b-list-group-item>
           </b-list-group>
-    
+          <br><br>
           <div v-for="item in map_url" :key="item.id" class="text-center">
+            
             <iframe
               width="500"
               height="350"
               style="border:0"
               loading="lazy"
               allowfullscreen
+              csp="" 
               :src="item.reportUrl">
             </iframe>
             <br>
-            <a :href="item.reportUrl" target="_blank">Visualizza la mappa</a>
+            <a :href="item.reportUrl" target="_blank">Visualizza nella mappa</a>
           </div>
           
         </b-col>
@@ -98,16 +100,24 @@ var resp = [];
 
 
 const ips = ["1.1.1.1", "8.8.8.8", "1.2.3.4"]; 
-/*
+
 ipinfo.getMap(ips).then((response) => {
     console.log(response);
     resp.push(response)
 });
-*/
-
 
 export default {
 
+  head: {
+    title: 'Log details',
+    meta: [
+      {
+        hid: 'description',
+        name: 'description',
+      },
+      
+    ],
+  },
   data(){
     return {
       map_url: resp,
@@ -119,7 +129,7 @@ export default {
     const log_details = await $axios.$get(`/alldb/all/${params.logdetail}`)
     return { log_details }   
   },
-
+  
 }
 </script>
 
