@@ -34,13 +34,15 @@ public class LogService {
         @Autowired
         public LogService(LogRepo logRepo){this.logRepo = logRepo;}
 
+
+
         @GetMapping
         public List<LogEntity> getLogEntity(){
             return List.of(new LogEntity());
         }
 
     /**
-     *   funzione che chiama la quarrie in {@link LogRepo} per avere una lista contenente
+     *   funzione che chiama la quarrie in {@link LogRepo#findspammerglobal()} 
      *   ip e quantita di richieste globali di ogni ip nel database
      *
      */
@@ -91,7 +93,7 @@ public class LogService {
         }
 
     /**
-     * funzione che fa da tramite  per logRepo.findalllogsuper()
+     * funzione che fa da tramite  per {@link LogRepo#findalllogsuper()} 
      * @return
      */
 
@@ -117,7 +119,7 @@ public class LogService {
         }
 
     /**
-     *  funzione che fa da tramite a logrepo.findalllogsuperid(idx)
+     *  funzione che fa da tramite a {@link LogRepo#findalllogsuper()}
      * @param idx id da cercare
      * @return lista contente log completi in base al id
      */
@@ -143,8 +145,8 @@ public class LogService {
         }
 
     /**
-     *  funzione che fa da tramite a logrepo.smartstats
-     * @return una lista contenente la classe CodiceQuantita
+     *  funzione che fa da tramite a {@link LogRepo#smartstats()}
+     * @return 
      */
     public String smartstats(){
         List<CodiceQuantita> array = new ArrayList<>();
@@ -168,7 +170,7 @@ public class LogService {
     }
 
     /**
-     * funzione che fa da tramite a logRepo.findlogMonth
+     * funzione che fa da tramite a {@link LogRepo#findlogMonth(String, String)}
      * @param month mese da cercare
      * @param year anno da cercare
      * @return lista di LodDMY che soddisfanno i requisiti
@@ -195,7 +197,7 @@ public class LogService {
         }
 
     /**
-     * cerca i log in base al ip
+     * funzione che fa da tramite a {@link LogRepo#findlogbyip(String)}
      * @param ip_da_cercare
      * @return
      */
@@ -221,7 +223,7 @@ public class LogService {
         }
 
     /**
-     *  funzione che fa da tramite logRepo.findlogMonthdayip
+     *  funzione che fa da tramite a {@link LogRepo#findlogMonthdayip( String ,String, String, String)} 
      * @param month mese da cercare
      * @param day giorno da cercare
      * @param year anno da cercare
@@ -250,7 +252,7 @@ public class LogService {
         }
 
     /**
-     *  funzione che fa da tramite logRepo.findlogMonthdayip()
+     *  funzione che fa da tramite a {@link LogRepo#findlogMonthdayip(String)}
      * @param year anno da cercare
      * @return ritorna LogCountBytes
      */
@@ -275,26 +277,12 @@ public class LogService {
             return JsonString;
         }
 
-    public String getlogcountbytesmonth(String year ){
-        List<LogCountBytes> array = new ArrayList<>();
-        List<List<String>>repo2 = logRepo.findlogMonthdayip(year);
-        for(List<String> iteratore : repo2){
-            LogCountBytes u = new LogCountBytes(iteratore);
-            array.add(u);
-        }
-
-        Gson gson = new Gson();
-        String JsonString="[";
-        for(LogCountBytes iteratore : array){
-
-            JsonString+= gson.toJson(iteratore);
-            JsonString+=",";
-        }
-        JsonString =JsonString.substring(0,JsonString.length()-1);
-        JsonString+="]";
-
-        return JsonString;
-    }
+    /**
+     * funzione che fa da tramite a {@link LogRepo#findlogcountmonth(String, String)}
+     * @param year
+     * @param month
+     * @return
+     */
     public String getcontabytesmese(String year , String month){
         List<LogCountBytes> array = new ArrayList<>();
         List<List<String>>repo2 = logRepo.findlogcountmonth(year , month);
@@ -318,7 +306,7 @@ public class LogService {
 
 
     /**
-     *  funzione che fa da tramite a logRepo.findsmartlog
+     *  funzione che fa da tramite a {@link LogRepo#findsmartlog()}
      * @return
      */
     public String smartalldb(){
@@ -341,6 +329,8 @@ public class LogService {
 
             return JsonString;
         }
+
+
 
     public static List<LogEntity> findAllLogs(){
 

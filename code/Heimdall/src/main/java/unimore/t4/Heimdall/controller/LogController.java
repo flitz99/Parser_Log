@@ -38,68 +38,122 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
             return new ResponseEntity<>(logs, HttpStatus.OK);
         }
 
-
+    /**
+     *  pagina web che chiama la funzione {@link LogService#smartstats()}
+     * @return
+     */
     @GetMapping("/all/stats")
     public  String smartstats(){
         return logService.smartstats();
     }
 
-        @GetMapping("/richieste")
-        public  String gettestSpammer(){
+    /**
+     * pagina web che chiama la funzione {@link LogService#getspammerglobal()}
+     * @return
+     */
+     @GetMapping("/richieste")
+     public  String gettestSpammer(){
             return logService.getspammerglobal();
         }
 
-        @GetMapping("/alldb")
-        public  String getalllog(){
+    /**
+     * pagina web che chiama la funzione {@link LogService#getlogall()}
+     * @return
+     */
+    @GetMapping("/alldb")
+     public  String getalllog(){
             return logService.getlogall();
         }
 
-       @GetMapping("/alldb/all")
-       public  String getalllogsuper(){
+    /**
+     * pagina web che chiama la funzione {@link LogService#smartalldb()} ()}
+     * @return
+     */
+     @GetMapping("/alldb/all")
+     public  String getalllogsuper(){
         return logService.smartalldb();
     }
 
+    /**
+     * pagina web che chiama la funzione {@link LogService#getlogallsuperid(String)}
+     * @param idx
+     * @return
+     */
     @RequestMapping(value = "/alldb/all/{idx}" , method =  GET )
     @ResponseBody
     public  String getlogsuperid(@PathVariable String idx ){
         return logService.getlogallsuperid(idx);
     }
 
-
+    /**
+     * pagina web che chiama la funzione {@link LogService#getlogmonthyear(String, String)}
+     * @param mesex
+     * @param annox
+     * @return
+     */
     @RequestMapping(value = "/alldb/mese/{mesex}/anno/{annox}" , method =  GET )
-        @ResponseBody
-        public  String getalllogMY(@PathVariable String mesex , @PathVariable String annox){
+    @ResponseBody
+    public  String getalllogMY(@PathVariable String mesex , @PathVariable String annox){
             return logService.getlogmonthyear(mesex, annox);
         }
 
-        @RequestMapping(value = "/alldb/ip/{ipx}" , method =  GET )
-        @ResponseBody
-       public  String getlogbyip(@PathVariable String ipx ){
+    /**
+     * pagina web che chiama la funzione {@link LogService#getlogbyip(String)}
+     * @param ipx
+     * @return
+     */
+    @RequestMapping(value = "/alldb/ip/{ipx}" , method =  GET )
+    @ResponseBody
+    public  String getlogbyip(@PathVariable String ipx ){
             return logService.getlogbyip(ipx);
         }
 
+    /**
+     *  pagina web che chiama la funzione {@link LogService#getlogbyipmonthday(String, String, String, String)}
+     * @param mesex
+     * @param dayx
+     * @param annox
+     * @param ipx
+     * @return
+     */
     @RequestMapping(value = "/alldb/mese/{mesex}/giorno/{dayx}/anno/{annox}/ip/{ipx}" , method =  GET )
     @ResponseBody
     public  String getalllogMY(@PathVariable String mesex , @PathVariable String dayx , @PathVariable String annox ,@PathVariable String ipx){
         return logService.getlogbyipmonthday(mesex, dayx ,annox , ipx);
     }
 
+    /**
+     * pagina web che chiama la funzione {@link LogService#getlogcountbytes(String)}
+     * @param annox
+     * @return
+     */
     @RequestMapping(value = "/alldb/bytescount/anno/{annox}" , method =  GET )
     @ResponseBody
     public  String getalllogMY(@PathVariable String annox ){
         return logService.getlogcountbytes(annox );
     }
 
+    /**
+     * pagina web che chiama la funzione {@link LogService#getcontabytesmese(String, String)}
+     * @param annox
+     * @param mesex
+     * @return
+     */
     @RequestMapping(value = "/alldb/bytescount/anno/{annox}/mese/{mesex}" , method =  GET )
     @ResponseBody
     public  String getbytesmonth(@PathVariable String annox ,@PathVariable String  mesex){
         return logService.getcontabytesmese(annox , mesex );
     }
 
+    /**
+     * pagina web che chiama la funzione {@link LogService#smartalldb()}
+     * @return
+     */
     @RequestMapping(value = "/smart/alldb" , method =  GET )
     @ResponseBody
     public  String smartalldb( ){return logService.smartalldb();
     }
 
-      }
+
+    }
 

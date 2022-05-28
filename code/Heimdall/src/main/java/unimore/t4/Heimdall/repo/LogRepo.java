@@ -72,11 +72,19 @@ public interface LogRepo extends JpaRepository<LogEntity, Long> {
             nativeQuery = true
     )List<List<String>> findlog();
 
+    /**
+     * Funzione che fa una quarrie nel database dei seguenti dati id , data_completa , orario , qunatita_trasmissione, ip_cliente , richiesta , codice_risposta , tipo_richiesta
+     * @return Lista di stringhe contenenti le occurrence
+     */
     @Query(
             value = "select  id , data_completa , orario , qunatita_trasmissione, ip_cliente , richiesta , codice_risposta , tipo_richiesta from log_entity " ,
             nativeQuery = true
     )List<List<String>> findsmartlog();
 
+    /**
+     * Funzione che fa una quarrie nel database dei seguenti dati id , giorno , data_completa , timezone , mese , orario , anno , dispositivo , autentificato , qunatita_trasmissione  , ip_cliente , identificativo , posizione_Citta , latitudine , longitudine , posizione_stato ,  sito_referente , richiesta , codice_risposta , tipo_richiesta , valutazione
+     * @return Lista di stringhe contenenti le occurrence
+     */
     @Query(
             value = " Select id , giorno , data_completa , timezone , mese , orario , anno , dispositivo , autentificato , qunatita_trasmissione  , ip_cliente , identificativo , posizione_Citta , latitudine , longitudine , posizione_stato ,  sito_referente , richiesta , codice_risposta , tipo_richiesta , valutazione from log_entity " ,
             nativeQuery = true
@@ -92,35 +100,68 @@ public interface LogRepo extends JpaRepository<LogEntity, Long> {
             nativeQuery = true
     )List<List<String>> findlogMonth(@Param("mesex") String mese_da_cercare , @Param("annox") String anno_da_cercare );
 
+    /**
+     * Funzione che fa una quarrie nel database dei seguenti dati giorno , mese , anno , orario , timezone , ip_cliente , autentificato , identificativo , dispositivo , sito_referente , richiesta ,  codice_risposta , qunatita_trasmissione
+     * dato un determinato IP
+     * @return Lista contentenente liste di stringhe che rappresentano i log per i criteri scelti
+     */
 
     @Query(
             value = "Select giorno , mese , anno , orario , timezone , ip_cliente , autentificato , identificativo , dispositivo , sito_referente , richiesta ,  codice_risposta , qunatita_trasmissione from log_entity where ip_cliente = :ipx " ,
             nativeQuery = true
     )List<List<String>> findlogbyip(@Param("ipx") String ip  );
 
-
+    /**
+     *  lista di log in base giorno , mese , anno , orario , timezone , ip_cliente , autentificato , identificativo , dispositivo , sito_referente , richiesta ,  codice_risposta , qunatita_trasmissione
+     * @param mese_da_cercare
+     * @param giorno_cercato
+     * @param anno_da_cercare
+     * @param ip_da_Cercare
+     * @return
+     */
     @Query(
             value = "Select giorno , mese , anno , orario , timezone , ip_cliente , autentificato , identificativo , dispositivo , sito_referente , richiesta ,  codice_risposta , qunatita_trasmissione from log_entity where mese = :mesex and giorno = :giornox and anno = :annox and ip_cliente = :ipx " ,
             nativeQuery = true
     )List<List<String>> findlogMonthdayip(@Param("mesex") String mese_da_cercare , @Param("giornox") String giorno_cercato ,  @Param("annox") String anno_da_cercare , @Param("ipx") String ip_da_Cercare);
 
-
+    /**
+     * quarrie su
+     * quantita tramissioni per un determinato ip
+     *
+     * @param anno_da_cercare
+     * @return
+     */
     @Query(
             value = "select mese , SUM(qunatita_trasmissione) as quantita_bytes_totale , count(ip_cliente) as numero_transazioni  from log_entity where anno = :annox group by   mese , anno " ,
             nativeQuery = true
     )List<List<String>> findlogMonthdayip(  @Param("annox") String anno_da_cercare );
 
+    /**
+     *  quantita tramissione per un certo ip in un certo mese
+     * @param anno_da_cercare
+     * @param mese_da_cercare
+     * @return
+     */
     @Query(
             value = "select mese , SUM(qunatita_trasmissione) as quantita_bytes_totale , count(ip_cliente) as numero_transazioni  from log_entity where anno = :annox and mese = :mesex group by   mese , anno " ,
             nativeQuery = true
     )List<List<String>> findlogcountmonth(  @Param("annox") String anno_da_cercare , @Param("mesex") String mese_da_cercare  );
 
+    /**
+     *  quarrie sul database id , giorno , data_completa , timezone , mese , orario , anno , dispositivo , autentificato , qunatita_trasmissione  , ip_cliente , identificativo , posizione_Citta , latitudine , longitudine , posizione_stato ,  sito_referente , richiesta , codice_risposta , tipo_richiesta , valutazione
+     *  in base al ID
+     * @param id_log
+     * @return
+     */
     @Query(
             value = " Select id , giorno , data_completa , timezone , mese , orario , anno , dispositivo , autentificato , qunatita_trasmissione  , ip_cliente , identificativo , posizione_Citta , latitudine , longitudine , posizione_stato ,  sito_referente , richiesta , codice_risposta , tipo_richiesta , valutazione from log_entity where id = :idx  " ,
             nativeQuery = true
     )List<List<String>> findalllogsuperid(@Param("idx") String id_log );
 
-
+    /**
+     * Quarrie sul database  sulla quantita di codici risposta e le loro occurence
+     * @return
+     */
     @Query(
             value = "select codice_risposta ,  count(*) as quantitá from log_entity group by codice_risposta" ,
             nativeQuery = true
