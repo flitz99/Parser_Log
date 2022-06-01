@@ -61,19 +61,21 @@
                 </b-list-group-item>
           </b-list-group>
           <br><br>
-          <div v-for="item in map_url" :key="item.id" class="text-center">
-            
-            <iframe
-              width="500"
-              height="350"
-              style="border:0"
-              loading="lazy"
-              allowfullscreen
-              csp="" 
-              :src="item.reportUrl">
-            </iframe>
-            <br>
-            <a :href="item.reportUrl" target="_blank">Visualizza nella mappa</a>
+
+          <div v-for="log in log_details" :key="log.id" class="">         
+                   
+            <GmapMap
+              :center="ip_to_find"
+              :zoom="10"
+              map-type-id="terrain"
+              style="height: 300px" 
+            >
+              <GmapMarker
+                :position="ip_to_find"
+                :clickable="true"
+              />
+            </GmapMap>
+
           </div>
           
         </b-col>
@@ -90,21 +92,6 @@
 
 <script >
 
-const { IPinfoWrapper } = require("node-ipinfo");
-
-const ipinfo = new IPinfoWrapper("b5f71cdb8a2b75");
-
-var resp = [];
-
-//var ip_to_find = "";
-
-
-const ips = ["1.1.1.1", "8.8.8.8", "1.2.3.4"]; 
-
-ipinfo.getMap(ips).then((response) => {
-    console.log(response);
-    resp.push(response)
-});
 
 export default {
 
@@ -120,14 +107,20 @@ export default {
   },
   data(){
     return {
-      map_url: resp,
-      ip_to_find: ["1.1.1.1"],
+     
+      ip_to_find: {},
+      markers: [{
+      }]
     }
   },
   async asyncData({ params, $axios }){
     
     const log_details = await $axios.$get(`/alldb/all/${params.logdetail}`)
-    return { log_details }   
+      return { 
+      log_details, 
+      ip_to_find : {lat: parseFloat(log_details[0].latitudine), lng: parseFloat(log_details[0].longitudine) } 
+    }
+
   },
   
 }
