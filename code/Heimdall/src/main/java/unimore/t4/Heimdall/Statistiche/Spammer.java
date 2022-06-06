@@ -9,11 +9,15 @@ public class Spammer {
 
     private String ip;
     private String count;
+    private String latitudine;
+    private String longitudine;
 
 
     public Spammer(List<String> entrata){
         this.ip = entrata.get(0);
         this.count = entrata.get(1);
+        this.latitudine = entrata.get(2);
+        this.longitudine = entrata.get(3);
 
     }
 
@@ -27,12 +31,13 @@ public class Spammer {
     }
 
 
-
     @Override
     public String toString() {
         return "Spammer{" +
                 "ip='" + ip + '\'' +
-                ", count=" + count +
-                "},";
+                ", count='" + count + '\'' +
+                ", latitudine='" + latitudine + '\'' +
+                ", longitudine='" + longitudine + '\'' +
+                '}';
     }
 }

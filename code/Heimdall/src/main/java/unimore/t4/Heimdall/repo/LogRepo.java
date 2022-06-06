@@ -21,7 +21,7 @@ public interface LogRepo extends JpaRepository<LogEntity, Long> {
      * @return Lista contentenente liste di stringhe che rappresentano i log per i criteri scelti
      */
     @Query(
-            value = "select ip_cliente , count(*) as quantita from log_entity group by ip_cliente" ,
+            value = "select ip_cliente , count(*) as quantita,  latitudine , longitudine  from log_entity group by ip_cliente , latitudine , longitudine order by quantita desc" ,
             nativeQuery = true
     )
     List<List<String>> findspammerglobal();
