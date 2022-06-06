@@ -12,6 +12,17 @@
           Benvenuto sul sito Heimdall 
           del gruppo 4.
         </p>
+        <p>
+          Designed and coded by :
+          <ul>
+            <li>Baroni Simone</li>    
+            <li>Lucchina Lorenzo</li>
+            <li>Reggiani Filippo</li>
+            <li>Uthayakumar Janath </li>
+            <li>Vecchi Jacopo</li>
+            <li>Villa Massimiliano</li>
+          </ul>
+        </p>
 
       </b-col>
 

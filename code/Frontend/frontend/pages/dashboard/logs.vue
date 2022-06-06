@@ -63,6 +63,9 @@
 
               <template #cell(codice_risposta)="row">
                 {{ row.item.codice_risposta }}
+                <NuxtLink :to="'/info'">
+                  <img src="~/assets/info.png" class="img-info p-1 ms-"/>
+                </NuxtLink>
               </template>
 
               <!--Mostra i bottoni della Actions-->
@@ -73,6 +76,7 @@
                 <NuxtLink :to="`/dashboard/logdetails/${row.item.id}`">
                   mostra dettagli
                 </NuxtLink>
+                
               </template>
 
               <!--mostrai dettagli dopo aver cliccato show|hide details
@@ -312,7 +316,13 @@
     filter: invert(70%);
     height: 30px;
   }
-
+  .img-info{
+    width: 30px;
+    filter: invert(0);
+    height: 30px;
+   /* padding: 1px!important;*/
+    margin: 0 0 5px 2px!important;
+  }
   main{ background-color: #fff; }
 
   td div {
