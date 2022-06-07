@@ -4,13 +4,13 @@
         
     <navbar /> 
 
-      <b-container  class="dashboard mt-1 pb-0" >
+      <b-container  class="dashboard mt-1 pb-0 shadow-sm p-3 mb-5 bg-body rounded" >
                  
         <br>
 
         <div class="d-flex justify-content-between flex-row align-items-center align-self-center mb-4">
           
-          <h3 class="m-2">Dashboard</h3>
+          <h3 class="m-0">Dashboard</h3>
           
           <div class="d-flex flex-column justify-content-center">
             <div class="d-flex m-0">
@@ -23,7 +23,7 @@
               <NuxtLink to="/dashboard/logerrors">
                 <h3 class="stats p-2">Error logs</h3>
               </NuxtLink>
-              <img src="~/assets/alert.png" class="img-stats p-1 ms-"/>
+              <img src="~/assets/alert.png" class="img-err p-1"/>
             </div>
           </div>
 
@@ -64,31 +64,16 @@
               <template #cell(codice_risposta)="row">
                 {{ row.item.codice_risposta }}
                 <NuxtLink :to="'/info'">
-                  <img src="~/assets/info.png" class="img-info p-1 ms-"/>
+                  <img src="~/assets/info.png" class="img-info m-1"/>
                 </NuxtLink>
               </template>
 
-              <!--Mostra i bottoni della Actions-->
               <template #cell(actions)="row">
-                <!--<b-button size="sm" @click="row.toggleDetails" class="btn-clear">
-                  {{ row.detailsShowing ? 'Hide' : 'Show' }} Details
-                </b-button>-->
                 <NuxtLink :to="`/dashboard/logdetails/${row.item.id}`">
                   mostra dettagli
                 </NuxtLink>
                 
               </template>
-
-              <!--mostrai dettagli dopo aver cliccato show|hide details
-              Meglio se apre una nuova pagina..
-              <template #row-details="row">
-                <b-card>
-                  <ul>
-                    <li v-for="(value, key) in row.item" :key="key">{{ key }}: {{ value }}</li>
-                    <!--dovrebbe andarci una cartina per la geoloc
-                  </ul>
-                </b-card>
-              </template>.-->
 
               </b-table>
 
@@ -185,16 +170,10 @@
 <script>
   
   export default {
+    
     head: {
     title: 'Logs View',
-    meta: [
-      {
-        hid: 'description',
-        name: 'description',
-      },
-      
-    ],
-  },
+    },
     async asyncData({ $axios}) {
       const logs = await $axios.$get('/alldb/all')
       return { logs }
@@ -213,9 +192,7 @@
         perPage: 5,
         pageOptions: [5, 10, 15, { value: 100, text: "Show a lot" }],
         filter: null,
-        filterOn: [],
-        //filterOff: ['timezone', 'autentificato', 'identificativo', 'dispositivo', 'stato_referente', 'quantita_trasmissione'],
-       
+        filterOn: [],       
       }
     },
     computed: {
@@ -226,7 +203,7 @@
       this.totalRows = this.logs.length;
     },
     methods: {
-      
+      // Colora la riga in base al codice d'errore
       rowClass(log, type){
 
           if (!log || type !== 'row') 
@@ -243,16 +220,11 @@
 
           if ((log.codice_risposta >= 500))
                 return 'table-warning'  
-      },/*
-      formatDate(date){
-        const options = { year: 'numeric', month: 'long', day: 'numeric'}
-        return new Date(date).toLocaleString('en', options)
-      },*/
+      },
       onFiltered(filteredItems) {
         // Trigger pagination to update the number of buttons/pages due to filtering
         this.totalRows = filteredItems.length
         this.currentPage = 1
-       
       }
     }
 
@@ -281,13 +253,6 @@
     background-color: #E34234;
   }
 
- h3{
-    color: #6c757d;
-    letter-spacing: 0.3px;
-    font-weight: 600;
-    font-size: 22px!important;
-  }
-
   .stats{
     color: #727cf5;
     letter-spacing: 0.3px;
@@ -300,7 +265,7 @@
     letter-spacing: 0.5px;
     font-size: 18px;
     color: #808080;
-    /*margin-left: 5px !important;*/
+  
   }
 
   .label2{
@@ -308,21 +273,9 @@
     letter-spacing: 0.3px;
     font-size: 13px;
     color: #000;
-    /*margin-left: 5px !important;*/
+
   }
 
-  .img-stats{
-    width: 30px;
-    filter: invert(70%);
-    height: 30px;
-  }
-  .img-info{
-    width: 30px;
-    filter: invert(0);
-    height: 30px;
-   /* padding: 1px!important;*/
-    margin: 0 0 5px 2px!important;
-  }
   main{ background-color: #fff; }
 
   td div {

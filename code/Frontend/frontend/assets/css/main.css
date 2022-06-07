@@ -7,3 +7,40 @@ h1, h2, h3, h4, h5, h6, a{
 
     font-family: var(--body-fonts)!important;
 }
+
+h1{
+    color: #6c757d;
+    letter-spacing: -0.3px;
+    font-weight: 600;
+    font-size: 28px;
+}
+
+h3{
+    color: #6c757d;
+    letter-spacing: -0.3px;
+    font-weight: 600;
+    font-size: 22px;
+}
+
+.img-stats{
+    width: 30px;
+    filter: invert(70%);
+    height: 30px;
+}
+
+.img-err{
+    width: 30px;
+    filter: invert(70%);
+    height: 30px;
+    margin: 0 0 0 5px;
+}
+
+.img-info{
+    width: 20px;
+    filter: invert(30%);
+    height: 20px;
+}
+
+.img-info:hover{
+    filter: invert(40%);
+ }

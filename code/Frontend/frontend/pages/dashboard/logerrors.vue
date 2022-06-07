@@ -192,14 +192,7 @@
   export default {
     head: {
     title: 'Error log',
-    meta: [
-      {
-        hid: 'description',
-        name: 'description',
-      },
-      
-    ],
-  },
+    },
     async asyncData({ $axios}) {
       const logs = await $axios.$get('/alllogerr')
       return { logs }

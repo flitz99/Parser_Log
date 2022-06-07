@@ -97,20 +97,11 @@ export default {
 
   head: {
     title: 'Log details',
-    meta: [
-      {
-        hid: 'description',
-        name: 'description',
-      },
-      
-    ],
   },
   data(){
-    return {
-     
+    return { 
       ip_to_find: {},
-      markers: [{
-      }]
+     
     }
   },
   async asyncData({ params, $axios }){
